@@ -1,16 +1,32 @@
 :root {
-  --brand-dark: #1a1a18;
-  --brand-black: #000000;
-  --brand-white: #ffffff;
-  --soft-white: #f7f7f5;
-  --light-grey: #e8e8e5;
-  --medium-grey: #9a9a94;
-  --dark-grey: #2a2a27;
+  /* Premium dark theme */
+  --background: #070708;
+  --background-secondary: #0d0d10;
+  --surface: rgba(255, 255, 255, 0.045);
+  --surface-hover: rgba(255, 255, 255, 0.075);
+  --border: rgba(255, 255, 255, 0.1);
+  --text-primary: #f7f7f8;
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --accent-blue: #37b7ff;
+  --accent-violet: #8b5cf6;
+  --accent-pink: #e557ff;
+  --accent-cyan: #37b7ff;
+  --glow-blue: rgba(55, 183, 255, 0.35);
+  --glow-violet: rgba(139, 92, 246, 0.3);
 
-  --body: #4a4a46;
-  --heading-dark: var(--brand-dark);
-  --text-light: var(--brand-white);
-  --muted-light: #b8b8b2;
+  /* Legacy mappings */
+  --brand-dark: #0d0d10;
+  --brand-black: #070708;
+  --brand-white: #f7f7f8;
+  --soft-white: #0d0d10;
+  --light-grey: rgba(255, 255, 255, 0.1);
+  --medium-grey: rgba(255, 255, 255, 0.45);
+  --dark-grey: #141418;
+
+  --body: var(--text-secondary);
+  --heading-dark: var(--text-primary);
+  --text-light: var(--text-primary);
+  --muted-light: var(--text-secondary);
 
   --font-heading: "Manrope", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
@@ -18,28 +34,32 @@
   --radius-sm: 12px;
   --radius-md: 16px;
   --radius-lg: 20px;
+  --radius-xl: 28px;
 
-  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadow-soft: 0 8px 40px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 60px rgba(55, 183, 255, 0.12);
   --header-height: 76px;
   --header-offset: 76px;
-  --container-max: 1200px;
+  --container-max: 1240px;
   --container-pad: 24px;
   --prose-width: 620px;
   --nav-gap: 28px;
-  --section-y: clamp(3rem, 5vw, 6rem);
-  --transition: 0.25s ease;
+  --section-y: clamp(4rem, 7vw, 7rem);
+  --transition: 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  --nav-float-top: 16px;
 }
 
 @media (max-width: 992px) {
   :root {
-    --section-y: clamp(4rem, 6vw, 4.5rem);
+    --section-y: clamp(3.5rem, 6vw, 5rem);
   }
 }
 
 @media (max-width: 768px) {
   :root {
-    --header-height: 72px;
-    --header-offset: 72px;
-    --section-y: clamp(3rem, 8vw, 3.75rem);
+    --header-height: 68px;
+    --header-offset: 68px;
+    --nav-float-top: 10px;
+    --section-y: clamp(3rem, 8vw, 4rem);
   }
 }

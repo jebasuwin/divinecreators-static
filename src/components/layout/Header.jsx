@@ -11,8 +11,9 @@ const Header = () => {
   const menuToggleRef = useRef(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -23,42 +24,40 @@ const Header = () => {
 
   return (
     <>
-      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
-        <div className="container-gd site-header__bar">
+      <header className={`floating-nav ${scrolled ? "floating-nav--scrolled" : ""}`}>
+        <div className="floating-nav__shell">
           <Logo />
 
-          <div className="site-header__end">
-            <nav className="site-header__nav" aria-label="Main navigation">
-              <ul className="site-nav">
-                {mainNavLinks.map((link) => (
-                  <li key={link.path}>
-                    <NavLink
-                      to={link.path}
-                      end={link.path === "/"}
-                      className={({ isActive }) => `site-nav__link ${isActive ? "active" : ""}`}
-                    >
-                      {link.label}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+          <nav className="floating-nav__links" aria-label="Main navigation">
+            <ul>
+              {mainNavLinks.map((link) => (
+                <li key={link.path}>
+                  <NavLink
+                    to={link.path}
+                    end={link.path === "/"}
+                    className={({ isActive }) => `floating-nav__link ${isActive ? "active" : ""}`}
+                  >
+                    {link.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-            <div className="site-header__actions">
-              <PrimaryButton to="/contact" small className="d-none d-lg-inline-flex">
-                Get Started
-              </PrimaryButton>
-              <button
-                ref={menuToggleRef}
-                type="button"
-                className="menu-toggle d-lg-none"
-                aria-label="Open menu"
-                aria-expanded={menuOpen}
-                onClick={() => setMenuOpen(true)}
-              >
-                <i className="bi bi-list" aria-hidden="true" />
-              </button>
-            </div>
+          <div className="floating-nav__actions">
+            <PrimaryButton to="/contact" small className="floating-nav__cta d-none d-lg-inline-flex">
+              Get Started
+            </PrimaryButton>
+            <button
+              ref={menuToggleRef}
+              type="button"
+              className="floating-nav__toggle d-lg-none"
+              aria-label="Open menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen(true)}
+            >
+              <i className="bi bi-list" aria-hidden="true" />
+            </button>
           </div>
         </div>
       </header>

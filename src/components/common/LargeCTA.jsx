@@ -12,7 +12,7 @@ const LargeCTA = ({
   showArrow = true,
 }) => (
   <section className={`large-cta ${dark ? "large-cta--dark" : ""}`} aria-labelledby="large-cta-heading">
-    <div className="large-cta__inner">
+    <div className="large-cta__inner reveal reveal-up">
       <h2 id="large-cta-heading">{title}</h2>
       {subtitle && (
         <p className="large-cta__subtitle">

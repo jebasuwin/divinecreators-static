@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SEO from "../components/common/SEO";
 import PrimaryButton from "../components/common/PrimaryButton";
-import LargeCTA from "../components/common/LargeCTA";
+import ContactCTA from "../components/common/ContactCTA";
 import ImageReveal from "../components/common/ImageReveal";
 import { pageSeo } from "../data/seoConfig";
 import { detailedServices } from "../data/services";
@@ -64,7 +64,7 @@ const Services = () => {
       />
 
       <section className="page-hero page-hero--simple">
-        <div className="container-gd">
+        <div className="container-gd reveal reveal-up">
           <span className="section-eyebrow">Services</span>
           <h1 className="page-title">Digital marketing services that work together</h1>
           <p>
@@ -99,7 +99,7 @@ const Services = () => {
           >
             <div className="container-gd">
               <div className={`split-section split-section--center ${index % 2 === 1 ? "split-section--reverse" : ""}`}>
-                <div>
+                <div className={`reveal ${index % 2 === 1 ? "reveal-left" : "reveal-right"}`}>
                   <span className="section-eyebrow">
                     Service {String(index + 1).padStart(2, "0")}
                   </span>
@@ -118,11 +118,13 @@ const Services = () => {
                     {service.cta}
                   </PrimaryButton>
                 </div>
+                <div className={`reveal ${index % 2 === 1 ? "reveal-right" : "reveal-left"}`}>
                 <ImageReveal
                   src={img}
                   alt={service.title}
                   ratio="standard"
                 />
+                </div>
               </div>
             </div>
           </section>
@@ -130,7 +132,7 @@ const Services = () => {
       })}
 
       <section className="section-pad bg-soft text-center services-help-section">
-        <div className="container-gd">
+        <div className="container-gd reveal reveal-up">
           <h2>Not sure which service you need?</h2>
           <p>
             Share your goals with us and we will help you identify the right marketing services for your business.
@@ -141,13 +143,12 @@ const Services = () => {
 
       <section className="section-pad">
         <div className="container-gd">
-          <LargeCTA
+          <ContactCTA
             title={pageCtas.services.heading}
             primaryLabel={pageCtas.services.primaryCta.label}
             primaryTo={pageCtas.services.primaryCta.path}
             secondaryLabel={pageCtas.services.phoneCta.label}
             secondaryHref={pageCtas.services.phoneCta.path}
-            dark
           />
         </div>
       </section>

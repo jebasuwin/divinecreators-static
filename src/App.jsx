@@ -4,6 +4,9 @@ import { HelmetProvider } from "react-helmet-async";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/common/ScrollToTop";
+import ScrollReveal from "./components/common/ScrollReveal";
+import CustomCursor from "./components/common/CustomCursor";
+import PageTransition from "./components/common/PageTransition";
 import FloatingActions from "./components/common/FloatingActions";
 
 const Home = lazy(() => import("./pages/Home"));
@@ -14,10 +17,9 @@ const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const PageLoader = () => (
-  <div className="d-flex justify-content-center align-items-center bg-dark" style={{ minHeight: "60vh" }}>
-    <div className="spinner-border" style={{ color: "var(--brand-black)" }} role="status">
-      <span className="visually-hidden">Loading...</span>
-    </div>
+  <div className="page-loader" role="status" aria-label="Loading">
+    <div className="page-loader__ring" />
+    <span className="visually-hidden">Loading...</span>
   </div>
 );
 
@@ -25,23 +27,30 @@ function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <ScrollToTop />
-        <a href="#main-content" className="skip-link">Skip to main content</a>
-        <Header />
-        <main id="main-content">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/solutions" element={<Solutions />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </main>
-        <Footer />
-        <FloatingActions />
+        <div className="app-shell">
+          <div className="ambient-glow ambient-glow--blue" aria-hidden="true" />
+          <div className="ambient-glow ambient-glow--violet" aria-hidden="true" />
+          <CustomCursor />
+          <ScrollToTop />
+          <ScrollReveal />
+          <PageTransition />
+          <a href="#main-content" className="skip-link">Skip to main content</a>
+          <Header />
+          <main id="main-content">
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/solutions" element={<Solutions />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </main>
+          <Footer />
+          <FloatingActions />
+        </div>
       </BrowserRouter>
     </HelmetProvider>
   );

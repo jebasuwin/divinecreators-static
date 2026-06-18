@@ -92,3 +92,31 @@ export const pageCtas = {
     ...sharedCtaActions,
   },
 };
+
+export const testimonials = [
+  {
+    quote:
+      "Divine Creators helped us bring structure to our marketing. Strategy, reporting and execution finally worked together instead of feeling disconnected.",
+    author: "E-commerce brand",
+    role: "Online retail client",
+  },
+  {
+    quote:
+      "The team communicated clearly at every stage. We understood what was being done, why it mattered, and how performance was improving over time.",
+    author: "Local service business",
+    role: "Chennai-based client",
+  },
+  {
+    quote:
+      "From content planning to campaign optimization, the approach was practical and focused on measurable growth rather than vanity metrics.",
+    author: "Growing consultancy",
+    role: "Personal branding client",
+  },
+];
+
+export const aboutStatement = {
+  eyebrow: "About Divine Creators",
+  statement:
+    "We help businesses build stronger digital presence through strategy-led marketing, creative communication and performance-focused execution.",
+  keywords: ["strategy-led", "creative communication", "performance-focused"],
+};

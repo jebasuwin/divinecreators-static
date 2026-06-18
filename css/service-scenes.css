@@ -1,0 +1,152 @@
+/* ═══ Cinematic service motion artwork — full-canvas scenes ═══ */
+
+.service-scene {
+  --scene-tilt-x: 0deg;
+  --scene-tilt-y: 0deg;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(380px, 56vw, 580px);
+  margin-inline: auto;
+  border-radius: 24px;
+  overflow: hidden;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--scene-tilt-x)) rotateY(var(--scene-tilt-y));
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  border: 1px solid rgba(0, 212, 255, 0.16);
+  background: #020408;
+  box-shadow:
+    0 0 0 1px rgba(123, 47, 255, 0.1) inset,
+    0 40px 80px rgba(0, 0, 0, 0.55),
+    0 0 100px rgba(0, 212, 255, 0.07);
+}
+
+.service-scene:hover {
+  border-color: rgba(0, 212, 255, 0.32);
+  box-shadow:
+    0 0 0 1px rgba(123, 47, 255, 0.15) inset,
+    0 48px 96px rgba(0, 0, 0, 0.6),
+    0 0 120px rgba(0, 212, 255, 0.12);
+}
+
+.service-scene__viewport {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.service-scene canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.service-scene__canvas-bg { z-index: 0; }
+.service-scene__canvas-mid { z-index: 2; }
+.service-scene__canvas-fx {
+  z-index: 4;
+  mix-blend-mode: screen;
+}
+
+.service-scene__fog {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 35%, transparent 25%, rgba(5, 10, 20, 0.45) 100%),
+    linear-gradient(180deg, transparent 60%, rgba(2, 4, 8, 0.7) 100%);
+  pointer-events: none;
+}
+
+.service-scene__beam {
+  position: absolute;
+  top: -25%;
+  left: 28%;
+  width: 3px;
+  height: 150%;
+  z-index: 3;
+  background: linear-gradient(180deg, transparent, rgba(0, 212, 255, 0.4), rgba(123, 47, 255, 0.2), transparent);
+  filter: blur(2px);
+  animation: scene-beam 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.service-scene__sweep {
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 45%;
+  height: 180%;
+  z-index: 5;
+  background: linear-gradient(
+    105deg,
+    transparent,
+    rgba(0, 212, 255, 0.03),
+    rgba(0, 212, 255, 0.2),
+    rgba(123, 47, 255, 0.12),
+    transparent
+  );
+  transform: skewX(-18deg);
+  animation: scene-light-sweep 6s ease-in-out infinite;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.service-scene__sweep--2 {
+  animation-delay: -3s;
+  opacity: 0.55;
+  width: 32%;
+}
+
+.service-scene__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.service-scene--youtube .service-scene__beam {
+  background: linear-gradient(180deg, transparent, rgba(255, 60, 60, 0.35), transparent);
+}
+
+.service-scene--social .service-scene__fog {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 50%, rgba(255, 79, 216, 0.04), transparent 55%),
+    radial-gradient(ellipse 100% 80% at 50% 35%, transparent 25%, rgba(5, 10, 20, 0.45) 100%);
+}
+
+@keyframes scene-light-sweep {
+  0% { transform: translateX(-15%) skewX(-18deg); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateX(300%) skewX(-18deg); opacity: 0; }
+}
+
+@keyframes scene-beam {
+  0%, 100% { opacity: 0.25; transform: translateX(0) scaleY(0.92); }
+  50% { opacity: 0.75; transform: translateX(50px) scaleY(1.06); }
+}
+
+@media (min-width: 992px) {
+  .service-block .service-scene {
+    height: clamp(420px, 48vw, 560px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-scene {
+    transform: none;
+    transition: none;
+  }
+
+  .service-scene__sweep,
+  .service-scene__beam {
+    animation: none !important;
+    opacity: 0.35;
+  }
+}

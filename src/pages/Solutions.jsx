@@ -1,6 +1,6 @@
 import SEO from "../components/common/SEO";
 import PrimaryButton from "../components/common/PrimaryButton";
-import LargeCTA from "../components/common/LargeCTA";
+import ContactCTA from "../components/common/ContactCTA";
 import ImageReveal from "../components/common/ImageReveal";
 import { pageSeo } from "../data/seoConfig";
 import { detailedSolutions } from "../data/solutions";
@@ -20,7 +20,7 @@ const Solutions = () => (
     />
 
     <section className="page-hero page-hero--simple">
-      <div className="container-gd">
+      <div className="container-gd reveal reveal-up">
         <span className="section-eyebrow">Solutions</span>
         <h1 className="page-title">Focused strategies for different growth paths</h1>
         <p>
@@ -40,12 +40,14 @@ const Solutions = () => (
         >
           <div className="container-gd">
             <div className={`solution-block__grid ${index % 2 === 1 ? "solution-block--reverse" : ""}`}>
+              <div className={`reveal ${index % 2 === 1 ? "reveal-right" : "reveal-left"}`}>
               <ImageReveal
                 src={solutionImageMap[solution.id]}
                 alt={solution.title}
                 ratio="standard"
               />
-              <div>
+              </div>
+              <div className={`reveal ${index % 2 === 1 ? "reveal-left" : "reveal-right"}`}>
                 <span className="section-eyebrow">
                   Solution {String(index + 1).padStart(2, "0")}
                 </span>
@@ -79,7 +81,7 @@ const Solutions = () => (
 
     <section className="section-pad">
       <div className="container-gd">
-        <LargeCTA
+        <ContactCTA
           title={pageCtas.solutions.heading}
           primaryLabel={pageCtas.solutions.primaryCta.label}
           primaryTo={pageCtas.solutions.primaryCta.path}

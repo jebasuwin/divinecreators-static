@@ -1,0 +1,469 @@
+/* ═══ DIVINECREATORS — Section Motion Graphics ═══ */
+
+.motion-graphic-wrap {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+/* ─── SECTION 1: Hero Galaxy ─── */
+.hero-motion-graphic {
+  position: relative;
+  width: clamp(280px, 42vw, 500px);
+  height: clamp(280px, 42vw, 500px);
+  margin-inline: auto;
+}
+
+#heroCanvas,
+.hero-motion-graphic canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.hero-motion-graphic .ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero-motion-graphic .ring-1 {
+  width: 60%;
+  height: 60%;
+  border-top-color: #00d4ff;
+  border-right-color: rgba(0, 212, 255, 0.3);
+  animation: mg-spin 4s linear infinite;
+}
+
+.hero-motion-graphic .ring-2 {
+  width: 84%;
+  height: 84%;
+  border-bottom-color: #7b2fff;
+  border-left-color: rgba(123, 47, 255, 0.3);
+  animation: mg-spin 7s linear infinite reverse;
+}
+
+.hero-motion-graphic .ring-3 {
+  width: 40%;
+  height: 40%;
+  border-top-color: rgba(0, 212, 255, 0.6);
+  border-bottom-color: #7b2fff;
+  animation: mg-spin 3s linear infinite;
+}
+
+.hero-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.orb-core {
+  width: clamp(56px, 16%, 80px);
+  height: clamp(56px, 16%, 80px);
+  border-radius: 50%;
+  background: radial-gradient(circle, #00d4ff 0%, #7b2fff 60%, transparent 100%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.8), 0 0 80px rgba(123, 47, 255, 0.4);
+}
+
+.orb-pulse {
+  width: clamp(90px, 24%, 120px);
+  height: clamp(90px, 24%, 120px);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: mg-pulse-ring 2.5s ease-out infinite;
+}
+
+.orb-pulse.delay-1 { animation-delay: 1.2s; }
+
+.particle-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.floating-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: #00d4ff;
+  animation: mg-float-random linear infinite;
+}
+
+.hero-glitch {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 212, 255, 0.08);
+  z-index: 4;
+  pointer-events: none;
+  animation: mg-glitch-flicker 4s steps(2) infinite;
+}
+
+@keyframes mg-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+@keyframes mg-pulse-ring {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+}
+
+@keyframes mg-float-random {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-400px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes mg-glitch-flicker {
+  0%, 92%, 100% { opacity: 0; clip-path: inset(0 0 0 0); }
+  93% { opacity: 0.6; clip-path: inset(20% 0 60% 0); transform: translateX(2px); }
+  95% { opacity: 0.4; clip-path: inset(60% 0 10% 0); transform: translateX(-2px); }
+}
+
+/* Hero compact (inner pages) */
+.hero-motion-graphic--compact {
+  width: clamp(240px, 90vw, 420px);
+  height: clamp(240px, 50vw, 420px);
+  margin-top: 2rem;
+}
+
+/* ─── SECTION 2: Morphing Blob ─── */
+.blob-motion-graphic {
+  position: relative;
+  width: 100%;
+  max-width: clamp(280px, 100%, 480px);
+  height: clamp(260px, 42vw, 480px);
+  margin-inline: auto;
+}
+
+.blob-motion-graphic .morphing-blob {
+  width: 100%;
+  height: 100%;
+  animation: mg-blob-rotate 20s linear infinite;
+}
+
+.blob-motion-graphic .geo-shape {
+  position: absolute;
+  animation: mg-float-geo ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.blob-motion-graphic .triangle {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 35px solid rgba(0, 212, 255, 0.5);
+  top: 10%;
+  left: 15%;
+  animation-duration: 4s;
+}
+
+.blob-motion-graphic .square {
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(123, 47, 255, 0.6);
+  top: 70%;
+  left: 80%;
+  animation-duration: 5s;
+  animation-delay: 1s;
+  transform: rotate(45deg);
+}
+
+.blob-motion-graphic .circle-outline {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  top: 80%;
+  left: 10%;
+  animation-duration: 6s;
+  animation-delay: 0.5s;
+}
+
+.blob-motion-graphic .diamond {
+  width: 25px;
+  height: 25px;
+  background: rgba(123, 47, 255, 0.3);
+  top: 15%;
+  left: 75%;
+  transform: rotate(45deg);
+  animation-duration: 3.5s;
+  animation-delay: 2s;
+}
+
+.blob-motion-graphic .connection-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.blob-motion-graphic .conn-line {
+  stroke: rgba(0, 212, 255, 0.3);
+  stroke-width: 1;
+  stroke-dasharray: 5, 5;
+  animation: mg-dash-flow 3s linear infinite;
+}
+
+.blob-motion-graphic .conn-dot {
+  fill: #00d4ff;
+  filter: drop-shadow(0 0 4px #00d4ff);
+  animation: mg-dot-pulse 2s ease-in-out infinite;
+}
+
+.blob-motion-graphic[data-blob-variant="1"] .triangle { border-bottom-color: rgba(123, 47, 255, 0.5); }
+.blob-motion-graphic[data-blob-variant="2"] .morphing-blob { animation-duration: 14s; }
+.blob-motion-graphic[data-blob-variant="3"] .conn-line { stroke: rgba(123, 47, 255, 0.35); }
+
+@keyframes mg-blob-rotate { to { transform: rotate(360deg); } }
+
+@keyframes mg-float-geo {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes mg-dash-flow { to { stroke-dashoffset: -20; } }
+
+@keyframes mg-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* ─── SECTION 3: Circuit Board ─── */
+.circuit-motion-graphic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: clamp(200px, 32vw, 400px);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #050a14;
+}
+
+.circuit-motion-graphic--card {
+  min-height: 220px;
+  aspect-ratio: 4 / 3;
+}
+
+.circuit-motion-graphic canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.circuit-motion-graphic .circuit-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.circuit-motion-graphic .data-packet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00d4ff;
+  box-shadow: 0 0 10px #00d4ff, 0 0 20px rgba(0, 212, 255, 0.5);
+  position: absolute;
+}
+
+.circuit-motion-graphic .p1 { animation: mg-flow-path-1 4s linear infinite; }
+.circuit-motion-graphic .p2 {
+  animation: mg-flow-path-2 5s linear infinite 1s;
+  background: #7b2fff;
+  box-shadow: 0 0 10px #7b2fff;
+}
+.circuit-motion-graphic .p3 { animation: mg-flow-path-3 3.5s linear infinite 2s; }
+
+.circuit-motion-graphic[data-circuit-variant="1"] .p1 { animation-duration: 3.2s; }
+.circuit-motion-graphic[data-circuit-variant="2"] .p2 { animation-delay: 0.5s; }
+.circuit-motion-graphic[data-circuit-variant="3"] .p3 { animation-duration: 4.5s; }
+.circuit-motion-graphic[data-circuit-variant="4"] { border-color: rgba(123, 47, 255, 0.2); }
+
+@keyframes mg-flow-path-1 {
+  0%   { top: 20%; left: 0%; }
+  25%  { top: 20%; left: 40%; }
+  50%  { top: 60%; left: 40%; }
+  75%  { top: 60%; left: 90%; }
+  100% { top: 20%; left: 100%; opacity: 0; }
+}
+
+@keyframes mg-flow-path-2 {
+  0%   { top: 70%; left: 0%; }
+  33%  { top: 70%; left: 60%; }
+  66%  { top: 30%; left: 60%; }
+  100% { top: 30%; left: 100%; opacity: 0; }
+}
+
+@keyframes mg-flow-path-3 {
+  0%   { top: 45%; left: 0%; opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { top: 45%; left: 50%; }
+  75%  { top: 80%; left: 70%; }
+  100% { top: 80%; left: 100%; opacity: 0; }
+}
+
+/* ─── SECTION 4: Aurora ─── */
+.section-aurora {
+  position: relative;
+  overflow: hidden;
+}
+
+.aurora-motion-graphic {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.aurora-motion-graphic .aurora-wave {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.15;
+  animation: mg-aurora-drift ease-in-out infinite alternate;
+}
+
+.aurora-motion-graphic .w1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #00d4ff, transparent 70%);
+  top: -200px;
+  left: -100px;
+  animation-duration: 8s;
+}
+
+.aurora-motion-graphic .w2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #7b2fff, transparent 70%);
+  bottom: -150px;
+  right: -100px;
+  animation-duration: 10s;
+  animation-delay: 2s;
+}
+
+.aurora-motion-graphic .w3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #00ffaa, transparent 70%);
+  top: 30%;
+  left: 30%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+  opacity: 0.08;
+}
+
+.aurora-motion-graphic .aurora-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.section-aurora > .container-xl,
+.section-aurora > .container-xl > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes mg-aurora-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+/* ─── Hero layout with split motion ─── */
+.hero--galaxy {
+  background: var(--bg-primary);
+}
+
+.hero--galaxy .hero__readability {
+  background:
+    linear-gradient(90deg, rgba(5, 10, 20, 0.95) 0%, rgba(5, 10, 20, 0.7) 55%, transparent 100%);
+}
+
+.hero--galaxy .hero__visual-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Project card with circuit */
+.project-card .circuit-motion-graphic {
+  min-height: 100%;
+  aspect-ratio: auto;
+  border: none;
+  border-radius: 0;
+}
+
+.project-card:hover .circuit-motion-graphic {
+  filter: brightness(1.08);
+}
+
+/* Page hero motion slot */
+.page-hero__motion {
+  margin-top: 2rem;
+}
+
+/* Contact page aurora wrapper */
+.contact-aurora-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.contact-aurora-wrap > .container-xl {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-motion-graphic .ring,
+  .hero-motion-graphic .orb-pulse,
+  .floating-dot,
+  .hero-glitch,
+  .blob-motion-graphic .morphing-blob,
+  .blob-motion-graphic .geo-shape,
+  .blob-motion-graphic .conn-line,
+  .blob-motion-graphic .conn-dot,
+  .circuit-motion-graphic .data-packet,
+  .aurora-motion-graphic .aurora-wave {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero--galaxy .hero__readability {
+    background: linear-gradient(180deg, rgba(5, 10, 20, 0.9) 0%, rgba(5, 10, 20, 0.75) 100%);
+  }
+
+  .hero-motion-graphic {
+    margin-top: 2rem;
+  }
+}

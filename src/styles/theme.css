@@ -1,0 +1,91 @@
+/* Global ambient layer */
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+  opacity: 0.45;
+}
+
+.ambient-glow--blue {
+  width: min(50vw, 520px);
+  height: min(50vw, 520px);
+  top: -8%;
+  right: -5%;
+  background: radial-gradient(circle, var(--glow-blue), transparent 70%);
+}
+
+.ambient-glow--violet {
+  width: min(40vw, 420px);
+  height: min(40vw, 420px);
+  bottom: 10%;
+  left: -8%;
+  background: radial-gradient(circle, var(--glow-violet), transparent 70%);
+}
+
+#main-content {
+  position: relative;
+  z-index: 1;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+.bg-white { background: var(--background); }
+.bg-soft { background: var(--background-secondary); }
+.bg-dark { background: var(--background-secondary); }
+
+.text-muted { color: var(--text-secondary); }
+.text-light-muted { color: var(--text-secondary); }
+
+.section-divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  border: 0;
+  margin: 0;
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, var(--accent-blue), var(--accent-violet) 55%, var(--accent-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass-surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-glow {
+    display: none;
+  }
+}

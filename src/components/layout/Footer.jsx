@@ -9,8 +9,16 @@ import SocialLinks from "../common/SocialLinks";
 const Footer = () => {
   const year = new Date().getFullYear();
 
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="site-footer">
+    <footer className="site-footer site-footer--v2">
+      <div className="site-footer__watermark" aria-hidden="true">
+        DIVINECREATORS
+      </div>
+
       <div className="site-footer__inner">
         <div className="site-footer__grid">
           <div className="footer-brand">
@@ -60,6 +68,9 @@ const Footer = () => {
 
         <div className="site-footer__bottom">
           <p>&copy; {year} {businessInfo.name}. All rights reserved.</p>
+          <button type="button" className="site-footer__top" onClick={scrollTop}>
+            Back to top <i className="bi bi-arrow-up" aria-hidden="true" />
+          </button>
         </div>
       </div>
     </footer>

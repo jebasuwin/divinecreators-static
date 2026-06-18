@@ -1,0 +1,70 @@
+:root {
+  --reveal-duration: 600ms;
+  --reveal-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-distance: 22px;
+  --reveal-stagger-step: 75ms;
+}
+
+html.js-reveal .reveal,
+html.js-reveal .reveal-up,
+html.js-reveal .reveal-left,
+html.js-reveal .reveal-right {
+  transition:
+    opacity var(--reveal-duration) var(--reveal-easing),
+    transform var(--reveal-duration) var(--reveal-easing);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.js-reveal .reveal:not(.reveal-up):not(.reveal-left):not(.reveal-right):not(.is-visible) {
+  opacity: 0;
+}
+
+html.js-reveal .reveal-up:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+}
+
+html.js-reveal .reveal-left:not(.is-visible) {
+  opacity: 0;
+  transform: translateX(calc(var(--reveal-distance) * -1));
+}
+
+html.js-reveal .reveal-right:not(.is-visible) {
+  opacity: 0;
+  transform: translateX(var(--reveal-distance));
+}
+
+html.js-reveal .reveal.is-visible,
+html.js-reveal .reveal-up.is-visible,
+html.js-reveal .reveal-left.is-visible,
+html.js-reveal .reveal-right.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js-reveal .reveal,
+  html.js-reveal .reveal-up,
+  html.js-reveal .reveal-left,
+  html.js-reveal .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 769px) {
+  html.js-reveal .reveal:not(.is-visible),
+  html.js-reveal .reveal-up:not(.is-visible),
+  html.js-reveal .reveal-left:not(.is-visible),
+  html.js-reveal .reveal-right:not(.is-visible) {
+    will-change: opacity, transform;
+  }
+
+  html.js-reveal .reveal.is-visible,
+  html.js-reveal .reveal-up.is-visible,
+  html.js-reveal .reveal-left.is-visible,
+  html.js-reveal .reveal-right.is-visible {
+    will-change: auto;
+  }
+}

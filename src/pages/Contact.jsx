@@ -94,16 +94,16 @@ const Contact = () => {
 
       <section className="contact-section">
         <div className="contact-shell">
-          <aside className="contact-info-panel">
+          <aside className="contact-info-panel reveal reveal-up">
             <span className="contact-info-panel__label">Contact Details</span>
             <h1 className="contact-info-panel__title">Start a Conversation With Our Team.</h1>
             <p className="contact-info-panel__text">
               Whether you need better search visibility, more qualified leads, a stronger social presence or YouTube growth support, we are here to help.
             </p>
 
-            <div className="contact-info-panel__details">
+            <div className="contact-info-panel__details reveal-stagger">
               {contactItems.map((item) => (
-                <div className="contact-detail-item" key={item.label}>
+                <div className="contact-detail-item reveal reveal-up" key={item.label}>
                   <div className="contact-detail-item__icon" aria-hidden="true">
                     <i className={`bi ${item.icon}`} />
                   </div>
@@ -118,7 +118,7 @@ const Contact = () => {
             <SocialLinks className="contact-social" />
           </aside>
 
-          <div className="contact-form-panel">
+          <div className="contact-form-panel reveal reveal-up">
             {submitted ? (
               <div className="contact-form-success" role="status">
                 <i className="bi bi-check-circle-fill" aria-hidden="true" />

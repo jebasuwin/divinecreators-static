@@ -213,7 +213,7 @@ button {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--medium-grey);
+  color: var(--accent-blue);
   margin-bottom: 0.75rem;
 }
 
