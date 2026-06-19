@@ -24,8 +24,6 @@
 
   const setupScrollEffects = () => {
     const revealNodes = Array.from(document.querySelectorAll([
-      ".hero__copy",
-      ".hero__visual-col",
       ".stat-box",
       ".about-section__content",
       ".about-section__visual",
@@ -79,6 +77,7 @@
     ].join(",");
     const textNodes = Array.from(document.querySelectorAll(textSelector))
       .filter((el) => el.textContent.trim().length > 0)
+      .filter((el) => !el.closest(".hero"))
       .filter((el) => !el.closest(ignoredTextContainers));
 
     if (!revealNodes.length && !textNodes.length) return;
@@ -382,14 +381,16 @@
   const heroTl = () => {
     if (typeof gsap === "undefined" || reducedMotion) return;
 
+    const visibleHeroCopy = ".hero__eyebrow, .hero__title, .hero__subtitle, .hero__actions";
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    tl.from(".brand-logo", { opacity: 0, y: 20, duration: 0.6 })
-      .from(".hero__eyebrow", { opacity: 0, y: 16, duration: 0.5 }, "-=0.3")
-      .from(".hero__title", { opacity: 0, y: 24, duration: 0.6 }, "-=0.2")
-      .from(".hero__subtitle", { opacity: 0, y: 20, duration: 0.55 }, "-=0.25")
-      .from(".hero__actions .btn-glow", { opacity: 0, y: 24, scale: 0.92, duration: 0.5 }, "-=0.2")
-      .from(".hero__actions .btn-outline-glow", { opacity: 0, y: 24, duration: 0.45 }, "-=0.4")
-      .from(".hero-motion-graphic", { opacity: 0, scale: 0.88, duration: 0.7 }, "-=0.5");
+    gsap.set(visibleHeroCopy, { opacity: 1, visibility: "visible" });
+    tl.from(".brand-logo", { y: 20, duration: 0.6 })
+      .from(".hero__eyebrow", { y: 16, duration: 0.5 }, "-=0.3")
+      .from(".hero__title", { y: 24, duration: 0.6 }, "-=0.2")
+      .from(".hero__subtitle", { y: 20, duration: 0.55 }, "-=0.25")
+      .from(".hero__actions .btn-glow", { y: 24, scale: 0.92, duration: 0.5 }, "-=0.2")
+      .from(".hero__actions .btn-outline-glow", { y: 24, duration: 0.45 }, "-=0.4")
+      .from(".hero-motion-graphic", { scale: 0.88, duration: 0.7 }, "-=0.5");
   };
 
   if (document.querySelector(".hero")) {

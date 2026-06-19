@@ -16,8 +16,6 @@ const HeroSection = () => {
     return () => window.clearTimeout(t);
   }, []);
 
-  const headlineParts = heroContent.headline.split("Digital Growth");
-
   return (
     <section id="home" className="hero-v2 hero-v2--motion" aria-labelledby="hero-heading">
       <HeroCanvas />
@@ -30,9 +28,9 @@ const HeroSection = () => {
           </p>
 
           <h1 id="hero-heading" className="hero-v2__title hero-v2__seq hero-v2__seq--2">
-            {headlineParts[0]}
-            <span className="gradient-text">Digital Growth</span>
-            {headlineParts[1] || ""}
+            <span className="hero-v2__title-part">Your Trusted</span>{" "}
+            <span className="hero-v2__title-part">Partner for</span>{" "}
+            <span className="hero-v2__title-part gradient-text">Digital Growth</span>
           </h1>
 
           <p className="hero-v2__text hero-v2__seq hero-v2__seq--3">

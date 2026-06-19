@@ -365,6 +365,10 @@
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.12);
 }
 
+.hero-v2__title-part {
+  display: inline;
+}
+
 .hero-v2__text {
   max-width: var(--prose-width);
   color: var(--text-secondary);
@@ -603,9 +607,10 @@
 
 /* Hero entrance */
 .hero-v2__seq {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-v2--entered .hero-v2__seq--1 { opacity: 1; transform: none; transition-delay: 0.05s; }
@@ -1741,6 +1746,26 @@
 @media (max-width: 768px) {
   .hero-v2 {
     min-height: auto;
+  }
+
+  .hero-v2__content {
+    width: calc(100vw - 2rem);
+    max-width: calc(100vw - 2rem);
+  }
+
+  .hero-v2__title {
+    max-width: 100%;
+    font-size: clamp(1.75rem, 8.2vw, 2.1rem);
+    line-height: 1.1;
+  }
+
+  .hero-v2__title-part {
+    display: block;
+  }
+
+  .hero-v2__text {
+    max-width: min(31ch, calc(100vw - 2rem));
+    width: min(31ch, calc(100vw - 2rem));
   }
 
   .hero-v2__scroll { display: none; }

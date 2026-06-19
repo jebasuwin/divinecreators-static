@@ -630,6 +630,18 @@ img { max-width: 100%; height: auto; display: block; }
 
 .hero__copy {
   position: relative;
+  min-width: 0;
+}
+
+.hero__copy,
+.hero__copy.scroll-soft,
+.hero__copy .scroll-text,
+.hero__eyebrow,
+.hero__title,
+.hero__subtitle,
+.hero__actions {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .hero__copy::before {
@@ -646,6 +658,10 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 700;
   margin-bottom: 1rem;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.12);
+}
+
+.hero__title-part {
+  display: inline;
 }
 
 
@@ -674,6 +690,29 @@ img { max-width: 100%; height: auto; display: block; }
   .hero__core-orb {
     opacity: 0.55;
     right: 6%;
+  }
+}
+
+@media (max-width: 575px) {
+  .hero__copy {
+    width: calc(100vw - 2rem);
+    max-width: calc(100vw - 2rem);
+  }
+
+  .hero__title {
+    max-width: 100%;
+    font-size: clamp(1.75rem, 8.2vw, 2rem);
+    line-height: 1.1;
+  }
+
+  .hero__title-part {
+    display: block;
+  }
+
+  .hero__subtitle {
+    max-width: min(31ch, calc(100vw - 2rem));
+    width: min(31ch, calc(100vw - 2rem));
+    font-size: 0.98rem;
   }
 }
 
