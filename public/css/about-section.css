@@ -1,0 +1,269 @@
+/* ═══ About Us — single-page section ═══ */
+
+#about {
+  scroll-margin-top: calc(var(--nav-height, var(--header-height, 72px)) + 18px);
+}
+
+.about-section {
+  --about-eyebrow: rgba(255, 255, 255, 0.62);
+  --about-heading: #ffffff;
+  --about-body: rgba(255, 255, 255, 0.72);
+  --about-visual-border: rgba(255, 255, 255, 0.12);
+  --about-visual-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+  --about-visual-bg:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.14), transparent 55%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  --about-chip-bg: rgba(255, 255, 255, 0.08);
+  --about-chip-border: rgba(255, 255, 255, 0.14);
+  --about-chip-text: #ffffff;
+  --about-orbit-border: rgba(255, 255, 255, 0.2);
+  --about-orbit-icon-bg: rgba(255, 255, 255, 0.1);
+  --about-orbit-icon-border: rgba(255, 255, 255, 0.18);
+  background: var(--bg-primary, #000000);
+  color: var(--text-primary, #ffffff);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-section__content.is-visible,
+.about-section__visual.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-section .eyebrow {
+  display: block;
+  font-family: var(--font-heading, "Space Grotesk", system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--about-eyebrow);
+  margin-bottom: 0.75rem;
+}
+
+.about-section__content,
+.about-section__visual {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-section__visual {
+  transition-delay: 0.12s;
+}
+
+.about-section__content h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  max-width: 22ch;
+  color: var(--about-heading);
+}
+
+.about-section__content p {
+  color: var(--about-body);
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.75;
+  max-width: 52ch;
+  margin: 0;
+}
+
+/* ─── Growth dashboard visual ─── */
+.about-dashboard-viz {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: clamp(280px, 42vw, 400px);
+  margin-inline: auto;
+  border-radius: 28px;
+  border: 1px solid var(--about-visual-border);
+  background: var(--about-visual-bg);
+  overflow: hidden;
+  box-shadow: var(--about-visual-shadow);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.about-dashboard-viz__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.about-dashboard-viz__chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--about-chip-text);
+  background: var(--about-chip-bg);
+  border: 1px solid var(--about-chip-border);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 2;
+  pointer-events: none;
+  animation: about-chip-float 5s ease-in-out infinite;
+}
+
+.about-dashboard-viz__chip i {
+  font-size: 0.85rem;
+  opacity: 0.95;
+}
+
+.about-dashboard-viz__chip--1 {
+  top: 10%;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.about-dashboard-viz__chip--1 i {
+  color: #a5b4fc;
+}
+
+.about-dashboard-viz__chip--2 {
+  top: 18%;
+  right: 8%;
+  animation-delay: -1.5s;
+}
+
+.about-dashboard-viz__chip--2 i {
+  color: #67e8f9;
+}
+
+.about-dashboard-viz__chip--3 {
+  bottom: 14%;
+  left: 10%;
+  animation-delay: -3s;
+}
+
+.about-dashboard-viz__chip--3 i {
+  color: #fdba74;
+}
+
+.about-dashboard-viz__orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 132px;
+  height: 132px;
+  margin: -66px 0 0 -66px;
+  border: 1px dashed var(--about-orbit-border);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+  animation: about-orbit-spin 24s linear infinite, about-orbit-pulse 4s ease-in-out infinite;
+}
+
+.about-dashboard-viz__orbit-icon {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--about-orbit-icon-bg);
+  border: 1px solid var(--about-orbit-icon-border);
+  color: var(--about-chip-text);
+  font-size: 0.75rem;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.12);
+}
+
+@keyframes about-orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes about-orbit-pulse {
+  0%, 100% { opacity: 0.72; }
+  50% { opacity: 1; }
+}
+
+@keyframes about-chip-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.about-section:hover .about-dashboard-viz {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+}
+
+/* ─── Explicit dark theme (matches Home) ─── */
+[data-theme="dark"] .about-section {
+  background: var(--bg-primary, #0b0b0b);
+  color: #ffffff;
+}
+
+/* ─── Light theme ─── */
+[data-theme="light"] .about-section {
+  --about-eyebrow: rgba(0, 0, 0, 0.55);
+  --about-heading: #000000;
+  --about-body: rgba(0, 0, 0, 0.68);
+  --about-visual-border: rgba(0, 0, 0, 0.1);
+  --about-visual-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  --about-visual-bg:
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.04), transparent 55%),
+    linear-gradient(145deg, #f5f5f4, #ececea);
+  --about-chip-bg: rgba(255, 255, 255, 0.92);
+  --about-chip-border: rgba(0, 0, 0, 0.1);
+  --about-chip-text: #000000;
+  --about-orbit-border: rgba(0, 0, 0, 0.14);
+  --about-orbit-icon-bg: #ffffff;
+  --about-orbit-icon-border: rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  color: #000000;
+}
+
+[data-theme="light"] .about-dashboard-viz__chip--1 i {
+  color: #4f46e5;
+}
+
+[data-theme="light"] .about-dashboard-viz__chip--2 i {
+  color: #0891b2;
+}
+
+[data-theme="light"] .about-dashboard-viz__chip--3 i {
+  color: #ea580c;
+}
+
+@media (max-width: 991.98px) {
+  .about-section__visual {
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  .about-section__content h2 {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-dashboard-viz,
+  .about-dashboard-viz *,
+  .about-dashboard-viz *::before,
+  .about-dashboard-viz *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .about-section__content,
+  .about-section__visual {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .about-dashboard-viz__orbit {
+    opacity: 0.85;
+  }
+}

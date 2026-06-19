@@ -1,27 +1,25 @@
 :root {
-  /* Premium dark theme */
-  --background: #070708;
-  --background-secondary: #0d0d10;
-  --surface: rgba(255, 255, 255, 0.045);
-  --surface-hover: rgba(255, 255, 255, 0.075);
-  --border: rgba(255, 255, 255, 0.1);
-  --text-primary: #f7f7f8;
+  --background: #000000;
+  --background-secondary: #1A1A18;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.08);
+  --text-primary: #FFFFFF;
   --text-secondary: rgba(255, 255, 255, 0.65);
-  --accent-blue: #37b7ff;
-  --accent-violet: #8b5cf6;
-  --accent-pink: #e557ff;
-  --accent-cyan: #37b7ff;
-  --glow-blue: rgba(55, 183, 255, 0.35);
-  --glow-violet: rgba(139, 92, 246, 0.3);
+  --accent-blue: #FFFFFF;
+  --accent-violet: rgba(255, 255, 255, 0.65);
+  --accent-pink: rgba(255, 255, 255, 0.75);
+  --accent-cyan: #FFFFFF;
+  --glow-blue: rgba(255, 255, 255, 0.12);
+  --glow-violet: rgba(255, 255, 255, 0.08);
 
-  /* Legacy mappings */
-  --brand-dark: #0d0d10;
-  --brand-black: #070708;
-  --brand-white: #f7f7f8;
-  --soft-white: #0d0d10;
+  --brand-dark: #1A1A18;
+  --brand-black: #000000;
+  --brand-white: #FFFFFF;
+  --soft-white: #1A1A18;
   --light-grey: rgba(255, 255, 255, 0.1);
   --medium-grey: rgba(255, 255, 255, 0.45);
-  --dark-grey: #141418;
+  --dark-grey: #1A1A18;
 
   --body: var(--text-secondary);
   --heading-dark: var(--text-primary);
@@ -37,7 +35,7 @@
   --radius-xl: 28px;
 
   --shadow-soft: 0 8px 40px rgba(0, 0, 0, 0.45);
-  --shadow-glow: 0 0 60px rgba(55, 183, 255, 0.12);
+  --shadow-glow: 0 0 60px rgba(255, 255, 255, 0.06);
   --header-height: 76px;
   --header-offset: 76px;
   --container-max: 1240px;

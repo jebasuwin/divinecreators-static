@@ -148,7 +148,7 @@
             const dist = Math.hypot(a.x - b.x, a.y - b.y);
             if (dist > 100) continue;
             const alpha = (1 - dist / 100) * 0.2;
-            ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
+            ctx.strokeStyle = `rgba(255, 255, 255,${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -159,7 +159,7 @@
 
         nodes.forEach((n, i) => {
           const pulse = 0.5 + Math.sin(t * 0.003 + i) * 0.5;
-          ctx.fillStyle = `rgba(0,212,255,${0.5 + pulse * 0.5})`;
+          ctx.fillStyle = `rgba(255, 255, 255,${0.5 + pulse * 0.5})`;
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
           ctx.fill();
@@ -167,8 +167,8 @@
       }
 
       const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(w, h) * 0.35);
-      glow.addColorStop(0, "rgba(0,212,255,0.08)");
-      glow.addColorStop(1, "rgba(5,10,20,0)");
+      glow.addColorStop(0, "rgba(255, 255, 255,0.08)");
+      glow.addColorStop(1, "rgba(0, 0, 0,0)");
       ctx.fillStyle = glow;
       ctx.beginPath();
       ctx.arc(cx, cy, Math.min(w, h) * 0.35, 0, Math.PI * 2);
@@ -204,7 +204,7 @@
         animation-duration:${Math.random() * 4 + 3}s;
         animation-delay:${Math.random() * 3}s;
         opacity:${Math.random() * 0.7 + 0.3};
-        box-shadow:0 0 6px #00d4ff;
+        box-shadow:0 0 6px #FFFFFF;
       `;
       field.appendChild(dot);
     }
@@ -244,8 +244,8 @@
       <svg class="morphing-blob" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.6"/>
-            <stop offset="100%" style="stop-color:#7b2fff;stop-opacity:0.6"/>
+            <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.6"/>
+            <stop offset="100%" style="stop-color:rgba(255,255,255,0.55);stop-opacity:0.6"/>
           </linearGradient>
           <filter id="${filterId}">
             <feGaussianBlur stdDeviation="8" result="blur"/>
@@ -319,7 +319,7 @@
       const h = canvas.clientHeight;
       ctx.clearRect(0, 0, w, h);
 
-      ctx.strokeStyle = "rgba(0,212,255,0.25)";
+      ctx.strokeStyle = "rgba(255, 255, 255,0.25)";
       ctx.lineWidth = 1.5;
       layout.lines.forEach((l) => {
         ctx.beginPath();
@@ -333,21 +333,21 @@
         const pulse = reduced ? 0.5 : Math.sin(time * 2 + i + layoutIndex) * 0.5 + 0.5;
         ctx.beginPath();
         ctx.arc(n.x * w, n.y * h, 5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,212,255,${0.4 + pulse * 0.6})`;
+        ctx.fillStyle = `rgba(255, 255, 255,${0.4 + pulse * 0.6})`;
         ctx.fill();
-        ctx.strokeStyle = "#00d4ff";
+        ctx.strokeStyle = "#FFFFFF";
         ctx.lineWidth = 1;
         ctx.stroke();
         ctx.beginPath();
         ctx.arc(n.x * w, n.y * h, 10 + pulse * 5, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(0,212,255,${0.2 * pulse})`;
+        ctx.strokeStyle = `rgba(255, 255, 255,${0.2 * pulse})`;
         ctx.stroke();
       });
 
       if (!reduced) {
         const gridGap = 32;
         const off = (time * 12) % gridGap;
-        ctx.strokeStyle = "rgba(0,212,255,0.04)";
+        ctx.strokeStyle = "rgba(255, 255, 255,0.04)";
         ctx.lineWidth = 1;
         for (let x = -gridGap + off; x < w + gridGap; x += gridGap) {
           ctx.beginPath();

@@ -6,7 +6,7 @@ const LargeCTA = ({
   subtitle,
   dark = false,
   primaryLabel = "Contact Us",
-  primaryTo = "/contact",
+  primaryTo = "/#contact",
   secondaryLabel,
   secondaryHref,
   showArrow = true,
@@ -20,7 +20,7 @@ const LargeCTA = ({
         </p>
       )}
       <div className="d-flex flex-wrap gap-3">
-        <PrimaryButton to={primaryTo} variant={dark ? "light" : "default"} showArrow={showArrow}>
+        <PrimaryButton href={primaryTo} variant={dark ? "light" : "default"} showArrow={showArrow}>
           {primaryLabel}
         </PrimaryButton>
         {secondaryLabel && secondaryHref && (

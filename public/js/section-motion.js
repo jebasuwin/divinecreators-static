@@ -14,9 +14,42 @@
   }
 
   /* ─── ABOUT: Growth chart canvas ─── */
+  function isAboutLightTheme() {
+    const theme = document.documentElement.getAttribute("data-theme");
+    if (theme === "light") return true;
+    if (theme === "dark") return false;
+    return false;
+  }
+
+  function getAboutChartTheme() {
+    if (isAboutLightTheme()) {
+      return {
+        grid: "rgba(0, 0, 0, 0.08)",
+        line: "rgba(0, 0, 0, 0.78)",
+        lineGlow: "rgba(0, 0, 0, 0.2)",
+        fillTop: "rgba(0, 0, 0, 0.1)",
+        fillBottom: "rgba(0, 0, 0, 0)",
+        nodeFill: "rgba(0, 0, 0, 0.88)",
+        nodeStroke: "rgba(0, 0, 0, 0.95)",
+        connector: "rgba(0, 0, 0, 0.22)",
+      };
+    }
+
+    return {
+      grid: "rgba(255, 255, 255, 0.12)",
+      line: "#ffffff",
+      lineGlow: "rgba(255, 255, 255, 0.55)",
+      fillTop: "rgba(255, 255, 255, 0.18)",
+      fillBottom: "rgba(255, 255, 255, 0)",
+      nodeFill: "rgba(255, 255, 255, 0.95)",
+      nodeStroke: "#ffffff",
+      connector: "rgba(255, 255, 255, 0.35)",
+    };
+  }
+
   function initAboutGrowth() {
-    const root = document.querySelector(".about-growth-viz");
-    const canvas = root?.querySelector(".about-growth-viz__canvas");
+    const root = document.querySelector(".about-dashboard-viz");
+    const canvas = root?.querySelector(".about-dashboard-viz__canvas");
     if (!root || !canvas) return;
 
     const ctx = canvas.getContext("2d");
@@ -39,11 +72,14 @@
     };
 
     const draw = () => {
+      const theme = getAboutChartTheme();
       const w = root.clientWidth;
       const h = root.clientHeight;
       ctx.clearRect(0, 0, w, h);
+      ctx.shadowBlur = 0;
+      ctx.shadowColor = "transparent";
 
-      ctx.strokeStyle = "rgba(0,212,255,0.06)";
+      ctx.strokeStyle = theme.grid;
       ctx.lineWidth = 1;
       for (let i = 1; i < 5; i += 1) {
         const y = (h / 5) * i;
@@ -57,22 +93,22 @@
       const pts = points.slice(0, visible).map((p) => ({ x: p.x * w, y: p.y * h }));
 
       if (pts.length > 1) {
-        const grad = ctx.createLinearGradient(0, 0, w, 0);
-        grad.addColorStop(0, "rgba(0,212,255,0.5)");
-        grad.addColorStop(1, "rgba(123,47,255,0.5)");
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = theme.line;
+        ctx.lineWidth = 3;
+        ctx.shadowColor = theme.lineGlow;
+        ctx.shadowBlur = 8;
         ctx.beginPath();
         ctx.moveTo(pts[0].x, pts[0].y);
         for (let i = 1; i < pts.length; i += 1) ctx.lineTo(pts[i].x, pts[i].y);
         ctx.stroke();
+        ctx.shadowBlur = 0;
 
         ctx.lineTo(pts[pts.length - 1].x, h);
         ctx.lineTo(pts[0].x, h);
         ctx.closePath();
         const fill = ctx.createLinearGradient(0, 0, 0, h);
-        fill.addColorStop(0, "rgba(0,212,255,0.12)");
-        fill.addColorStop(1, "rgba(0,212,255,0)");
+        fill.addColorStop(0, theme.fillTop);
+        fill.addColorStop(1, theme.fillBottom);
         ctx.fillStyle = fill;
         ctx.fill();
       }
@@ -80,11 +116,11 @@
       pts.forEach((p, i) => {
         const pulse = reduced ? 1 : 0.6 + Math.sin(Date.now() * 0.002 + i) * 0.4;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 5 + pulse * 2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,212,255,${0.5 + pulse * 0.5})`;
+        ctx.arc(p.x, p.y, 6 + pulse * 2, 0, Math.PI * 2);
+        ctx.fillStyle = theme.nodeFill;
         ctx.fill();
-        ctx.strokeStyle = "#00d4ff";
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = theme.nodeStroke;
+        ctx.lineWidth = 2.5;
         ctx.stroke();
       });
 
@@ -93,7 +129,8 @@
         const b = pts[i + 1];
         const mx = (a.x + b.x) / 2;
         const my = (a.y + b.y) / 2;
-        ctx.strokeStyle = "rgba(123,47,255,0.2)";
+        ctx.strokeStyle = theme.connector;
+        ctx.lineWidth = 1.5;
         ctx.setLineDash([4, 6]);
         ctx.beginPath();
         ctx.moveTo(mx, my);
@@ -179,8 +216,8 @@
       <svg class="solutions-pipeline__svg" viewBox="0 0 1000 48" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <linearGradient id="pipelineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#00d4ff"/>
-            <stop offset="100%" stop-color="#7b2fff"/>
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0.55)"/>
           </linearGradient>
         </defs>
         <path class="solutions-pipeline__line" d="M 50 24 L 250 24 L 350 24 L 500 24 L 650 24 L 750 24 L 950 24"/>
@@ -255,75 +292,6 @@
     }
   }
 
-  /* ─── CONTACT CTA: Map canvas ─── */
-  function initContactMap() {
-    const root = document.querySelector(".contact-map-viz");
-    const canvas = root?.querySelector("canvas");
-    if (!root || !canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    let raf = 0;
-
-    const hubs = [
-      { x: 0.22, y: 0.35 },
-      { x: 0.48, y: 0.42 },
-      { x: 0.72, y: 0.38 },
-      { x: 0.58, y: 0.62 },
-    ];
-    const chennai = { x: 0.62, y: 0.55 };
-
-    const resize = () => {
-      const rect = root.getBoundingClientRect();
-      const dpr = Math.min(devicePixelRatio || 1, 2);
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-
-    const draw = () => {
-      const w = root.clientWidth;
-      const h = root.clientHeight;
-      ctx.clearRect(0, 0, w, h);
-
-      ctx.fillStyle = "rgba(0,212,255,0.04)";
-      hubs.forEach((hub) => {
-        ctx.beginPath();
-        ctx.arc(hub.x * w, hub.y * h, 3, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      const cx = chennai.x * w;
-      const cy = chennai.y * h;
-      const t = Date.now() / 1000;
-      const pulse = reduced ? 1 : 0.5 + Math.sin(t * 2) * 0.5;
-
-      hubs.forEach((hub) => {
-        ctx.strokeStyle = `rgba(0,212,255,${0.08 + pulse * 0.1})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(hub.x * w, hub.y * h);
-        ctx.lineTo(cx, cy);
-        ctx.stroke();
-      });
-
-      ctx.beginPath();
-      ctx.arc(cx, cy, 8 + pulse * 4, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(0,212,255,${0.4 + pulse * 0.4})`;
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      ctx.fillStyle = "#00d4ff";
-      ctx.beginPath();
-      ctx.arc(cx, cy, 4, 0, Math.PI * 2);
-      ctx.fill();
-
-      if (!reduced) raf = requestAnimationFrame(draw);
-    };
-
-    resize();
-    window.addEventListener("resize", resize, { passive: true });
-    draw();
-  }
-
   function init() {
     initAboutGrowth();
     initServiceCards();
@@ -331,7 +299,6 @@
     initProjectCards();
     initProcessRoadmap();
     initTestimonials();
-    initContactMap();
   }
 
   if (document.readyState === "loading") {

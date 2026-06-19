@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { mainNavLinks } from "../../data/navigation";
+import { useActiveSection } from "../../utils/activeSection";
+import { useHashNavigation } from "../../utils/hashNavigation";
 import Logo from "../common/Logo";
 import PrimaryButton from "../common/PrimaryButton";
 import MobileMenu from "./MobileMenu";
@@ -9,6 +11,15 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuToggleRef = useRef(null);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+  const [activeSection, setActiveSection] = useActiveSection(isHomePage);
+  const handleHashNav = useHashNavigation(() => setMenuOpen(false));
+
+  const handleNavClick = (event, hash) => {
+    setActiveSection(hash);
+    handleHashNav(event, hash);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -31,21 +42,26 @@ const Header = () => {
           <nav className="floating-nav__links" aria-label="Main navigation">
             <ul>
               {mainNavLinks.map((link) => (
-                <li key={link.path}>
-                  <NavLink
-                    to={link.path}
-                    end={link.path === "/"}
-                    className={({ isActive }) => `floating-nav__link ${isActive ? "active" : ""}`}
+                <li key={link.hash}>
+                  <a
+                    href={`/#${link.hash}`}
+                    className={`floating-nav__link${isHomePage && activeSection === link.hash ? " active" : ""}`}
+                    onClick={(event) => handleNavClick(event, link.hash)}
                   >
                     {link.label}
-                  </NavLink>
+                  </a>
                 </li>
               ))}
             </ul>
           </nav>
 
           <div className="floating-nav__actions">
-            <PrimaryButton to="/contact" small className="floating-nav__cta d-none d-lg-inline-flex">
+            <PrimaryButton
+              href="/#contact"
+              small
+              className="floating-nav__cta d-none d-lg-inline-flex"
+              onClick={(event) => handleNavClick(event, "contact")}
+            >
               Get Started
             </PrimaryButton>
             <button
@@ -66,6 +82,8 @@ const Header = () => {
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}
         returnFocusRef={menuToggleRef}
+        activeSection={isHomePage ? activeSection : ""}
+        onNavClick={handleNavClick}
       />
     </>
   );

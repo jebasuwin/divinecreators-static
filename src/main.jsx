@@ -11,6 +11,9 @@ import "./styles/pages.css";
 import "./styles/responsive.css";
 import "./styles/reveal.css";
 import "./styles/redesign.css";
+import "../css/about-section.css";
+import "../css/services-home.css";
+import "../css/contact-section.css";
 import App from "./App.jsx";
 
 document.documentElement.classList.add("js-reveal");

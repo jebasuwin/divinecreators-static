@@ -2,15 +2,15 @@ export const heroContent = {
   headline: "Your Trusted Partner for Digital Growth",
   subheadline:
     "Helping businesses attract the right audience, generate qualified leads, and achieve sustainable growth through strategic digital marketing solutions.",
-  primaryCta: { label: "Get Started", path: "/contact" },
-  secondaryCta: { label: "Explore Services", path: "/services" },
+  primaryCta: { label: "Get Started", hash: "contact" },
+  secondaryCta: { label: "Explore Services", href: "/#services" },
 };
 
 export const companyStats = [
-  { value: "4+", label: "Years of Expertise" },
-  { value: "30+", label: "Trusted Clients" },
-  { value: "2M+", label: "Audience Reached" },
-  { value: "99.9%", label: "Client Retention" },
+  { target: 4, suffix: "+", decimals: 0, duration: 1400, label: "Years of Expertise" },
+  { target: 30, suffix: "+", decimals: 0, duration: 1500, label: "Trusted Clients" },
+  { target: 2, suffix: "M+", decimals: 0, duration: 1600, label: "Audience Reached" },
+  { target: 99.9, suffix: "%", decimals: 1, duration: 1700, label: "Client Retention" },
 ];
 
 const partnerHighlights = [
@@ -18,6 +18,13 @@ const partnerHighlights = [
   { icon: "bi-chat-dots", title: "Transparent communication", text: "Regular updates and honest reporting so you always know where things stand." },
   { icon: "bi-graph-up", title: "Performance-focused execution", text: "Campaigns built to drive measurable outcomes across your marketing channels." },
 ];
+
+export const aboutSectionContent = {
+  label: "About Us",
+  heading: "Why Partner with Divine Creators?",
+  paragraph:
+    "At Divine Creators, we believe effective digital marketing is built on strategy, not guesswork. We partner with businesses to create impactful digital experiences, strengthen brand presence, and drive measurable growth through tailored marketing solutions. With a focus on innovation, transparency, and performance, we deliver strategies that not only elevate your brand but also contribute to long-term business success.",
+};
 
 export const aboutWhyPartnerContent = {
   heading: "Why Partner with DIVINECREATORS?",
@@ -70,7 +77,7 @@ export const aboutValues = [
 ];
 
 const sharedCtaActions = {
-  primaryCta: { label: "Contact Us", path: "/contact" },
+  primaryCta: { label: "Contact Us", hash: "contact" },
   phoneCta: { label: "Call +91 63021 42813", path: "tel:+916302142813" },
 };
 
@@ -85,10 +92,6 @@ export const pageCtas = {
   },
   services: {
     heading: "Not Sure Which Service Fits Your Business?",
-    ...sharedCtaActions,
-  },
-  solutions: {
-    heading: "Let's Find the Right Growth Strategy.",
     ...sharedCtaActions,
   },
 };

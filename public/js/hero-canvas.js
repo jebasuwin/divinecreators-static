@@ -58,7 +58,7 @@ function initHeroMotion(canvas, container) {
   const drawGrid = (t) => {
     const gap = lite ? 56 : 44;
     const off = (t * 0.012) % gap;
-    ctx.strokeStyle = "rgba(0, 212, 255, 0.04)";
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";
     ctx.lineWidth = 1;
     for (let x = -gap + off; x < width + gap; x += gap) {
       ctx.beginPath();
@@ -86,8 +86,8 @@ function initHeroMotion(canvas, container) {
         if (dist > maxDist) continue;
         const alpha = (1 - dist / maxDist) * 0.22;
         const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
-        grad.addColorStop(0, `rgba(0, 212, 255, ${alpha})`);
-        grad.addColorStop(1, `rgba(123, 47, 255, ${alpha * 0.8})`);
+        grad.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
+        grad.addColorStop(1, `rgba(255, 255, 255, ${alpha * 0.8})`);
         ctx.strokeStyle = grad;
         ctx.lineWidth = 0.6 + (1 - dist / maxDist) * 0.8;
         ctx.beginPath();
@@ -98,7 +98,7 @@ function initHeroMotion(canvas, container) {
         const pulsePos = ((t * 0.001 + (i + j) * 0.07) % 1);
         const px = a.x + (b.x - a.x) * pulsePos;
         const py = a.y + (b.y - a.y) * pulsePos;
-        ctx.fillStyle = `rgba(0, 212, 255, ${alpha * 2.5})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 2.5})`;
         ctx.beginPath();
         ctx.arc(px, py, 1.2, 0, Math.PI * 2);
         ctx.fill();
@@ -114,8 +114,8 @@ function initHeroMotion(canvas, container) {
       const x = n.x + parallaxX;
       const y = n.y + parallaxY;
       const glow = ctx.createRadialGradient(x, y, 0, x, y, n.r * 6);
-      glow.addColorStop(0, `rgba(0, 212, 255, ${0.35 * pulse})`);
-      glow.addColorStop(1, "rgba(0, 212, 255, 0)");
+      glow.addColorStop(0, `rgba(255, 255, 255, ${0.35 * pulse})`);
+      glow.addColorStop(1, "rgba(255, 255, 255, 0)");
       ctx.fillStyle = glow;
       ctx.beginPath();
       ctx.arc(x, y, n.r * 6, 0, Math.PI * 2);
@@ -133,9 +133,9 @@ function initHeroMotion(canvas, container) {
       const x = progress * (width + width * s.len) - width * s.len * 0.5;
       const y = s.y * height;
       const grad = ctx.createLinearGradient(x, y, x + width * s.len, y);
-      grad.addColorStop(0, "rgba(0, 212, 255, 0)");
-      grad.addColorStop(0.5, "rgba(0, 212, 255, 0.12)");
-      grad.addColorStop(1, "rgba(123, 47, 255, 0)");
+      grad.addColorStop(0, "rgba(255, 255, 255, 0)");
+      grad.addColorStop(0.5, "rgba(255, 255, 255, 0.12)");
+      grad.addColorStop(1, "rgba(255, 255, 255, 0)");
       ctx.strokeStyle = grad;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
@@ -151,15 +151,15 @@ function initHeroMotion(canvas, container) {
     const pulse = 0.85 + Math.sin(t * 0.0015) * 0.15;
     const r = Math.min(width, height) * (lite ? 0.22 : 0.28) * pulse;
     const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-    g.addColorStop(0, "rgba(0, 212, 255, 0.14)");
-    g.addColorStop(0.45, "rgba(123, 47, 255, 0.08)");
-    g.addColorStop(1, "rgba(5, 10, 20, 0)");
+    g.addColorStop(0, "rgba(255, 255, 255, 0.14)");
+    g.addColorStop(0.45, "rgba(255, 255, 255, 0.08)");
+    g.addColorStop(1, "rgba(0, 0, 0, 0)");
     ctx.fillStyle = g;
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.strokeStyle = `rgba(0, 212, 255, ${0.15 + Math.sin(t * 0.002) * 0.05})`;
+    ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 + Math.sin(t * 0.002) * 0.05})`;
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.ellipse(cx, cy, r * 0.55, r * 0.32, t * 0.0004, 0, Math.PI * 2);

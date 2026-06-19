@@ -1,11 +1,13 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import HeroCanvas from "./HeroCanvas";
 import PrimaryButton from "../common/PrimaryButton";
 import SecondaryButton from "../common/SecondaryButton";
-import { heroContent, companyStats } from "../../data/homeContent";
+import { useHashNavigation } from "../../utils/hashNavigation";
+import { heroContent } from "../../data/homeContent";
 
 const HeroSection = () => {
+  const handleHashNav = useHashNavigation();
+
   useEffect(() => {
     const root = document.querySelector(".hero-v2");
     if (!root) return undefined;
@@ -14,10 +16,9 @@ const HeroSection = () => {
   }, []);
 
   const headlineParts = heroContent.headline.split("Digital Growth");
-  const trustStats = companyStats.slice(0, 3);
 
   return (
-    <section className="hero-v2 hero-v2--motion" aria-labelledby="hero-heading">
+    <section id="home" className="hero-v2 hero-v2--motion" aria-labelledby="hero-heading">
       <HeroCanvas />
       <div className="hero-v2__readability" aria-hidden="true" />
 
@@ -38,29 +39,23 @@ const HeroSection = () => {
           </p>
 
           <div className="hero-v2__actions hero-v2__seq hero-v2__seq--4">
-            <PrimaryButton to={heroContent.primaryCta.path}>
+            <PrimaryButton
+              href="/#contact"
+              onClick={(event) => handleHashNav(event, heroContent.primaryCta.hash)}
+            >
               {heroContent.primaryCta.label}
             </PrimaryButton>
-            <SecondaryButton to={heroContent.secondaryCta.path}>
+            <SecondaryButton href={heroContent.secondaryCta.href}>
               {heroContent.secondaryCta.label}
             </SecondaryButton>
           </div>
-
-          <ul className="hero-v2__trust hero-v2__seq hero-v2__seq--5" aria-label="Company highlights">
-            {trustStats.map((stat) => (
-              <li key={stat.label}>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
 
-      <Link to="#services-section" className="hero-v2__scroll" aria-label="Scroll to services">
+      <a href="#services" className="hero-v2__scroll" aria-label="Scroll to services">
         <span className="hero-v2__scroll-line" />
         <span>Scroll</span>
-      </Link>
+      </a>
     </section>
   );
 };

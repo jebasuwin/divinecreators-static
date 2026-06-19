@@ -65,9 +65,19 @@ h1, h2, h3, h4, h5, h6 {
 .section-divider {
   height: 1px;
   width: 100%;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  background: rgba(255, 255, 255, 0.28);
   border: 0;
   margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .section-divider {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+[data-theme="light"] .section-divider {
+  background: rgba(0, 0, 0, 0.16);
 }
 
 .gradient-text {

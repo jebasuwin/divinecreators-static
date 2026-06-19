@@ -25,9 +25,9 @@
     youtube: mountYoutube,
   };
 
-  const CYAN = "#00d4ff";
-  const VIOLET = "#7b2fff";
-  const PINK = "#ff4fd8";
+  const CYAN = "#FFFFFF";
+  const VIOLET = "rgba(255,255,255,0.55)";
+  const PINK = "rgba(255,255,255,0.7)";
 
   /* ─── Scene shell (canvas-only, no UI widgets) ─── */
   function createCinematicScene(el, id) {
@@ -127,8 +127,8 @@
   function drawCosmos(ctx, w, h, t, m, hue) {
     const g = ctx.createRadialGradient(w * 0.5, h * 0.45, 0, w * 0.5, h * 0.5, w * 0.85);
     g.addColorStop(0, hue === "red" ? "#1a0810" : "#0a1428");
-    g.addColorStop(0.5, "#060c18");
-    g.addColorStop(1, "#020408");
+    g.addColorStop(0.5, "#000000");
+    g.addColorStop(1, "#000000");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
 
@@ -284,11 +284,11 @@
       })),
     }), (st, c, w, h, t, m) => {
       drawCosmos(c.bg, w, h, t, m);
-      drawNebula(c.bg, w, h, w * 0.5, h * 0.35, w * 0.55, "rgba(0,212,255,0.14)", "rgba(123,47,255,0.06)", t);
-      drawNebula(c.bg, w, h, w * 0.2, h * 0.7, w * 0.35, "rgba(123,47,255,0.1)", "transparent", t);
+      drawNebula(c.bg, w, h, w * 0.5, h * 0.35, w * 0.55, "rgba(255, 255, 255,0.14)", "rgba(255, 255, 255,0.06)", t);
+      drawNebula(c.bg, w, h, w * 0.2, h * 0.7, w * 0.35, "rgba(255, 255, 255,0.1)", "transparent", t);
 
       const floorY = h * 0.78;
-      c.mid.strokeStyle = "rgba(0,212,255,0.08)";
+      c.mid.strokeStyle = "rgba(255, 255, 255,0.08)";
       c.mid.lineWidth = 1;
       for (let i = -8; i <= 8; i += 1) {
         const x1 = w * 0.5 + i * w * 0.08;
@@ -305,9 +305,9 @@
         const bw = tw.w * w * 0.9;
         const by = floorY - th;
         const grad = c.mid.createLinearGradient(bx, by, bx, floorY);
-        grad.addColorStop(0, "rgba(0,212,255,0.85)");
-        grad.addColorStop(0.4, "rgba(0,212,255,0.25)");
-        grad.addColorStop(1, "rgba(123,47,255,0.15)");
+        grad.addColorStop(0, "rgba(255, 255, 255,0.85)");
+        grad.addColorStop(0.4, "rgba(255, 255, 255,0.25)");
+        grad.addColorStop(1, "rgba(255, 255, 255,0.15)");
         c.mid.fillStyle = grad;
         c.mid.shadowColor = CYAN;
         c.mid.shadowBlur = 14;
@@ -324,7 +324,7 @@
       drawGlowRect(c.mid, cx - barW / 2, cy - barH / 2, barW, barH, barH * 0.45, CYAN, 0.12, 40);
       drawGlowRect(c.mid, cx - barW / 2 + 6, cy - barH / 2 + 6, barW - 12, barH - 12, barH * 0.4, VIOLET, 0.08, 25);
       const cursor = (Math.sin(t * 0.005) * 0.5 + 0.5) * (barW * 0.55);
-      c.mid.fillStyle = "rgba(0,212,255,0.9)";
+      c.mid.fillStyle = "rgba(255, 255, 255,0.9)";
       c.mid.shadowColor = CYAN;
       c.mid.shadowBlur = 12;
       c.mid.fillRect(cx - barW * 0.2 + cursor, cy - barH * 0.15, 2, barH * 0.3);
@@ -336,7 +336,7 @@
         const kx = cx + Math.cos(a) * dist;
         const ky = cy + Math.sin(a) * dist * 0.55;
         drawOrb(c.fx, kx, ky, k.size + Math.sin(t * 0.004 + k.angle) * 1.5, k.hue, 0.85, 16);
-        c.fx.strokeStyle = `rgba(0,212,255,${0.08 + Math.sin(t * 0.003 + k.angle) * 0.06})`;
+        c.fx.strokeStyle = `rgba(255, 255, 255,${0.08 + Math.sin(t * 0.003 + k.angle) * 0.06})`;
         c.fx.beginPath();
         c.fx.moveTo(cx, cy);
         c.fx.lineTo(kx, ky);
@@ -347,7 +347,7 @@
         const hx = w * ho.x;
         const hy = h * ho.y + Math.sin(t * 0.002 + ho.phase) * 8;
         const hr = ho.r + Math.sin(t * 0.003 + ho.phase) * 4;
-        c.fx.strokeStyle = `rgba(0,212,255,${0.25 + Math.sin(t * 0.004 + ho.phase) * 0.15})`;
+        c.fx.strokeStyle = `rgba(255, 255, 255,${0.25 + Math.sin(t * 0.004 + ho.phase) * 0.15})`;
         c.fx.lineWidth = 1.5;
         c.fx.shadowColor = CYAN;
         c.fx.shadowBlur = 12;
@@ -367,7 +367,7 @@
         wave: s.wave,
         size: s.size,
       }));
-      drawStream(c.fx, w, h, t, paths, "rgba(0,212,255,0.85)");
+      drawStream(c.fx, w, h, t, paths, "rgba(255, 255, 255,0.85)");
     });
   }
 
@@ -401,7 +401,7 @@
       };
     }, (st, c, w, h, t, m) => {
       drawCosmos(c.bg, w, h, t, m);
-      drawNebula(c.bg, w, h, w * 0.5, h * 0.5, w * 0.7, "rgba(123,47,255,0.12)", "rgba(255,79,216,0.06)", t);
+      drawNebula(c.bg, w, h, w * 0.5, h * 0.5, w * 0.7, "rgba(255, 255, 255,0.12)", "rgba(255,79,216,0.06)", t);
 
       const pos = st.planets.map((p) => ({
         x: w * (p.x + Math.cos(p.orbit + t * p.speed) * 0.02 + (m.x - 0.5) * 0.03),
@@ -418,7 +418,7 @@
           if (dist > w * 0.35) continue;
           const a = (1 - dist / (w * 0.35)) * 0.2;
           const g = c.mid.createLinearGradient(pos[i].x, pos[i].y, pos[j].x, pos[j].y);
-          g.addColorStop(0, `rgba(0,212,255,${a})`);
+          g.addColorStop(0, `rgba(255, 255, 255,${a})`);
           g.addColorStop(1, `rgba(255,79,216,${a})`);
           c.mid.strokeStyle = g;
           c.mid.lineWidth = 0.8;
@@ -465,7 +465,7 @@
         c.fx.stroke();
       }
 
-      const colors = ["rgba(255,79,216,0.95)", "rgba(0,212,255,0.95)", "rgba(255,220,100,0.95)"];
+      const colors = ["rgba(255,79,216,0.95)", "rgba(255, 255, 255,0.95)", "rgba(255,220,100,0.95)"];
       st.packets.forEach((pk) => {
         if (pk.from === pk.to || pk.from >= pos.length || pk.to >= pos.length) return;
         pk.t += pk.speed;
@@ -508,7 +508,7 @@
       portalPhase: 0,
     }), (st, c, w, h, t, m) => {
       drawCosmos(c.bg, w, h, t, m);
-      drawNebula(c.bg, w, h, w * 0.5, h * 0.55, w * 0.5, "rgba(123,47,255,0.15)", "rgba(0,212,255,0.05)", t);
+      drawNebula(c.bg, w, h, w * 0.5, h * 0.55, w * 0.5, "rgba(255, 255, 255,0.15)", "rgba(255, 255, 255,0.05)", t);
 
       const cx = w * (0.5 + (m.x - 0.5) * 0.05);
       const cy = h * (0.55 + (m.y - 0.5) * 0.04);
@@ -516,7 +516,7 @@
       for (let ring = 4; ring >= 0; ring -= 1) {
         const rw = w * (0.08 + ring * 0.07);
         const rh = h * (0.04 + ring * 0.035);
-        c.mid.strokeStyle = `rgba(0,212,255,${0.15 + ring * 0.05})`;
+        c.mid.strokeStyle = `rgba(255, 255, 255,${0.15 + ring * 0.05})`;
         c.mid.lineWidth = 1.5;
         c.mid.beginPath();
         c.mid.ellipse(cx, cy, rw, rh, 0, 0, Math.PI * 2);
@@ -535,7 +535,7 @@
         c.mid.rotate(a + Math.PI / 2);
         drawGlowRect(c.mid, -bw / 2, -bh / 2, bw, bh, 6, CYAN, 0.1, 20);
         const scan = ((t * 0.001 + b.tilt) % 1) * bh;
-        c.mid.fillStyle = "rgba(0,212,255,0.35)";
+        c.mid.fillStyle = "rgba(255, 255, 255,0.35)";
         c.mid.fillRect(-bw / 2, -bh / 2 + scan, bw, 2);
         c.mid.restore();
       });
@@ -554,7 +554,7 @@
       const pr = w * 0.06 * portalOpen;
       c.fx.strokeStyle = `rgba(255,220,80,${0.4 + portalOpen * 0.5})`;
       c.fx.lineWidth = 3;
-      c.fx.shadowColor = "#ffdc50";
+      c.fx.shadowColor = "rgba(255,255,255,0.85)";
       c.fx.shadowBlur = 25;
       c.fx.beginPath();
       c.fx.ellipse(cx, cy - h * 0.02, pr, pr * 0.35, 0, 0, Math.PI * 2);
@@ -566,7 +566,7 @@
         if (ry < h * 0.1 || ry > h * 0.95) return;
         const rx = w * rv.x + Math.sin(t * 0.003 + rv.phase) * 12;
         c.fx.fillStyle = `rgba(255,220,80,${0.5 + Math.sin(t * 0.005 + rv.phase) * 0.4})`;
-        c.fx.shadowColor = "#ffdc50";
+        c.fx.shadowColor = "rgba(255,255,255,0.85)";
         c.fx.shadowBlur = 8;
         c.fx.fillRect(rx, ry, 2, 6);
         c.fx.shadowBlur = 0;
@@ -596,7 +596,7 @@
       })),
     }), (st, c, w, h, t, m) => {
       drawCosmos(c.bg, w, h, t, m);
-      drawNebula(c.bg, w, h, w * 0.35, h * 0.4, w * 0.45, "rgba(0,212,255,0.1)", "transparent", t);
+      drawNebula(c.bg, w, h, w * 0.35, h * 0.4, w * 0.45, "rgba(255, 255, 255,0.1)", "transparent", t);
 
       const vortexX = w * 0.18;
       const vortexY = h * 0.5;
@@ -610,7 +610,7 @@
 
       st.pathways.forEach((pw) => {
         const py = h * pw.y;
-        c.mid.strokeStyle = "rgba(0,212,255,0.12)";
+        c.mid.strokeStyle = "rgba(255, 255, 255,0.12)";
         c.mid.lineWidth = 2;
         c.mid.beginPath();
         for (let x = 0; x <= w; x += 6) {
@@ -630,7 +630,7 @@
         const by = h * (0.3 + bl.channel * 0.12) + Math.sin(t * 0.002 + bl.born) * 10;
         const bw = bl.w * w;
         const bh = bl.h * h;
-        const colors = [CYAN, VIOLET, PINK, "#a8ff60"];
+        const colors = [CYAN, VIOLET, PINK, "rgba(255,255,255,0.6)"];
         drawGlowRect(c.mid, bx, by, bw, bh, 4, colors[bl.channel], alpha * 0.35, 18);
       });
 
@@ -647,7 +647,7 @@
           const dx = (a.x - b.x) * w;
           const dy = (a.y - b.y) * h;
           if (Math.hypot(dx, dy) > w * 0.25) continue;
-          c.fx.strokeStyle = "rgba(123,47,255,0.08)";
+          c.fx.strokeStyle = "rgba(255, 255, 255,0.08)";
           c.fx.beginPath();
           c.fx.moveTo(a.x * w, a.y * h);
           c.fx.lineTo(b.x * w, b.y * h);
@@ -685,10 +685,10 @@
       })),
     }), (st, c, w, h, t, m) => {
       drawCosmos(c.bg, w, h, t, m);
-      drawNebula(c.bg, w, h, w * 0.5, h * 0.75, w * 0.6, "rgba(0,212,255,0.08)", "rgba(123,47,255,0.06)", t);
+      drawNebula(c.bg, w, h, w * 0.5, h * 0.75, w * 0.6, "rgba(255, 255, 255,0.08)", "rgba(255, 255, 255,0.06)", t);
 
       const horizon = h * 0.72;
-      c.mid.fillStyle = "rgba(0,212,255,0.04)";
+      c.mid.fillStyle = "rgba(255, 255, 255,0.04)";
       c.mid.beginPath();
       c.mid.moveTo(0, horizon);
       c.mid.lineTo(w, horizon);
@@ -703,9 +703,9 @@
         const bw = b.w * w;
         const by = horizon - bh;
         const grad = c.mid.createLinearGradient(bx, by, bx, horizon);
-        grad.addColorStop(0, "rgba(0,212,255,0.7)");
-        grad.addColorStop(0.5, "rgba(123,47,255,0.3)");
-        grad.addColorStop(1, "rgba(0,212,255,0.1)");
+        grad.addColorStop(0, "rgba(255, 255, 255,0.7)");
+        grad.addColorStop(0.5, "rgba(255, 255, 255,0.3)");
+        grad.addColorStop(1, "rgba(255, 255, 255,0.1)");
         c.mid.fillStyle = grad;
         c.mid.shadowColor = CYAN;
         c.mid.shadowBlur = 10;
@@ -725,7 +725,7 @@
         const cx = cr.x * w;
         const cy = cr.y * h * 0.65;
         for (let i = 0; i < cr.len; i += 1) {
-          c.fx.fillStyle = `rgba(0,212,255,${0.8 - i * 0.1})`;
+          c.fx.fillStyle = `rgba(255, 255, 255,${0.8 - i * 0.1})`;
           c.fx.fillRect(cx, cy - i * 8, 2, 5);
         }
       });
@@ -738,7 +738,7 @@
         const bw = w * 0.28;
         const bh = h * 0.2;
         drawGlowRect(c.fx, bx, by, bw * alpha, bh * alpha, 8, CYAN, alpha * 0.2, 22);
-        c.fx.strokeStyle = `rgba(0,212,255,${alpha * 0.5})`;
+        c.fx.strokeStyle = `rgba(255, 255, 255,${alpha * 0.5})`;
         c.fx.strokeRect(bx, by, bw * alpha, bh * alpha);
       });
 
@@ -772,11 +772,11 @@
       ],
     }), (st, c, w, h, t, m) => {
       drawCosmos(c.bg, w, h, t, m);
-      drawNebula(c.bg, w, h, w * 0.5, h * 0.5, w * 0.55, "rgba(0,212,255,0.1)", "rgba(123,47,255,0.05)", t);
+      drawNebula(c.bg, w, h, w * 0.5, h * 0.5, w * 0.55, "rgba(255, 255, 255,0.1)", "rgba(255, 255, 255,0.05)", t);
 
       st.pipes.forEach((pipe, pi) => {
         const pts = pipe.pts.map((p) => [p[0] * w + (m.x - 0.5) * 10, p[1] * h + (m.y - 0.5) * 8]);
-        c.mid.strokeStyle = `rgba(0,212,255,${0.12 + pi * 0.04})`;
+        c.mid.strokeStyle = `rgba(255, 255, 255,${0.12 + pi * 0.04})`;
         c.mid.lineWidth = 10;
         c.mid.lineCap = "round";
         c.mid.lineJoin = "round";
@@ -787,7 +787,7 @@
         for (let i = 1; i < pts.length; i += 1) c.mid.lineTo(pts[i][0], pts[i][1]);
         c.mid.stroke();
         c.mid.lineWidth = 3;
-        c.mid.strokeStyle = `rgba(0,212,255,${0.35 + Math.sin(t * 0.003 + pi) * 0.15})`;
+        c.mid.strokeStyle = `rgba(255, 255, 255,${0.35 + Math.sin(t * 0.003 + pi) * 0.15})`;
         c.mid.shadowBlur = 8;
         c.mid.stroke();
         c.mid.shadowBlur = 0;
@@ -813,7 +813,7 @@
         const px = w * (p0[0] + (p1[0] - p0[0]) * local);
         const py = h * (p0[1] + (p1[1] - p0[1]) * local);
         drawOrb(c.fx, px, py, 4, "#ffffff", 0.9, 14);
-        c.fx.fillStyle = "rgba(0,212,255,0.6)";
+        c.fx.fillStyle = "rgba(255, 255, 255,0.6)";
         c.fx.fillRect(px - 5, py - 3, 10, 6);
       });
     });
@@ -831,7 +831,7 @@
       gatewayPulse: 0,
     }), (st, c, w, h, t, m) => {
       drawCosmos(c.bg, w, h, t, m);
-      drawNebula(c.bg, w, h, w * 0.5, h * 0.85, w * 0.4, "rgba(0,212,255,0.15)", "rgba(123,47,255,0.08)", t);
+      drawNebula(c.bg, w, h, w * 0.5, h * 0.85, w * 0.4, "rgba(255, 255, 255,0.15)", "rgba(255, 255, 255,0.08)", t);
 
       const cx = w * 0.5;
       const top = h * 0.08;
@@ -841,7 +841,7 @@
       levels.forEach((lw, i) => {
         const y = top + (bottom - top) * (i / 3.5);
         const pulse = 0.5 + Math.sin(t * 0.002 + i) * 0.5;
-        c.mid.strokeStyle = `rgba(0,212,255,${0.15 + pulse * 0.2})`;
+        c.mid.strokeStyle = `rgba(255, 255, 255,${0.15 + pulse * 0.2})`;
         c.mid.lineWidth = 2;
         c.mid.shadowColor = CYAN;
         c.mid.shadowBlur = 8 * pulse;
@@ -853,7 +853,7 @@
         if (i < levels.length - 1) {
           const ny = top + (bottom - top) * ((i + 1) / 3.5);
           const nl = levels[i + 1];
-          c.mid.strokeStyle = "rgba(123,47,255,0.1)";
+          c.mid.strokeStyle = "rgba(255, 255, 255,0.1)";
           c.mid.beginPath();
           c.mid.moveTo(cx - w * lw * 0.45, y);
           c.mid.lineTo(cx - w * nl * 0.45, ny);
@@ -913,7 +913,7 @@
       };
     }, (st, c, w, h, t, m) => {
       drawCosmos(c.bg, w, h, t, m);
-      drawNebula(c.bg, w, h, w * 0.5, h * 0.45, w * 0.65, "rgba(123,47,255,0.14)", "rgba(0,212,255,0.06)", t);
+      drawNebula(c.bg, w, h, w * 0.5, h * 0.45, w * 0.65, "rgba(255, 255, 255,0.14)", "rgba(255, 255, 255,0.06)", t);
 
       const coreX = w * (st.core.x + (m.x - 0.5) * 0.04);
       const coreY = h * (st.core.y + (m.y - 0.5) * 0.03);
@@ -938,12 +938,12 @@
           const dy = (n.y - n2.y) * h;
           if (Math.hypot(dx, dy) > w * 0.35) return;
           const pulse = ((t * 0.001 + i + j) % 1);
-          c.mid.strokeStyle = "rgba(0,212,255,0.08)";
+          c.mid.strokeStyle = "rgba(255, 255, 255,0.08)";
           c.mid.beginPath();
           c.mid.moveTo(n.x * w, n.y * h);
           c.mid.lineTo(n2.x * w, n2.y * h);
           c.mid.stroke();
-          c.mid.fillStyle = "rgba(123,47,255,0.8)";
+          c.mid.fillStyle = "rgba(255, 255, 255,0.8)";
           c.mid.beginPath();
           c.mid.arc(
             n.x * w + (n2.x - n.x) * w * pulse,
@@ -967,7 +967,7 @@
         const a = o.angle + t * 0.0004;
         const ox = coreX + Math.cos(a) * o.dist * Math.min(w, h);
         const oy = coreY + Math.sin(a) * o.dist * Math.min(w, h) * 0.55;
-        c.fx.strokeStyle = `rgba(0,212,255,${0.2 + Math.sin(t * 0.004 + o.angle) * 0.15})`;
+        c.fx.strokeStyle = `rgba(255, 255, 255,${0.2 + Math.sin(t * 0.004 + o.angle) * 0.15})`;
         c.fx.lineWidth = 1.5;
         c.fx.beginPath();
         c.fx.arc(ox, oy, o.size, 0, Math.PI * 2);
@@ -982,7 +982,7 @@
 
       for (let ring = 0; ring < 3; ring += 1) {
         const rr = 50 + ring * 30 + Math.sin(t * 0.002 + ring) * 10;
-        c.fx.strokeStyle = `rgba(123,47,255,${0.08 - ring * 0.02})`;
+        c.fx.strokeStyle = `rgba(255, 255, 255,${0.08 - ring * 0.02})`;
         c.fx.beginPath();
         c.fx.arc(coreX, coreY, rr, 0, Math.PI * 2);
         c.fx.stroke();
@@ -1009,11 +1009,11 @@
       lastBurst: 0,
     }), (st, c, w, h, t, m) => {
       drawCosmos(c.bg, w, h, t, m, "red");
-      drawNebula(c.bg, w, h, w * 0.5, h * 0.45, w * 0.6, "rgba(255,60,60,0.12)", "rgba(0,212,255,0.05)", t);
+      drawNebula(c.bg, w, h, w * 0.5, h * 0.45, w * 0.6, "rgba(255,60,60,0.12)", "rgba(255, 255, 255,0.05)", t);
 
       const hubX = w * 0.5;
       const hubY = h * 0.48;
-      drawOrb(c.mid, hubX, hubY, 22 + Math.sin(t * 0.003) * 5, "#ff3c3c", 0.4, 35);
+      drawOrb(c.mid, hubX, hubY, 22 + Math.sin(t * 0.003) * 5, "#FFFFFF", 0.4, 35);
 
       st.portals.forEach((pt, i) => {
         const px = w * (pt.x + (m.x - 0.5) * 0.03);
@@ -1021,10 +1021,10 @@
         const pw = pt.w * w;
         const ph = pt.h * h;
         const flicker = 0.7 + Math.sin(t * 0.004 + pt.phase) * 0.3;
-        drawGlowRect(c.mid, px, py, pw, ph, 6, "#ff3c3c", 0.15 * flicker, 25);
+        drawGlowRect(c.mid, px, py, pw, ph, 6, "#FFFFFF", 0.15 * flicker, 25);
         c.mid.fillStyle = `rgba(255,60,60,${0.25 * flicker})`;
         c.mid.fillRect(px + 4, py + 4, pw - 8, ph - 8);
-        c.mid.strokeStyle = `rgba(0,212,255,${0.2 * flicker})`;
+        c.mid.strokeStyle = `rgba(255, 255, 255,${0.2 * flicker})`;
         c.mid.strokeRect(px, py, pw, ph);
         c.mid.strokeStyle = "rgba(255,255,255,0.15)";
         c.mid.beginPath();
@@ -1042,7 +1042,7 @@
         const py = h * pt.y + pt.h * h * 0.5;
         const sx = px + (hubX - px) * str.t;
         const sy = py + (hubY - py) * str.t;
-        drawOrb(c.fx, sx, sy, 3, "#ff3c3c", 0.9, 12);
+        drawOrb(c.fx, sx, sy, 3, "#FFFFFF", 0.9, 12);
       });
 
       if (!reduced && t - st.lastBurst > 2200) {

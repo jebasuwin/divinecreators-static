@@ -17,7 +17,9 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet" />
   <link href="/css/motion-graphics.css" rel="stylesheet" />
-  <link href="/css/section-motion.css" rel="stylesheet" />
+  <link href="/css/about-section.css" rel="stylesheet" />
+  <link href="/css/services-home.css" rel="stylesheet" />
+  <link href="/css/contact-section.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
@@ -28,18 +30,18 @@
 
   <header class="site-nav">
     <div class="container-xl site-nav__inner">
-      <a href="/" class="site-nav__logo hero__logo" aria-label="DIVINECREATORS home">
-        <img src="/dc.png" alt="DIVINECREATORS" width="44" height="44" />
+      <a href="#home" class="brand-logo site-nav__logo" aria-label="DIVINECREATORS home">
+        <img src="/dc.png" alt="Divine Creators logo" width="48" height="48" />
+        <span>DIVINECREATORS</span>
       </a>
       <ul class="site-nav__menu">
-        <li><a href="/" class="site-nav__link">Home</a></li>
-        <li><a href="/about.html" class="site-nav__link">About</a></li>
-        <li><a href="/services.html" class="site-nav__link">Services</a></li>
-        <li><a href="/solutions.html" class="site-nav__link">Solutions</a></li>
-        <li><a href="/contact.html" class="site-nav__link">Contact</a></li>
+        <li><a href="#home" class="site-nav__link" data-nav-section="home">Home</a></li>
+        <li><a href="#about" class="site-nav__link" data-nav-section="about">About Us</a></li>
+        <li><a href="#services" class="site-nav__link" data-nav-section="services">Services</a></li>
+        <li><a href="#contact" class="site-nav__link" data-nav-section="contact">Contact</a></li>
       </ul>
       <div class="d-flex align-items-center gap-2">
-        <a href="/contact.html" class="btn-glow d-none d-lg-inline-flex">Get Started</a>
+        <a href="#contact" class="btn-glow d-none d-lg-inline-flex">Get Started</a>
         <button type="button" class="site-nav__toggle" data-menu-open aria-label="Open menu"><i class="bi bi-list"></i></button>
       </div>
     </div>
@@ -49,15 +51,17 @@
     <button type="button" class="mobile-drawer__backdrop" data-menu-close aria-label="Close menu"></button>
     <div class="mobile-drawer__panel">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <img src="/dc.png" alt="DIVINECREATORS" width="40" height="40" />
+        <a href="#home" class="brand-logo brand-logo--compact" aria-label="DIVINECREATORS home">
+          <img src="/dc.png" alt="Divine Creators logo" width="40" height="40" />
+          <span>DIVINECREATORS</span>
+        </a>
         <button type="button" class="site-nav__toggle" data-menu-close aria-label="Close"><i class="bi bi-x-lg"></i></button>
       </div>
-      <a href="/" class="mobile-drawer__link">Home</a>
-      <a href="/about.html" class="mobile-drawer__link">About</a>
-      <a href="/services.html" class="mobile-drawer__link">Services</a>
-      <a href="/solutions.html" class="mobile-drawer__link">Solutions</a>
-      <a href="/contact.html" class="mobile-drawer__link">Contact</a>
-      <a href="/contact.html" class="btn-glow w-100 justify-content-center mt-4">Get Started</a>
+      <a href="#home" class="mobile-drawer__link" data-nav-section="home">Home</a>
+      <a href="#about" class="mobile-drawer__link" data-nav-section="about">About Us</a>
+      <a href="#services" class="mobile-drawer__link" data-nav-section="services">Services</a>
+      <a href="#contact" class="mobile-drawer__link" data-nav-section="contact">Contact</a>
+      <a href="#contact" class="btn-glow w-100 justify-content-center mt-4">Get Started</a>
     </div>
   </div>
 
@@ -69,17 +73,12 @@
         <div class="row align-items-center min-vh-100 py-5">
           <div class="col-lg-6 col-xl-6 hero__copy">
             <span class="eyebrow hero__eyebrow">Digital Experiences • Creative Technology</span>
-            <h1 class="hero__title">Your Trusted Partner for <span class="text-gradient"><span id="typed-headline"></span></span></h1>
+            <h1 class="hero__title">Your Trusted Partner for Digital Growth</h1>
             <p class="hero__subtitle">Helping businesses attract the right audience, generate qualified leads, and achieve sustainable growth through strategic digital marketing solutions.</p>
             <div class="hero__actions">
-              <a href="/contact.html" class="btn-glow">Get Started <i class="bi bi-arrow-right"></i></a>
-              <a href="/services.html" class="btn-outline-glow">Explore Services</a>
+              <a href="#contact" class="btn-glow">Get Started <i class="bi bi-arrow-right"></i></a>
+              <a href="#services" class="btn-outline-glow">Explore Services</a>
             </div>
-            <ul class="hero__stats">
-              <li><strong data-count="4+">4+</strong><span>Years of Expertise</span></li>
-              <li><strong data-count="30+">30+</strong><span>Trusted Clients</span></li>
-              <li><strong data-count="2M+">2M+</strong><span>Audience Reached</span></li>
-            </ul>
           </div>
           <div class="col-lg-6 hero__visual-col" data-aos="fade-left">
             <div class="hero-motion-graphic" aria-hidden="true"></div>
@@ -87,212 +86,165 @@
         </div>
       </div>
     </section>
-
-    <!-- ABOUT -->
-    <section class="section-pad section-about-motion" id="about">
-      <div class="container-xl">
-        <div class="row align-items-center g-5">
-          <div class="col-lg-6" data-aos="fade-right">
-            <span class="eyebrow">About Divine Creators</span>
-            <h2 class="display-6 fw-bold mb-3">We help businesses build stronger digital presence through <span class="text-gradient">strategy-led</span> marketing</h2>
-            <p class="text-secondary">We combine research-led strategy, creative execution and performance marketing to help businesses attract the right audience and grow sustainably online.</p>
-            <a href="/about.html" class="btn-outline-glow mt-2">Learn about us <i class="bi bi-arrow-right"></i></a>
-          </div>
-          <div class="col-lg-6" data-aos="fade-left">
-            <div class="about-growth-viz" aria-hidden="true">
-              <canvas class="about-growth-viz__canvas"></canvas>
-              <span class="about-growth-viz__badge about-growth-viz__badge--1">4+ Years</span>
-              <span class="about-growth-viz__badge about-growth-viz__badge--2">30+ Clients</span>
-              <span class="about-growth-viz__badge about-growth-viz__badge--3">2M+ Reach</span>
-              <span class="about-growth-viz__badge about-growth-viz__badge--4">99.9% Retention</span>
-            </div>
-          </div>
-        </div>
-        <div class="row g-4 mt-4">
-          <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
-            <div class="glass-card h-100">
-              <div class="glass-card__icon"><i class="bi bi-compass"></i></div>
-              <h3>Strategic approach</h3>
-              <p>Plans grounded in research, audience insight and clear business goals.</p>
-            </div>
-          </div>
-          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="glass-card h-100">
-              <div class="glass-card__icon"><i class="bi bi-chat-dots"></i></div>
-              <h3>Transparent communication</h3>
-              <p>Regular updates and honest reporting so you always know where things stand.</p>
-            </div>
-          </div>
-          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="glass-card h-100">
-              <div class="glass-card__icon"><i class="bi bi-graph-up"></i></div>
-              <h3>Performance-focused execution</h3>
-              <p>Campaigns built to drive measurable outcomes across your marketing channels.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="section-divider" aria-hidden="true"></div>
 
     <!-- STATS -->
-    <section class="section-pad section-pad--compact bg-alt section-stats-motion">
+    <section id="statistics" class="section-pad section-pad--compact section-stats" aria-label="Company statistics">
       <div class="container-xl">
-        <div class="row g-3 g-lg-4">
-          <div class="col-6 col-lg-3" data-aos="fade-up"><div class="stat-box stat-box--motion"><div class="stat-box__value" data-count="4+">0</div><div class="stat-box__label">Years of Expertise</div></div></div>
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="100"><div class="stat-box stat-box--motion"><div class="stat-box__value" data-count="30+">0</div><div class="stat-box__label">Trusted Clients</div></div></div>
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="200"><div class="stat-box stat-box--motion"><div class="stat-box__value" data-count="2M+">0</div><div class="stat-box__label">Audience Reached</div></div></div>
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300"><div class="stat-box stat-box--motion"><div class="stat-box__value" data-count="99.9%">0</div><div class="stat-box__label">Client Retention</div></div></div>
+        <div class="row g-3 g-md-4" data-home-stats></div>
+      </div>
+    </section>
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ABOUT -->
+    <section id="about" class="about-section section-pad">
+      <div class="container-xl about-section__container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 about-section__content" data-about-reveal>
+            <span class="eyebrow">About Us</span>
+            <h2>Why Partner with Divine Creators?</h2>
+            <p>At Divine Creators, we believe effective digital marketing is built on strategy, not guesswork. We partner with businesses to create impactful digital experiences, strengthen brand presence, and drive measurable growth through tailored marketing solutions. With a focus on innovation, transparency, and performance, we deliver strategies that not only elevate your brand but also contribute to long-term business success.</p>
+          </div>
+          <div class="col-lg-6 about-section__visual" data-about-reveal aria-hidden="true">
+            <div class="about-dashboard-viz">
+              <canvas class="about-dashboard-viz__canvas"></canvas>
+              <div class="about-dashboard-viz__orbit">
+                <span class="about-dashboard-viz__orbit-icon"><i class="bi bi-broadcast"></i></span>
+              </div>
+              <span class="about-dashboard-viz__chip about-dashboard-viz__chip--1"><i class="bi bi-compass"></i> Strategy</span>
+              <span class="about-dashboard-viz__chip about-dashboard-viz__chip--2"><i class="bi bi-graph-up-arrow"></i> Analytics</span>
+              <span class="about-dashboard-viz__chip about-dashboard-viz__chip--3"><i class="bi bi-lightning"></i> Innovation</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+    <div class="section-divider" aria-hidden="true"></div>
 
     <!-- SERVICES -->
-    <section class="section-pad section-services-motion" id="services">
-      <div class="container-xl">
-        <div class="text-center mb-5" data-aos="fade-up">
-          <span class="eyebrow">Our services</span>
-          <h2 class="display-6 fw-bold">Digital marketing services for sustainable growth</h2>
-        </div>
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-            <div class="glass-card service-motion-card" data-service="0"><span class="service-motion-card__ring" aria-hidden="true"></span><span class="service-motion-card__pulse" aria-hidden="true"></span><span class="service-motion-card__energy" aria-hidden="true"></span><div class="glass-card__icon service-motion-card__icon"><i class="bi bi-search"></i></div><h3>Search Engine Optimization</h3><p>Help businesses rank higher on search engines like Google.</p><a href="/services.html#seo" class="glass-card__link">Learn more →</a></div>
-          </div>
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-            <div class="glass-card service-motion-card" data-service="1"><span class="service-motion-card__ring" aria-hidden="true"></span><span class="service-motion-card__pulse" aria-hidden="true"></span><span class="service-motion-card__energy" aria-hidden="true"></span><div class="glass-card__icon service-motion-card__icon"><i class="bi bi-share"></i></div><h3>Social Media Marketing</h3><p>Manage and grow a company's social media presence.</p><a href="/services.html#social-media-marketing" class="glass-card__link">Learn more →</a></div>
-          </div>
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-            <div class="glass-card service-motion-card" data-service="2"><span class="service-motion-card__ring" aria-hidden="true"></span><span class="service-motion-card__pulse" aria-hidden="true"></span><span class="service-motion-card__energy" aria-hidden="true"></span><div class="glass-card__icon service-motion-card__icon"><i class="bi bi-megaphone"></i></div><h3>Paid Advertising</h3><p>Run performance marketing campaigns designed to generate leads or sales.</p><a href="/services.html#paid-advertising" class="glass-card__link">Learn more →</a></div>
-          </div>
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-            <div class="glass-card service-motion-card" data-service="3"><span class="service-motion-card__ring" aria-hidden="true"></span><span class="service-motion-card__pulse" aria-hidden="true"></span><span class="service-motion-card__energy" aria-hidden="true"></span><div class="glass-card__icon service-motion-card__icon"><i class="bi bi-pencil-square"></i></div><h3>Content Marketing</h3><p>Create useful content that attracts and engages potential customers.</p><a href="/services.html#content-marketing" class="glass-card__link">Learn more →</a></div>
-          </div>
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-            <div class="glass-card service-motion-card" data-service="4"><span class="service-motion-card__ring" aria-hidden="true"></span><span class="service-motion-card__pulse" aria-hidden="true"></span><span class="service-motion-card__energy" aria-hidden="true"></span><div class="glass-card__icon service-motion-card__icon"><i class="bi bi-laptop"></i></div><h3>Website Design &amp; Development</h3><p>Create professional websites that support business growth and marketing.</p><a href="/services.html#website-development" class="glass-card__link">Learn more →</a></div>
-          </div>
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-            <div class="glass-card service-motion-card" data-service="5"><span class="service-motion-card__ring" aria-hidden="true"></span><span class="service-motion-card__pulse" aria-hidden="true"></span><span class="service-motion-card__energy" aria-hidden="true"></span><div class="glass-card__icon service-motion-card__icon"><i class="bi bi-envelope"></i></div><h3>Email Marketing</h3><p>Generate repeat business and nurture leads through targeted email communication.</p><a href="/services.html#email-marketing" class="glass-card__link">Learn more →</a></div>
-          </div>
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-            <div class="glass-card service-motion-card" data-service="6"><span class="service-motion-card__ring" aria-hidden="true"></span><span class="service-motion-card__pulse" aria-hidden="true"></span><span class="service-motion-card__energy" aria-hidden="true"></span><div class="glass-card__icon service-motion-card__icon"><i class="bi bi-funnel"></i></div><h3>Lead Generation</h3><p>Build lead generation systems for B2B and service-based businesses.</p><a href="/services.html#lead-generation" class="glass-card__link">Learn more →</a></div>
-          </div>
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-            <div class="glass-card service-motion-card" data-service="7"><span class="service-motion-card__ring" aria-hidden="true"></span><span class="service-motion-card__pulse" aria-hidden="true"></span><span class="service-motion-card__energy" aria-hidden="true"></span><div class="glass-card__icon service-motion-card__icon"><i class="bi bi-graph-up-arrow"></i></div><h3>Marketing Analytics &amp; Reporting</h3><p>Help clients understand campaign performance and marketing ROI.</p><a href="/services.html#marketing-analytics" class="glass-card__link">Learn more →</a></div>
-          </div>
-        </div>
-      </div>
+    <section id="services" class="services-home" aria-labelledby="services-heading">
+      <div data-home-services></div>
     </section>
+    <div class="section-divider" aria-hidden="true"></div>
 
-    <!-- PORTFOLIO / SOLUTIONS -->
-    <section class="section-pad bg-alt section-solutions-motion" id="portfolio">
-      <div class="container-xl">
-        <div class="text-center mb-4" data-aos="fade-up">
-          <span class="eyebrow">Featured solutions</span>
-          <h2 class="display-6 fw-bold">Focused solutions for specific growth goals</h2>
-        </div>
-        <div class="filter-tabs" data-aos="fade-up">
-          <button type="button" class="active" data-filter="all">All</button>
-          <button type="button" data-filter="local">Local</button>
-          <button type="button" data-filter="ecommerce">E-commerce</button>
-          <button type="button" data-filter="branding">Branding</button>
-          <button type="button" data-filter="video">Video</button>
-        </div>
-        <div class="solutions-pipeline" aria-hidden="true"></div>
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="/solutions.html#local-business-marketing" class="project-card project-card--motion d-block" data-category="local">
-              <div class="project-thumb-motion" data-theme="local" aria-hidden="true"></div>
-              <div class="project-card__spotlight" aria-hidden="true"></div>
-              <div class="project-card__overlay"><h3>Local Business Marketing</h3><p>Help local customers find your business through local SEO, profiles and targeted local advertising.</p><span class="btn-glow btn-sm">View</span></div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <a href="/solutions.html#ecommerce-marketing" class="project-card project-card--motion d-block" data-category="ecommerce">
-              <div class="project-thumb-motion" data-theme="ecommerce" aria-hidden="true"></div>
-              <div class="project-card__spotlight" aria-hidden="true"></div>
-              <div class="project-card__overlay"><h3>E-commerce Marketing</h3><p>Support online stores with product advertising, retargeting and conversion-focused store optimization.</p><span class="btn-glow btn-sm">View</span></div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <a href="/solutions.html#personal-branding" class="project-card project-card--motion d-block" data-category="branding">
-              <div class="project-thumb-motion" data-theme="branding" aria-hidden="true"></div>
-              <div class="project-card__spotlight" aria-hidden="true"></div>
-              <div class="project-card__overlay"><h3>Personal Branding</h3><p>Build authority and visibility for founders, consultants, coaches and creators.</p><span class="btn-glow btn-sm">View</span></div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="/solutions.html#video-marketing" class="project-card project-card--motion d-block" data-category="video">
-              <div class="project-thumb-motion" data-theme="video" aria-hidden="true"></div>
-              <div class="project-card__spotlight" aria-hidden="true"></div>
-              <div class="project-card__overlay"><h3>Video Marketing</h3><p>Create and distribute video content across Reels, Shorts, YouTube and other video platforms.</p><span class="btn-glow btn-sm">View</span></div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <a href="/solutions.html#youtube-growth-management" class="project-card project-card--motion d-block" data-category="video">
-              <div class="project-thumb-motion" data-theme="youtube" aria-hidden="true"></div>
-              <div class="project-card__spotlight" aria-hidden="true"></div>
-              <div class="project-card__overlay"><h3>YouTube Growth Management</h3><p>Grow your YouTube channel with strategy, SEO, content planning and performance reporting.</p><span class="btn-glow btn-sm">View</span></div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section" aria-labelledby="contact-page-heading">
+      <div class="contact-section__inner">
+        <header class="contact-section__intro" data-aos="fade-up">
+          <span class="contact-section__eyebrow eyebrow">Contact Us</span>
+          <h2 id="contact-page-heading" class="contact-section__title">Let's Build Something That Grows Your Business</h2>
+          <p class="contact-section__subtitle">Tell us about your requirements and our team will contact you with the right solution.</p>
+          <div class="contact-section__divider" aria-hidden="true"></div>
+        </header>
 
-    <!-- PROCESS -->
-    <section class="section-pad section-process-motion" id="process">
-      <div class="container-xl">
-        <div class="text-center mb-5" data-aos="fade-up">
-          <span class="eyebrow">Our process</span>
-          <h2 class="display-6 fw-bold">A clear path from strategy to results</h2>
-        </div>
-        <div class="process-roadmap" data-aos="fade-up">
-          <div class="process-roadmap__track" aria-hidden="true"><div class="process-roadmap__progress"></div></div>
-          <div class="timeline timeline--motion">
-          <div class="timeline__step"><div class="timeline__num">01</div><h4>Understand</h4><p>We learn about your business, audience, competitors and current marketing setup.</p></div>
-          <div class="timeline__step"><div class="timeline__num">02</div><h4>Plan</h4><p>We clarify goals, select channels and shape a focused marketing roadmap.</p></div>
-          <div class="timeline__step"><div class="timeline__num">03</div><h4>Create</h4><p>Content, campaigns and creative assets are built with clear intent.</p></div>
-          <div class="timeline__step"><div class="timeline__num">04</div><h4>Launch</h4><p>We publish campaigns, content and digital assets across the selected channels.</p></div>
-          <div class="timeline__step"><div class="timeline__num">05</div><h4>Improve</h4><p>We review performance, identify opportunities and refine the strategy using real data.</p></div>
+        <div class="contact-grid">
+          <aside class="contact-info-card" data-aos="fade-right">
+            <span class="contact-info-card__label">Contact Details</span>
+            <h3 class="contact-info-card__title">Start a Conversation With Our Team.</h3>
+            <p class="contact-info-card__text">Whether you need better search visibility, more qualified leads, a stronger social presence or YouTube growth support, we are here to help.</p>
+
+            <div class="contact-detail-list">
+              <div class="contact-detail-row">
+                <div class="contact-detail-icon" aria-hidden="true"><i class="bi bi-telephone"></i></div>
+                <div>
+                  <span class="contact-detail-label">Phone</span>
+                  <div class="contact-detail-value"><a href="tel:+916302142813">+91 63021 42813</a></div>
+                </div>
+              </div>
+              <div class="contact-detail-row">
+                <div class="contact-detail-icon" aria-hidden="true"><i class="bi bi-envelope"></i></div>
+                <div>
+                  <span class="contact-detail-label">Email</span>
+                  <div class="contact-detail-value"><a href="mailto:Divinecreators999@gmail.com">Divinecreators999@gmail.com</a></div>
+                </div>
+              </div>
+              <div class="contact-detail-row">
+                <div class="contact-detail-icon" aria-hidden="true"><i class="bi bi-geo-alt"></i></div>
+                <div>
+                  <span class="contact-detail-label">Address</span>
+                  <div class="contact-detail-value">Sholinganallur, Chennai – 600100, Tamil Nadu, India</div>
+                </div>
+              </div>
+              <div class="contact-detail-row">
+                <div class="contact-detail-icon" aria-hidden="true"><i class="bi bi-clock"></i></div>
+                <div>
+                  <span class="contact-detail-label">Working hours</span>
+                  <div class="contact-detail-value">Monday to Saturday, 9:30 AM to 6:30 PM</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <div class="contact-form-card" data-aos="fade-left">
+            <header class="contact-form-card__header">
+              <span class="contact-form-card__label">Send Us an Enquiry</span>
+              <h3 class="contact-form-card__title">We're here to help.</h3>
+              <p class="contact-form-card__desc">Share your requirements and our team will contact you.</p>
+            </header>
+
+            <form id="contactForm" class="contact-form" novalidate>
+              <div class="contact-form-grid">
+                <div class="contact-form__field">
+                  <label for="fullName">Full Name *</label>
+                  <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+                  <div class="invalid-feedback d-block contact-form__error" data-error="fullName"></div>
+                </div>
+                <div class="contact-form__field">
+                  <label for="email">Email Address *</label>
+                  <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+                  <div class="invalid-feedback d-block contact-form__error" data-error="email"></div>
+                </div>
+                <div class="contact-form__field">
+                  <label for="phone">Phone Number *</label>
+                  <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required />
+                  <div class="invalid-feedback d-block contact-form__error" data-error="phone"></div>
+                </div>
+                <div class="contact-form__field">
+                  <label for="company">Company Name</label>
+                  <input type="text" id="company" name="company" placeholder="Enter your company name" />
+                </div>
+                <div class="contact-form__field form-field--full">
+                  <label for="service">Service Required *</label>
+                  <select id="service" name="service" required>
+                    <option value="">Select a service</option>
+                    <option>Search Engine Optimization (SEO) - NEED TEAM</option>
+                    <option>Social Media Marketing (SMM) - SHIVA</option>
+                    <option>Paid Advertising (Performance Marketing) - ANJALI</option>
+                    <option>Content Marketing - SHIVA</option>
+                    <option>Website Design &amp; Development - JEBA</option>
+                    <option>Email Marketing - NEED PERSON &amp; IP</option>
+                    <option>Lead Generation - SHIVA - 40% &amp; DATA ANALYTICS - NEED PERSON</option>
+                    <option>Marketing Analytics &amp; Reporting - DATA ANALYTICS - NEED PERSON</option>
+                    <option>Local Business Marketing - NEED PERSON</option>
+                    <option>E-commerce Marketing - SAMYA</option>
+                    <option>Personal Branding - SHIVA</option>
+                    <option>Video Marketing - CHARAN</option>
+                    <option>YouTube Growth Management</option>
+                    <option>Other</option>
+                  </select>
+                  <div class="invalid-feedback d-block contact-form__error" data-error="service"></div>
+                </div>
+                <div class="contact-form__field form-field--full">
+                  <label for="message">Message *</label>
+                  <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                  <div class="invalid-feedback d-block contact-form__error" data-error="message"></div>
+                </div>
+                <div class="form-field--full contact-form-actions">
+                  <button type="submit" class="contact-submit-button btn-submit">Submit Enquiry <span class="spinner-border spinner-border-sm d-none ms-2" role="status"></span></button>
+                </div>
+              </div>
+            </form>
+
+            <div id="formSuccess" class="contact-form-success d-none" role="status">
+              <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+              <h3>Thank you</h3>
+              <p>Your enquiry has been recorded in this preview.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="section-pad bg-alt section-testimonials-motion">
-      <div class="container-xl">
-        <div class="text-center mb-4" data-aos="fade-up">
-          <span class="eyebrow">Client perspectives</span>
-          <h2 class="display-6 fw-bold">Trusted by businesses focused on growth</h2>
-        </div>
-        <div class="testimonial-card testimonial-card--motion testimonial-motion-wrap" data-aos="fade-up">
-          <div class="testimonial-motion-wrap__particles" aria-hidden="true"></div>
-          <div class="testimonial-slide is-active" data-testimonial><blockquote>“Divine Creators helped us bring structure to our marketing. Strategy, reporting and execution finally worked together instead of feeling disconnected.”</blockquote><cite class="d-block fw-semibold">E-commerce brand</cite><span class="text-secondary small">Online retail client</span></div>
-          <div class="testimonial-slide" data-testimonial><blockquote>“The team communicated clearly at every stage. We understood what was being done, why it mattered, and how performance was improving over time.”</blockquote><cite class="d-block fw-semibold">Local service business</cite><span class="text-secondary small">Chennai-based client</span></div>
-          <div class="testimonial-slide" data-testimonial><blockquote>“From content planning to campaign optimization, the approach was practical and focused on measurable growth rather than vanity metrics.”</blockquote><cite class="d-block fw-semibold">Growing consultancy</cite><span class="text-secondary small">Personal branding client</span></div>
-          <div class="d-flex justify-content-center gap-3 mt-3">
-            <button type="button" class="btn-outline-glow btn-sm" data-testimonial-prev aria-label="Previous"><i class="bi bi-arrow-left"></i></button>
-            <button type="button" class="btn-outline-glow btn-sm" data-testimonial-next aria-label="Next"><i class="bi bi-arrow-right"></i></button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section-pad section-contact-motion">
-      <div class="contact-map-viz" aria-hidden="true">
-        <canvas></canvas>
-        <span class="contact-map-viz__icon contact-map-viz__icon--1"><i class="bi bi-telephone"></i></span>
-        <span class="contact-map-viz__icon contact-map-viz__icon--2"><i class="bi bi-envelope"></i></span>
-        <span class="contact-map-viz__icon contact-map-viz__icon--3"><i class="bi bi-whatsapp"></i></span>
-      </div>
-      <div class="container-xl text-center" data-aos="fade-up">
-        <h2 class="display-6 fw-bold mb-3">Ready to Grow Your Business Online?</h2>
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-          <a href="/contact.html" class="btn-glow">Contact Us</a>
-          <a href="tel:+916302142813" class="btn-outline-glow">Call +91 63021 42813</a>
-        </div>
-      </div>
-    </section>
+    <div class="section-divider" aria-hidden="true"></div>
   </main>
 
   <footer class="site-footer">
@@ -300,8 +252,11 @@
     <div class="container-xl">
       <div class="row g-4 site-footer__grid">
         <div class="col-12 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-          <div class="site-footer__brand">
-            <img src="/dc.png" alt="DIVINECREATORS" class="site-footer__logo" width="88" height="88" />
+          <div class="site-footer__brand footer-brand">
+            <a href="#home" class="footer-brand-logo brand-logo">
+              <img src="/dc.png" alt="Divine Creators logo" width="58" height="58" />
+              <span>DIVINECREATORS</span>
+            </a>
             <p class="site-footer__tagline">Your Trusted Partner for Digital Growth. Strategic digital marketing services for businesses in Chennai and beyond.</p>
             <div class="site-footer__social">
               <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
@@ -312,55 +267,62 @@
         </div>
         <div class="col-12 col-lg-2" data-aos="fade-up" data-aos-delay="100">
           <button class="site-footer__accordion-btn collapsed d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#footerNavCollapse" aria-expanded="false" aria-controls="footerNavCollapse">
-            Navigation <i class="bi bi-chevron-down"></i><span class="footer-pipe footer-pipe--delay-1" aria-hidden="true"></span>
+            Navigation <i class="bi bi-chevron-down"></i>
           </button>
-          <h6 class="site-footer__heading d-none d-lg-block">Navigation<span class="footer-pipe" aria-hidden="true"></span></h6>
+          <h6 class="site-footer__heading footer-heading d-none d-lg-block">Navigation<span class="footer-heading-line" aria-hidden="true"></span></h6>
           <div id="footerNavCollapse" class="collapse d-lg-block">
             <nav aria-label="Footer navigation">
               <ul class="site-footer__links list-unstyled mb-0">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about.html">About</a></li>
-                <li><a href="/services.html">Services</a></li>
-                <li><a href="/solutions.html">Solutions</a></li>
-                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/#home">Home</a></li>
+                <li><a href="/#about">About Us</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
               </ul>
             </nav>
           </div>
         </div>
         <div class="col-12 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-          <h6 class="site-footer__heading">Services<span class="footer-pipe footer-pipe--delay-1" aria-hidden="true"></span></h6>
-          <ul class="site-footer__links list-unstyled mb-0">
-            <li><a href="/services.html#seo">SEO</a></li>
-            <li><a href="/services.html#social-media-marketing">Social Media</a></li>
-            <li><a href="/solutions.html#personal-branding">Branding</a></li>
-            <li><a href="/services.html#website-development">Web Design</a></li>
-            <li><a href="/services.html#content-marketing">Content</a></li>
+          <h6 class="site-footer__heading footer-heading">Services<span class="footer-heading-line" aria-hidden="true"></span></h6>
+          <ul class="site-footer__links site-footer__services-list list-unstyled mb-0">
+            <li><a href="/#seo">SEO</a></li>
+            <li><a href="/#social-media-marketing">Social Media</a></li>
+            <li><a href="/#paid-advertising">Paid Advertising</a></li>
+            <li><a href="/#content-marketing">Content Marketing</a></li>
+            <li><a href="/#website-development">Web Design</a></li>
+            <li><a href="/#email-marketing">Email Marketing</a></li>
+            <li><a href="/#lead-generation">Lead Generation</a></li>
+            <li><a href="/#marketing-analytics">Analytics</a></li>
+            <li><a href="/#local-business-marketing">Local Marketing</a></li>
+            <li><a href="/#ecommerce-marketing">E-commerce</a></li>
+            <li><a href="/#personal-branding">Personal Branding</a></li>
+            <li><a href="/#video-marketing">Video Marketing</a></li>
+            <li><a href="/#youtube-growth-management">YouTube Growth</a></li>
           </ul>
         </div>
         <div class="col-12 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <h6 class="site-footer__heading">Contact<span class="footer-pipe footer-pipe--delay-2" aria-hidden="true"></span></h6>
+          <h6 class="site-footer__heading footer-heading">Contact<span class="footer-heading-line" aria-hidden="true"></span></h6>
           <ul class="site-footer__contact list-unstyled mb-0">
             <li><i class="bi bi-telephone" aria-hidden="true"></i><a href="tel:+916302142813">+91 63021 42813</a></li>
             <li><i class="bi bi-envelope" aria-hidden="true"></i><a href="mailto:Divinecreators999@gmail.com">Divinecreators999@gmail.com</a></li>
             <li><i class="bi bi-geo-alt" aria-hidden="true"></i><span>Sholinganallur, Chennai – 600100</span></li>
           </ul>
-          <a href="/contact.html" class="site-footer__cta">Get a Free Quote</a>
         </div>
       </div>
-      <div class="site-footer__bottom">
-        <p class="site-footer__copy">&copy; <span id="year">2026</span> DIVINECREATORS. All rights reserved.</p>
-        <button type="button" class="back-to-top" data-back-top aria-label="Back to top">Back to top <i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+      <div class="site-footer__bottom footer-bottom">
+        <p class="site-footer__copy">&copy; 2026 DIVINECREATORS. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
+  <button type="button" class="floating-back-to-top" data-back-to-top aria-label="Back to top" title="Back to top">
+    <i class="bi bi-arrow-up" aria-hidden="true"></i>
+  </button>
   <a href="https://wa.me/916302142813?text=Hello%20DIVINECREATORS%2C%20I%20would%20like%20to%20discuss%20digital%20marketing%20services%20for%20my%20business." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
 
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js" defer></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
   <script src="/js/motion-graphics.js" defer></script>
+  <script src="/js/home-services.js" defer></script>
   <script src="/js/section-motion.js" defer></script>
   <script src="/js/script.js" defer></script>
 </body>

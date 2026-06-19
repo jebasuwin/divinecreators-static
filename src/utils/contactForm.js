@@ -33,10 +33,6 @@ export const validateContactForm = (data) => {
     errors.message = "Message should be at least 10 characters.";
   }
 
-  if (!data.consent) {
-    errors.consent = "Please agree to be contacted about your enquiry.";
-  }
-
   return errors;
 };
 

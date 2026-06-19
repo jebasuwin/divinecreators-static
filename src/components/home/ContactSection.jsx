@@ -1,12 +1,8 @@
 import { useState } from "react";
-import SEO from "../components/common/SEO";
-import PrimaryButton from "../components/common/PrimaryButton";
-import { pageSeo } from "../data/seoConfig";
-import { businessInfo, getWhatsAppLink } from "../data/businessInfo";
-import { contactServiceOptions } from "../data/services";
-import { validateContactForm, submitContactForm } from "../utils/contactForm";
-import SocialLinks from "../components/common/SocialLinks";
-import { getBreadcrumbSchema } from "../utils/schema";
+import { businessInfo } from "../../data/businessInfo";
+import { contactServiceOptions } from "../../data/services";
+import { validateContactForm, submitContactForm } from "../../utils/contactForm";
+import SocialLinks from "../common/SocialLinks";
 
 const contactItems = [
   {
@@ -18,15 +14,6 @@ const contactItems = [
     icon: "bi-envelope",
     label: "Email",
     content: <a href={`mailto:${businessInfo.email}`}>{businessInfo.email}</a>,
-  },
-  {
-    icon: "bi-whatsapp",
-    label: "WhatsApp",
-    content: (
-      <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
-        Chat with us
-      </a>
-    ),
   },
   {
     icon: "bi-geo-alt",
@@ -47,20 +34,17 @@ const initialFormState = {
   company: "",
   service: "",
   message: "",
-  consent: false,
 };
 
-const Contact = () => {
+const ContactSection = () => {
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  const breadcrumb = [{ label: "Home", path: "/" }, { label: "Contact" }];
-
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
@@ -84,32 +68,36 @@ const Contact = () => {
   };
 
   return (
-    <>
-      <SEO
-        title={pageSeo.contact.title}
-        description={pageSeo.contact.description}
-        path={pageSeo.contact.path}
-        schema={getBreadcrumbSchema(breadcrumb)}
-      />
+    <section id="contact" className="contact-section" aria-labelledby="contact-page-heading">
+      <div className="contact-section__inner">
+        <header className="contact-section__intro reveal reveal-up">
+          <span className="contact-section__eyebrow eyebrow">Contact Us</span>
+          <h2 id="contact-page-heading" className="contact-section__title">
+            Let&apos;s Build Something That Grows Your Business
+          </h2>
+          <p className="contact-section__subtitle">
+            Tell us about your requirements and our team will contact you with the right solution.
+          </p>
+          <div className="contact-section__divider" aria-hidden="true" />
+        </header>
 
-      <section className="contact-section">
-        <div className="contact-shell">
-          <aside className="contact-info-panel reveal reveal-up">
-            <span className="contact-info-panel__label">Contact Details</span>
-            <h1 className="contact-info-panel__title">Start a Conversation With Our Team.</h1>
-            <p className="contact-info-panel__text">
+        <div className="contact-grid">
+          <aside className="contact-info-card reveal reveal-up">
+            <span className="contact-info-card__label">Contact Details</span>
+            <h3 className="contact-info-card__title">Start a Conversation With Our Team.</h3>
+            <p className="contact-info-card__text">
               Whether you need better search visibility, more qualified leads, a stronger social presence or YouTube growth support, we are here to help.
             </p>
 
-            <div className="contact-info-panel__details reveal-stagger">
+            <div className="contact-detail-list">
               {contactItems.map((item) => (
-                <div className="contact-detail-item reveal reveal-up" key={item.label}>
-                  <div className="contact-detail-item__icon" aria-hidden="true">
+                <div className="contact-detail-row" key={item.label}>
+                  <div className="contact-detail-icon" aria-hidden="true">
                     <i className={`bi ${item.icon}`} />
                   </div>
-                  <div className="contact-detail-item__body">
-                    <div className="contact-detail-item__label">{item.label}</div>
-                    <div className="contact-detail-item__value">{item.content}</div>
+                  <div>
+                    <span className="contact-detail-label">{item.label}</span>
+                    <div className="contact-detail-value">{item.content}</div>
                   </div>
                 </div>
               ))}
@@ -118,20 +106,19 @@ const Contact = () => {
             <SocialLinks className="contact-social" />
           </aside>
 
-          <div className="contact-form-panel reveal reveal-up">
+          <div className="contact-form-card reveal reveal-up">
             {submitted ? (
               <div className="contact-form-success" role="status">
                 <i className="bi bi-check-circle-fill" aria-hidden="true" />
-                <h2>Thank you</h2>
+                <h3>Thank you</h3>
                 <p>Your enquiry has been recorded in this preview.</p>
               </div>
             ) : (
               <>
-                <header className="contact-form-panel__header">
-                  <span className="contact-form-panel__rule" aria-hidden="true" />
-                  <span className="contact-form-panel__label">Send Us an Enquiry</span>
-                  <h2 className="contact-form-panel__title">We&apos;re here to help.</h2>
-                  <p className="contact-form-panel__desc">
+                <header className="contact-form-card__header">
+                  <span className="contact-form-card__label">Send Us an Enquiry</span>
+                  <h3 className="contact-form-card__title">We&apos;re here to help.</h3>
+                  <p className="contact-form-card__desc">
                     Share your requirements and our team will contact you.
                   </p>
                 </header>
@@ -141,7 +128,7 @@ const Contact = () => {
                 )}
 
                 <form className="contact-form" onSubmit={handleSubmit} noValidate>
-                  <div className="contact-form__row">
+                  <div className="contact-form-grid">
                     <div className="contact-form__field">
                       <label htmlFor="fullName">Full Name *</label>
                       <input
@@ -159,6 +146,7 @@ const Contact = () => {
                         <span className="contact-form__error" id="fullName-error">{errors.fullName}</span>
                       )}
                     </div>
+
                     <div className="contact-form__field">
                       <label htmlFor="email">Email Address *</label>
                       <input
@@ -176,9 +164,7 @@ const Contact = () => {
                         <span className="contact-form__error" id="email-error">{errors.email}</span>
                       )}
                     </div>
-                  </div>
 
-                  <div className="contact-form__row">
                     <div className="contact-form__field">
                       <label htmlFor="phone">Phone Number *</label>
                       <input
@@ -196,6 +182,7 @@ const Contact = () => {
                         <span className="contact-form__error" id="phone-error">{errors.phone}</span>
                       )}
                     </div>
+
                     <div className="contact-form__field">
                       <label htmlFor="company">Company Name</label>
                       <input
@@ -207,79 +194,64 @@ const Contact = () => {
                         onChange={handleChange}
                       />
                     </div>
-                  </div>
 
-                  <div className="contact-form__field">
-                    <label htmlFor="service">Service Required *</label>
-                    <select
-                      id="service"
-                      name="service"
-                      className={errors.service ? "is-invalid" : ""}
-                      value={formData.service}
-                      onChange={handleChange}
-                      aria-invalid={!!errors.service}
-                      aria-describedby={errors.service ? "service-error" : undefined}
-                    >
-                      <option value="">Select a service</option>
-                      {contactServiceOptions.map((o) => (
-                        <option key={o} value={o}>{o}</option>
-                      ))}
-                    </select>
-                    {errors.service && (
-                      <span className="contact-form__error" id="service-error">{errors.service}</span>
-                    )}
-                  </div>
+                    <div className="contact-form__field form-field--full">
+                      <label htmlFor="service">Service Required *</label>
+                      <select
+                        id="service"
+                        name="service"
+                        className={errors.service ? "is-invalid" : ""}
+                        value={formData.service}
+                        onChange={handleChange}
+                        aria-invalid={!!errors.service}
+                        aria-describedby={errors.service ? "service-error" : undefined}
+                      >
+                        <option value="">Select a service</option>
+                        {contactServiceOptions.map((o) => (
+                          <option key={o} value={o}>{o}</option>
+                        ))}
+                      </select>
+                      {errors.service && (
+                        <span className="contact-form__error" id="service-error">{errors.service}</span>
+                      )}
+                    </div>
 
-                  <div className="contact-form__field">
-                    <label htmlFor="message">Message *</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows="5"
-                      placeholder="Write your message"
-                      className={errors.message ? "is-invalid" : ""}
-                      value={formData.message}
-                      onChange={handleChange}
-                      aria-invalid={!!errors.message}
-                      aria-describedby={errors.message ? "message-error" : undefined}
-                    />
-                    {errors.message && (
-                      <span className="contact-form__error" id="message-error">{errors.message}</span>
-                    )}
-                  </div>
+                    <div className="contact-form__field form-field--full">
+                      <label htmlFor="message">Message *</label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        placeholder="Tell us about your project..."
+                        className={errors.message ? "is-invalid" : ""}
+                        value={formData.message}
+                        onChange={handleChange}
+                        aria-invalid={!!errors.message}
+                        aria-describedby={errors.message ? "message-error" : undefined}
+                      />
+                      {errors.message && (
+                        <span className="contact-form__error" id="message-error">{errors.message}</span>
+                      )}
+                    </div>
 
-                  <div className="form-consent">
-                    <input
-                      type="checkbox"
-                      id="consent"
-                      name="consent"
-                      className={errors.consent ? "is-invalid" : ""}
-                      checked={formData.consent}
-                      onChange={handleChange}
-                      aria-invalid={!!errors.consent}
-                      aria-describedby={errors.consent ? "consent-error" : undefined}
-                    />
-                    <label htmlFor="consent">
-                      I agree to be contacted about my enquiry. <span aria-hidden="true">*</span>
-                    </label>
-                    {errors.consent && (
-                      <span className="contact-form__error contact-form__error--block" id="consent-error">
-                        {errors.consent}
-                      </span>
-                    )}
+                    <div className="form-field--full contact-form-actions">
+                      <button
+                        type="submit"
+                        className="contact-submit-button"
+                        disabled={submitting}
+                      >
+                        {submitting ? "Sending..." : "Submit Enquiry"}
+                      </button>
+                    </div>
                   </div>
-
-                  <PrimaryButton type="submit" showArrow>
-                    {submitting ? "Sending..." : "Submit Enquiry"}
-                  </PrimaryButton>
                 </form>
               </>
             )}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
-export default Contact;
+export default ContactSection;

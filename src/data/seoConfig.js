@@ -18,19 +18,13 @@ export const pageSeo = {
     title: "SEO, Social Media and Paid Advertising Services | DIVINECREATORS",
     description:
       "Explore digital marketing services including SEO, social media marketing, paid advertising, content marketing, email marketing, lead generation and YouTube growth management.",
-    path: "/services",
-  },
-  solutions: {
-    title: "Local, E-commerce and Personal Branding Solutions | DIVINECREATORS",
-    description:
-      "Specialized marketing solutions for local businesses, e-commerce brands, personal branding, video marketing and YouTube growth.",
-    path: "/solutions",
+    path: "/#services",
   },
   contact: {
     title: "Contact Our Digital Marketing Team | DIVINECREATORS",
     description:
       "Contact DIVINECREATORS in Sholinganallur, Chennai. Discuss SEO, ads, social media, content marketing and YouTube growth for your business.",
-    path: "/contact",
+    path: "/#contact",
   },
   notFound: {
     title: "Page Not Found | DIVINECREATORS",

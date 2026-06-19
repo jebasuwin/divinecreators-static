@@ -1,19 +1,18 @@
 import { useEffect, useRef } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logoImg from "../../assets/dc.png";
 import { mainNavLinks } from "../../data/navigation";
 import { businessInfo } from "../../data/businessInfo";
 import SocialLinks from "../common/SocialLinks";
 
 const navIcons = {
-  "/": "bi-house",
-  "/about": "bi-person",
-  "/services": "bi-grid",
-  "/solutions": "bi-lightbulb",
-  "/contact": "bi-envelope",
+  home: "bi-house",
+  about: "bi-person",
+  services: "bi-grid",
+  contact: "bi-envelope",
 };
 
-const MobileMenu = ({ isOpen, onClose, returnFocusRef }) => {
+const MobileMenu = ({ isOpen, onClose, returnFocusRef, activeSection, onNavClick }) => {
   const closeButtonRef = useRef(null);
   const wasOpenRef = useRef(false);
 
@@ -59,8 +58,9 @@ const MobileMenu = ({ isOpen, onClose, returnFocusRef }) => {
 
       <div className="mobile-menu__inner">
         <div className="mobile-menu__header">
-          <Link to="/" className="mobile-menu__logo" onClick={handleNavClick} aria-label="DIVINECREATORS home">
-            <img src={logoImg} alt="DIVINECREATORS" />
+          <Link to="/" className="brand-logo mobile-menu__logo" onClick={handleNavClick} aria-label="DIVINECREATORS home">
+            <img src={logoImg} alt="Divine Creators logo" width={40} height={40} />
+            <span>DIVINECREATORS</span>
           </Link>
           <button
             ref={closeButtonRef}
@@ -75,28 +75,31 @@ const MobileMenu = ({ isOpen, onClose, returnFocusRef }) => {
 
         <nav className="mobile-menu__nav" aria-label="Mobile navigation">
           {mainNavLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              end={link.path === "/"}
-              className={({ isActive }) => `mobile-menu__link${isActive ? " active" : ""}`}
-              onClick={handleNavClick}
+            <a
+              key={link.hash}
+              href={`/#${link.hash}`}
+              className={`mobile-menu__link${activeSection === link.hash ? " active" : ""}`}
+              onClick={(event) => onNavClick(event, link.hash)}
             >
               <span className="mobile-menu__link-icon" aria-hidden="true">
-                <i className={`bi ${navIcons[link.path]}`} />
+                <i className={`bi ${navIcons[link.hash]}`} />
               </span>
               <span className="mobile-menu__link-text">{link.label}</span>
               <span className="mobile-menu__link-arrow" aria-hidden="true">
                 <i className="bi bi-chevron-right" />
               </span>
-            </NavLink>
+            </a>
           ))}
         </nav>
 
-        <NavLink to="/contact" className="mobile-menu__cta" onClick={handleNavClick}>
+        <a
+          href="/#contact"
+          className="mobile-menu__cta"
+          onClick={(event) => onNavClick(event, "contact")}
+        >
           Get Started
           <i className="bi bi-arrow-right" aria-hidden="true" />
-        </NavLink>
+        </a>
 
         <div className="mobile-menu__contact">
           <span className="mobile-menu__contact-label">Get in touch</span>

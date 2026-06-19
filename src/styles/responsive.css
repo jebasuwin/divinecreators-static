@@ -162,6 +162,12 @@
   .floating-actions {
     right: 16px;
     bottom: 16px;
+    gap: 14px;
+  }
+
+  .floating-actions .floating-back-to-top {
+    width: 52px;
+    height: 52px;
   }
 
   .whatsapp-float {

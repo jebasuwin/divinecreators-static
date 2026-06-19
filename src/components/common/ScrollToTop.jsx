@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { scrollToSection } from "../utils/hashNavigation";
 
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
@@ -8,10 +9,7 @@ const ScrollToTop = () => {
     if (hash) {
       const id = hash.replace("#", "");
       const timer = setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
+        scrollToSection(id);
       }, 100);
       return () => clearTimeout(timer);
     }

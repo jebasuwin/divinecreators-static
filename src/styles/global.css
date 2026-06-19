@@ -18,6 +18,14 @@ html {
   scroll-behavior: smooth;
 }
 
+#home,
+#statistics,
+#about,
+#services,
+#contact {
+  scroll-margin-top: calc(var(--nav-height, 72px) + 18px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
