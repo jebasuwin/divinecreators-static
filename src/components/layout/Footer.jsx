@@ -5,7 +5,10 @@ import { footerServices } from "../../data/services";
 import Logo from "../common/Logo";
 import SocialLinks from "../common/SocialLinks";
 
-const Footer = () => (
+const Footer = () => {
+  const basePath = import.meta.env.BASE_URL;
+
+  return (
   <footer className="site-footer site-footer--v2">
     <div className="site-footer__watermark" aria-hidden="true">
       DIVINECREATORS
@@ -30,7 +33,7 @@ const Footer = () => (
             {footerQuickLinks.map((l) => (
               <li key={l.hash ?? l.path}>
                 {l.hash ? (
-                  <a href={`/#${l.hash}`}>{l.label}</a>
+                  <a href={`${basePath}#${l.hash}`}>{l.label}</a>
                 ) : (
                   <Link to={l.path}>{l.label}</Link>
                 )}
@@ -47,7 +50,7 @@ const Footer = () => (
           <ul className="site-footer__links site-footer__services-list">
             {footerServices.map((l) => (
               <li key={l.hash}>
-                <a href={`/#${l.hash}`}>{l.label}</a>
+                <a href={`${basePath}#${l.hash}`}>{l.label}</a>
               </li>
             ))}
           </ul>
@@ -71,6 +74,7 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;

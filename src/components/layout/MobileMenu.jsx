@@ -13,6 +13,7 @@ const navIcons = {
 };
 
 const MobileMenu = ({ isOpen, onClose, returnFocusRef, activeSection, onNavClick }) => {
+  const basePath = import.meta.env.BASE_URL;
   const closeButtonRef = useRef(null);
   const wasOpenRef = useRef(false);
 
@@ -77,7 +78,7 @@ const MobileMenu = ({ isOpen, onClose, returnFocusRef, activeSection, onNavClick
           {mainNavLinks.map((link) => (
             <a
               key={link.hash}
-              href={`/#${link.hash}`}
+              href={`${basePath}#${link.hash}`}
               className={`mobile-menu__link${activeSection === link.hash ? " active" : ""}`}
               onClick={(event) => onNavClick(event, link.hash)}
             >
@@ -93,7 +94,7 @@ const MobileMenu = ({ isOpen, onClose, returnFocusRef, activeSection, onNavClick
         </nav>
 
         <a
-          href="/#contact"
+          href={`${basePath}#contact`}
           className="mobile-menu__cta"
           onClick={(event) => onNavClick(event, "contact")}
         >

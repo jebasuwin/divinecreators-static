@@ -19,10 +19,12 @@ const PageLoader = () => (
   </div>
 );
 
+const routerBasename = import.meta.env.BASE_URL === "/" ? undefined : import.meta.env.BASE_URL.replace(/\/$/, "");
+
 function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={routerBasename}>
         <div className="app-shell">
           <div className="ambient-glow ambient-glow--blue" aria-hidden="true" />
           <div className="ambient-glow ambient-glow--violet" aria-hidden="true" />

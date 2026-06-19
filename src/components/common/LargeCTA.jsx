@@ -1,12 +1,14 @@
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
 
+const defaultPrimaryTo = `${import.meta.env.BASE_URL}#contact`;
+
 const LargeCTA = ({
   title,
   subtitle,
   dark = false,
   primaryLabel = "Contact Us",
-  primaryTo = "/#contact",
+  primaryTo = defaultPrimaryTo,
   secondaryLabel,
   secondaryHref,
   showArrow = true,

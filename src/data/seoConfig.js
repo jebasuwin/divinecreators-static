@@ -1,4 +1,4 @@
-export const siteUrl = "https://www.divinecreatos.com";
+export const siteUrl = "https://jebasuwin.github.io/divinecreators-static";
 export const defaultOgImage = `${siteUrl}/og-image.jpg`;
 
 export const pageSeo = {

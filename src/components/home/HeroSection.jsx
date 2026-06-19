@@ -6,6 +6,7 @@ import { useHashNavigation } from "../../utils/hashNavigation";
 import { heroContent } from "../../data/homeContent";
 
 const HeroSection = () => {
+  const basePath = import.meta.env.BASE_URL;
   const handleHashNav = useHashNavigation();
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const HeroSection = () => {
 
           <div className="hero-v2__actions hero-v2__seq hero-v2__seq--4">
             <PrimaryButton
-              href="/#contact"
+              href={`${basePath}#contact`}
               onClick={(event) => handleHashNav(event, heroContent.primaryCta.hash)}
             >
               {heroContent.primaryCta.label}

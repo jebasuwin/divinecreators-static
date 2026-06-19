@@ -8,6 +8,7 @@ import PrimaryButton from "../common/PrimaryButton";
 import MobileMenu from "./MobileMenu";
 
 const Header = () => {
+  const basePath = import.meta.env.BASE_URL;
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuToggleRef = useRef(null);
@@ -44,7 +45,7 @@ const Header = () => {
               {mainNavLinks.map((link) => (
                 <li key={link.hash}>
                   <a
-                    href={`/#${link.hash}`}
+                    href={`${basePath}#${link.hash}`}
                     className={`floating-nav__link${isHomePage && activeSection === link.hash ? " active" : ""}`}
                     onClick={(event) => handleNavClick(event, link.hash)}
                   >
@@ -57,7 +58,7 @@ const Header = () => {
 
           <div className="floating-nav__actions">
             <PrimaryButton
-              href="/#contact"
+              href={`${basePath}#contact`}
               small
               className="floating-nav__cta d-none d-lg-inline-flex"
               onClick={(event) => handleNavClick(event, "contact")}

@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  const IMAGE_BASE = "/assets/images/services";
+  const IMAGE_BASE = "/divinecreators-static/assets/images/services";
 
   const DIGITAL_MARKETING_SERVICES = [
     {

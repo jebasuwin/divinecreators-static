@@ -3,7 +3,7 @@ export const heroContent = {
   subheadline:
     "Helping businesses attract the right audience, generate qualified leads, and achieve sustainable growth through strategic digital marketing solutions.",
   primaryCta: { label: "Get Started", hash: "contact" },
-  secondaryCta: { label: "Explore Services", href: "/#services" },
+  secondaryCta: { label: "Explore Services", href: `${import.meta.env.BASE_URL}#services` },
 };
 
 export const companyStats = [

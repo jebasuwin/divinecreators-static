@@ -1,4 +1,4 @@
-const IMAGE_BASE = "/assets/images/services";
+const IMAGE_BASE = `${import.meta.env.BASE_URL}assets/images/services`;
 
 export const digitalMarketingServices = [
   {

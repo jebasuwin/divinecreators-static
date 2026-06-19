@@ -2,11 +2,13 @@ import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
 import { businessInfo, getWhatsAppLink } from "../../data/businessInfo";
 
+const defaultPrimaryTo = `${import.meta.env.BASE_URL}#contact`;
+
 const ContactCTA = ({
   title,
   subtitle,
   primaryLabel = "Contact Us",
-  primaryTo = "/#contact",
+  primaryTo = defaultPrimaryTo,
   secondaryLabel,
   secondaryHref,
   showArrow = true,
