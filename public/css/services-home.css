@@ -85,8 +85,6 @@
 .services-home .service-block ul,
 .services-home .service-block ul li {
   color: rgba(255, 255, 255, 0.68) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
 }
 
 .service-block__list-heading {
@@ -287,12 +285,8 @@ html.aos-init:not(.aos-disabled) .services-home [data-aos].aos-animate {
     transition: none;
   }
 
-  .services-home [data-aos],
-  .services-home [data-aos] * {
+  .services-home [data-aos] {
     opacity: 1 !important;
     visibility: visible !important;
-    transform: none !important;
-    transition: none !important;
-    animation: none !important;
   }
 }

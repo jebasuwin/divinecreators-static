@@ -3,11 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://jebasuwin.github.io/divinecreators-static",
   "scripts": {
     "dev": "npx serve . -l 5173",
     "build": "echo Static site ready",
     "lint": "eslint src",
-    "preview": "npx serve . -l 4173"
+    "preview": "npx serve . -l 4173",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d ."
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
@@ -25,6 +28,7 @@
     "eslint": "^10.3.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
+    "gh-pages": "^6.3.0",
     "globals": "^17.6.0",
     "vite": "^8.0.12"
   }

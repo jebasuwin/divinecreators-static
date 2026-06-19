@@ -454,20 +454,3 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .about-growth-viz__badge,
-  .service-motion-card__ring,
-  .service-motion-card__energy,
-  .solutions-pipeline__flow,
-  .project-thumb-motion::after,
-  .timeline--motion .timeline__step.is-active .timeline__num,
-  .testimonial-quote-particle,
-  .testimonial-card--motion::before,
-  .footer-pipe::after {
-    animation: none !important;
-  }
-
-  .project-card--motion:hover .project-thumb-motion {
-    transform: none;
-  }
-}

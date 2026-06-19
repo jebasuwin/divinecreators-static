@@ -14,7 +14,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet" />
   <link href="/css/motion-graphics.css" rel="stylesheet" />
   <link href="/css/about-section.css" rel="stylesheet" />
@@ -22,8 +21,6 @@
   <link href="/css/contact-section.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js" defer></script>
 </head>
 <body>
   <a href="#main" class="visually-hidden-focusable position-absolute top-0 start-0 m-2 btn btn-sm btn-glow">Skip to content</a>
@@ -182,52 +179,55 @@
               <p class="contact-form-card__desc">Share your requirements and our team will contact you.</p>
             </header>
 
-            <form id="contactForm" class="contact-form" novalidate>
+            <form id="contactForm" class="contact-form" novalidate autocomplete="off">
               <div class="contact-form-grid">
                 <div class="contact-form__field">
-                  <label for="fullName">Full Name *</label>
-                  <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+                  <label for="dc-enquiry-a">Full Name *</label>
+                  <input type="text" id="dc-enquiry-a" name="dc_enquiry_a" data-field="fullName" placeholder="Enter your full name" autocomplete="new-password" aria-autocomplete="none" data-no-autofill readonly required />
                   <div class="invalid-feedback d-block contact-form__error" data-error="fullName"></div>
                 </div>
                 <div class="contact-form__field">
-                  <label for="email">Email Address *</label>
-                  <input type="email" id="email" name="email" placeholder="Enter your email address" required />
-                  <div class="invalid-feedback d-block contact-form__error" data-error="email"></div>
+                  <label for="dc-enquiry-b">Email Address *</label>
+                  <input type="text" id="dc-enquiry-b" name="dc_enquiry_b" data-field="email" inputmode="email" placeholder="Enter your email address" autocomplete="new-password" aria-autocomplete="none" aria-describedby="emailError" autocapitalize="none" spellcheck="false" maxlength="254" data-no-autofill readonly required />
+                  <div id="emailError" class="invalid-feedback d-block contact-form__error" data-error="email"></div>
                 </div>
                 <div class="contact-form__field">
-                  <label for="phone">Phone Number *</label>
-                  <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required />
-                  <div class="invalid-feedback d-block contact-form__error" data-error="phone"></div>
+                  <label for="dc-enquiry-c">Phone Number *</label>
+                  <input type="text" id="dc-enquiry-c" name="dc_enquiry_c" data-field="phone" inputmode="tel" placeholder="Enter your phone number" autocomplete="new-password" aria-autocomplete="none" aria-describedby="phoneError" maxlength="20" data-no-autofill readonly required />
+                  <div id="phoneError" class="invalid-feedback d-block contact-form__error" data-error="phone"></div>
                 </div>
                 <div class="contact-form__field">
-                  <label for="company">Company Name</label>
-                  <input type="text" id="company" name="company" placeholder="Enter your company name" />
+                  <label for="dc-enquiry-d">Company Name</label>
+                  <input type="text" id="dc-enquiry-d" name="dc_enquiry_d" data-field="company" placeholder="Enter your company name" autocomplete="new-password" aria-autocomplete="none" data-no-autofill readonly />
+                  <div class="invalid-feedback d-block contact-form__error" data-error="company"></div>
                 </div>
-                <div class="contact-form__field form-field--full">
-                  <label for="service">Service Required *</label>
-                  <select id="service" name="service" required>
-                    <option value="">Select a service</option>
-                    <option>Search Engine Optimization (SEO) - NEED TEAM</option>
-                    <option>Social Media Marketing (SMM) - SHIVA</option>
-                    <option>Paid Advertising (Performance Marketing) - ANJALI</option>
-                    <option>Content Marketing - SHIVA</option>
-                    <option>Website Design &amp; Development - JEBA</option>
-                    <option>Email Marketing - NEED PERSON &amp; IP</option>
-                    <option>Lead Generation - SHIVA - 40% &amp; DATA ANALYTICS - NEED PERSON</option>
-                    <option>Marketing Analytics &amp; Reporting - DATA ANALYTICS - NEED PERSON</option>
-                    <option>Local Business Marketing - NEED PERSON</option>
-                    <option>E-commerce Marketing - SAMYA</option>
-                    <option>Personal Branding - SHIVA</option>
-                    <option>Video Marketing - CHARAN</option>
-                    <option>YouTube Growth Management</option>
-                    <option>Other</option>
-                  </select>
+                <fieldset class="contact-form__field form-field--full contact-service-field">
+                  <legend id="serviceLabel">Service Required *</legend>
+                  <div class="service-checkbox-grid" role="group" aria-labelledby="serviceLabel">
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Search Engine Optimization (SEO)" /><span>Search Engine Optimization (SEO)</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Social Media Marketing (SMM)" /><span>Social Media Marketing (SMM)</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Paid Advertising (Performance Marketing)" /><span>Paid Advertising (Performance Marketing)</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Content Marketing" /><span>Content Marketing</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Website Design &amp; Development" /><span>Website Design &amp; Development</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Email Marketing" /><span>Email Marketing</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Lead Generation" /><span>Lead Generation</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Marketing Analytics &amp; Reporting" /><span>Marketing Analytics &amp; Reporting</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Local Business Marketing" /><span>Local Business Marketing</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="E-commerce Marketing" /><span>E-commerce Marketing</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Personal Branding" /><span>Personal Branding</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Video Marketing" /><span>Video Marketing</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="YouTube Growth Management" /><span>YouTube Growth Management</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Other" /><span>Other</span></label>
+                  </div>
                   <div class="invalid-feedback d-block contact-form__error" data-error="service"></div>
-                </div>
+                </fieldset>
                 <div class="contact-form__field form-field--full">
-                  <label for="message">Message *</label>
-                  <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                  <label for="dc-enquiry-e">Message *</label>
+                  <textarea id="dc-enquiry-e" name="dc_enquiry_e" data-field="message" placeholder="Tell us about your project..." autocomplete="new-password" aria-autocomplete="none" data-no-autofill readonly required></textarea>
                   <div class="invalid-feedback d-block contact-form__error" data-error="message"></div>
+                </div>
+                <div id="formError" class="contact-form__alert form-field--full d-none" role="alert">
+                  Unable to submit your enquiry right now. Please try again in a moment.
                 </div>
                 <div class="form-field--full contact-form-actions">
                   <button type="submit" class="contact-submit-button btn-submit">Submit Enquiry <span class="spinner-border spinner-border-sm d-none ms-2" role="status"></span></button>
@@ -238,7 +238,7 @@
             <div id="formSuccess" class="contact-form-success d-none" role="status">
               <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
               <h3>Thank you</h3>
-              <p>Your enquiry has been recorded in this preview.</p>
+              <p>Your enquiry has been submitted. Our team will contact you soon.</p>
             </div>
           </div>
         </div>
@@ -281,25 +281,31 @@
             </nav>
           </div>
         </div>
-        <div class="col-12 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-12 col-lg-4 site-footer__services-col" data-aos="fade-up" data-aos-delay="200">
           <h6 class="site-footer__heading footer-heading">Services<span class="footer-heading-line" aria-hidden="true"></span></h6>
-          <ul class="site-footer__links site-footer__services-list list-unstyled mb-0">
-            <li><a href="/#seo">SEO</a></li>
-            <li><a href="/#social-media-marketing">Social Media</a></li>
-            <li><a href="/#paid-advertising">Paid Advertising</a></li>
-            <li><a href="/#content-marketing">Content Marketing</a></li>
-            <li><a href="/#website-development">Web Design</a></li>
-            <li><a href="/#email-marketing">Email Marketing</a></li>
-            <li><a href="/#lead-generation">Lead Generation</a></li>
-            <li><a href="/#marketing-analytics">Analytics</a></li>
-            <li><a href="/#local-business-marketing">Local Marketing</a></li>
-            <li><a href="/#ecommerce-marketing">E-commerce</a></li>
-            <li><a href="/#personal-branding">Personal Branding</a></li>
-            <li><a href="/#video-marketing">Video Marketing</a></li>
-            <li><a href="/#youtube-growth-management">YouTube Growth</a></li>
-          </ul>
+          <div class="site-footer__services-list">
+            <ul class="site-footer__links list-unstyled mb-0">
+              <li><a href="/#seo">SEO</a></li>
+              <li><a href="/#social-media-marketing">Social Media</a></li>
+              <li><a href="/#paid-advertising">Paid Advertising</a></li>
+              <li><a href="/#content-marketing">Content Marketing</a></li>
+              <li><a href="/#website-development">Web Design</a></li>
+            </ul>
+            <ul class="site-footer__links list-unstyled mb-0">
+              <li><a href="/#email-marketing">Email Marketing</a></li>
+              <li><a href="/#lead-generation">Lead Generation</a></li>
+              <li><a href="/#marketing-analytics">Analytics</a></li>
+              <li><a href="/#local-business-marketing">Local Marketing</a></li>
+            </ul>
+            <ul class="site-footer__links list-unstyled mb-0">
+              <li><a href="/#ecommerce-marketing">E-commerce</a></li>
+              <li><a href="/#personal-branding">Personal Branding</a></li>
+              <li><a href="/#video-marketing">Video Marketing</a></li>
+              <li><a href="/#youtube-growth-management">YouTube Growth</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="col-12 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="col-12 col-lg-3 site-footer__contact-col" data-aos="fade-up" data-aos-delay="300">
           <h6 class="site-footer__heading footer-heading">Contact<span class="footer-heading-line" aria-hidden="true"></span></h6>
           <ul class="site-footer__contact list-unstyled mb-0">
             <li><i class="bi bi-telephone" aria-hidden="true"></i><a href="tel:+916302142813">+91 63021 42813</a></li>
@@ -320,7 +326,6 @@
   <a href="https://wa.me/916302142813?text=Hello%20DIVINECREATORS%2C%20I%20would%20like%20to%20discuss%20digital%20marketing%20services%20for%20my%20business." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
   <script src="/js/motion-graphics.js" defer></script>
   <script src="/js/home-services.js" defer></script>
   <script src="/js/section-motion.js" defer></script>

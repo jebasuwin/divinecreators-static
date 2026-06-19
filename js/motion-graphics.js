@@ -4,8 +4,9 @@
 (function () {
   "use strict";
 
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const mobile = window.matchMedia("(max-width: 768px)").matches;
+  const motionLite = window.matchMedia("(prefers-reduced-motion: reduce)").matches || mobile;
+  const reduced = false;
   const circuitLoops = new Map();
 
   const BLOB_PATHS = [
@@ -102,7 +103,9 @@
     let dpr = 1;
     let raf = 0;
     let running = true;
-    const count = reduced ? 0 : mobile ? 22 : 40;
+    let active = true;
+    let visible = true;
+    const count = motionLite ? 14 : 36;
     const nodes = [];
 
     const resize = () => {
@@ -119,16 +122,22 @@
           nodes.push({
             x: Math.random() * w,
             y: Math.random() * h,
-            vx: (Math.random() - 0.5) * 0.3,
-            vy: (Math.random() - 0.5) * 0.3,
+            vx: (Math.random() - 0.5) * (motionLite ? 0.18 : 0.3),
+            vy: (Math.random() - 0.5) * (motionLite ? 0.18 : 0.3),
             r: 1 + Math.random() * 2,
           });
         }
       }
     };
 
+    const schedule = () => {
+      if (!running || !active || raf) return;
+      raf = requestAnimationFrame(draw);
+    };
+
     const draw = (t) => {
-      if (!running) return;
+      raf = 0;
+      if (!running || !active) return;
       ctx.clearRect(0, 0, w, h);
       const cx = w / 2;
       const cy = h / 2;
@@ -174,17 +183,37 @@
       ctx.arc(cx, cy, Math.min(w, h) * 0.35, 0, Math.PI * 2);
       ctx.fill();
 
-      raf = requestAnimationFrame(draw);
+      schedule();
+    };
+
+    const updateActive = () => {
+      active = visible && !document.hidden;
+      if (active) {
+        schedule();
+      } else if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
     };
 
     resize();
     window.addEventListener("resize", resize, { passive: true });
-    raf = requestAnimationFrame(draw);
+    document.addEventListener("visibilitychange", updateActive);
+    const visibilityObserver = typeof IntersectionObserver !== "undefined"
+      ? new IntersectionObserver((entries) => {
+          visible = entries.some((entry) => entry.isIntersecting);
+          updateActive();
+        }, { rootMargin: "20% 0px 20% 0px", threshold: 0 })
+      : null;
+    visibilityObserver?.observe(parent || canvas);
+    schedule();
 
     return () => {
       running = false;
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", updateActive);
+      visibilityObserver?.disconnect();
     };
   }
 
@@ -192,7 +221,7 @@
     if (!container || reduced) return;
     const field = container.querySelector(".particle-field");
     if (!field) return;
-    const total = mobile ? 14 : 25;
+    const total = motionLite ? 8 : 22;
     for (let i = 0; i < total; i += 1) {
       const dot = document.createElement("div");
       dot.className = "floating-dot";
@@ -301,6 +330,9 @@
     const ctx = canvas.getContext("2d");
     const layout = CIRCUIT_LAYOUTS[layoutIndex % CIRCUIT_LAYOUTS.length];
     let running = true;
+    let active = true;
+    let visible = true;
+    let raf = 0;
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -310,11 +342,14 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
+    const schedule = () => {
+      if (!running || !active || raf) return;
+      raf = requestAnimationFrame(draw);
+    };
+
     const draw = () => {
-      if (!running || document.hidden) {
-        if (running) requestAnimationFrame(draw);
-        return;
-      }
+      raf = 0;
+      if (!running || !active) return;
       const w = canvas.clientWidth;
       const h = canvas.clientHeight;
       ctx.clearRect(0, 0, w, h);
@@ -363,7 +398,17 @@
         }
       }
 
-      requestAnimationFrame(draw);
+      schedule();
+    };
+
+    const updateActive = () => {
+      active = visible && !document.hidden;
+      if (active) {
+        schedule();
+      } else if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
     };
 
     resize();
@@ -372,12 +417,23 @@
       : null;
     ro?.observe(canvas);
     window.addEventListener("resize", resize, { passive: true });
-    draw();
+    document.addEventListener("visibilitychange", updateActive);
+    const visibilityObserver = typeof IntersectionObserver !== "undefined"
+      ? new IntersectionObserver((entries) => {
+          visible = entries.some((entry) => entry.isIntersecting);
+          updateActive();
+        }, { rootMargin: "20% 0px 20% 0px", threshold: 0 })
+      : null;
+    visibilityObserver?.observe(canvas);
+    schedule();
 
     circuitLoops.set(key, () => {
       running = false;
+      cancelAnimationFrame(raf);
       ro?.disconnect();
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", updateActive);
+      visibilityObserver?.disconnect();
     });
   }
 

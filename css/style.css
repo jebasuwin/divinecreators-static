@@ -30,15 +30,6 @@ html {
   scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -58,6 +49,92 @@ h1, h2, h3, h4, h5, h6 {
 
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; height: auto; display: block; }
+
+[data-aos] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+.scroll-soft {
+  opacity: 0.92;
+  transform: translate3d(0, 12px, 0);
+  transition:
+    opacity 0.42s ease,
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  transition-delay: var(--scroll-soft-delay, 0ms);
+}
+
+.scroll-soft.is-inview {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.scroll-text {
+  opacity: 0.7;
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity 0.44s ease,
+    transform 0.44s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--scroll-text-delay, 0ms);
+}
+
+.scroll-text.is-inview {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.scroll-text--heading {
+  opacity: 0.58;
+  transform: translate3d(0, 18px, 0);
+  transition-duration: 0.5s;
+}
+
+.scroll-text--body {
+  opacity: 0.68;
+  transform: translate3d(0, 12px, 0);
+}
+
+.scroll-text--item {
+  opacity: 0.62;
+  transform: translate3d(-12px, 0, 0);
+}
+
+.scroll-text--action {
+  opacity: 0.76;
+  transform: translate3d(0, 12px, 0) scale(0.97);
+}
+
+.scroll-text--service {
+  transition-duration: 0.56s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-text--service-heading {
+  opacity: 0.42;
+  transform: translate3d(-28px, 0, 0);
+}
+
+.scroll-text--service-body {
+  opacity: 0.56;
+  transform: translate3d(22px, 0, 0);
+}
+
+.scroll-text--service-item {
+  opacity: 0.5;
+  transform: translate3d(-18px, 0, 0);
+}
+
+.scroll-text--service-action {
+  opacity: 0.72;
+  transform: translate3d(0, 16px, 0) scale(0.96);
+}
+
+.scroll-text--service-heading.is-inview {
+  text-shadow: 0 0 22px rgba(255, 255, 255, 0.14);
+}
 
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
@@ -600,17 +677,6 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero__sweep,
-  .hero__glow,
-  .hero__chip,
-  .hero__hex,
-  .hero__cyber-ring,
-  .hero__core-orb {
-    animation: none;
-  }
-}
-
 /* ─── Glass cards ─── */
 .glass-card {
   height: 100%;
@@ -949,8 +1015,17 @@ img { max-width: 100%; height: auto; display: block; }
 
 .site-footer__services-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 20px;
+  grid-template-columns: repeat(3, max-content);
+  gap: 0 clamp(0.85rem, 1.5vw, 1.75rem);
+  align-items: start;
+}
+
+.site-footer__services-list .site-footer__links {
+  margin: 0;
+}
+
+.site-footer__services-list .site-footer__links a {
+  white-space: nowrap;
 }
 
 .site-footer__social {
@@ -1244,6 +1319,10 @@ img { max-width: 100%; height: auto; display: block; }
     justify-content: flex-start;
   }
 
+  .site-footer__contact-col {
+    padding-left: clamp(1.25rem, 2.4vw, 3rem);
+  }
+
   .site-footer .collapse.d-lg-block {
     display: block !important;
     height: auto !important;
@@ -1258,6 +1337,11 @@ img { max-width: 100%; height: auto; display: block; }
 
   .site-footer__services-list {
     grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .site-footer__services-list .site-footer__links a {
+    white-space: normal;
   }
 }
 

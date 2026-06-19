@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduced = false;
   const mobile = window.matchMedia("(max-width: 768px)").matches;
   const hasGsap = typeof gsap !== "undefined";
   const hasST = typeof ScrollTrigger !== "undefined";

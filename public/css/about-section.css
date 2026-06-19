@@ -248,14 +248,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-dashboard-viz,
-  .about-dashboard-viz *,
-  .about-dashboard-viz *::before,
-  .about-dashboard-viz *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-
   .about-section__content,
   .about-section__visual {
     opacity: 1;

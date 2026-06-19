@@ -5,7 +5,7 @@ function initHeroMotion(canvas, container) {
   if (!canvas || !container) return () => {};
 
   const ctx = canvas.getContext("2d", { alpha: true });
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduced = false;
   const mobile = window.matchMedia("(max-width: 768px)").matches;
   const lite = mobile || window.matchMedia("(max-width: 1024px)").matches;
 

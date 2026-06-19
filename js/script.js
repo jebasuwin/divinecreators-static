@@ -3,6 +3,164 @@
   "use strict";
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealAosElements = (scope = document) => {
+    scope.querySelectorAll("[data-aos]").forEach((el) => {
+      el.classList.add("aos-init", "aos-animate");
+      el.style.opacity = "1";
+      el.style.transform = "none";
+      el.style.visibility = "visible";
+    });
+  };
+  const aosCanAnimate = () => false;
+  const syncAosElements = (scope = document) => {
+    if (aosCanAnimate()) {
+      if (typeof AOS.refreshHard === "function") AOS.refreshHard();
+      else AOS.refresh();
+      return;
+    }
+    revealAosElements(scope);
+  };
+  const smoothBehavior = "smooth";
+
+  const setupScrollEffects = () => {
+    const revealNodes = Array.from(document.querySelectorAll([
+      ".hero__copy",
+      ".hero__visual-col",
+      ".stat-box",
+      ".about-section__content",
+      ".about-section__visual",
+      ".services-home__group-heading",
+      ".service-block .row",
+      ".contact-section__intro",
+      ".contact-info-card",
+      ".contact-form-card",
+      ".site-footer__grid > *",
+    ].join(",")));
+    const textSelector = [
+      "main h1",
+      "main h2",
+      "main h3",
+      "main h4",
+      "main h5",
+      "main h6",
+      "main p",
+      "main li",
+      "main label",
+      "main button",
+      "main .eyebrow",
+      "main .btn-glow",
+      "main .btn-outline-glow",
+      "main .stat-box__value",
+      "main .stat-box__label",
+      "main .contact-info-card__label",
+      "main .contact-detail-label",
+      "main .contact-detail-value",
+      "main .contact-form-card__label",
+      "footer h6",
+      "footer p",
+      "footer li",
+      "footer .brand-logo span",
+      "footer .site-footer__copy",
+    ].join(",");
+    const ignoredTextContainers = [
+      ".hero-motion-graphic",
+      ".about-dashboard-viz",
+      ".service-block__visual",
+      ".service-visual",
+      ".service-scene",
+      ".motion-graphic",
+      ".circuit-motion-graphic",
+      ".blob-motion-graphic",
+      ".aurora-motion-graphic",
+      "canvas",
+      "svg",
+      "picture",
+      "video",
+    ].join(",");
+    const textNodes = Array.from(document.querySelectorAll(textSelector))
+      .filter((el) => el.textContent.trim().length > 0)
+      .filter((el) => !el.closest(ignoredTextContainers));
+
+    if (!revealNodes.length && !textNodes.length) return;
+
+    revealNodes.forEach((el, index) => {
+      el.classList.add("scroll-soft");
+      el.style.setProperty("--scroll-soft-delay", `${Math.min((index % 4) * 28, 84)}ms`);
+    });
+
+    const classifyTextNode = (el) => {
+      const isServiceText = Boolean(el.closest(".service-block, .services-home__group-heading"));
+      const isHeading = el.matches("h1, h2, h3, h4, h5, h6, .eyebrow, .section-label");
+      const isItem = el.matches("li");
+      const isAction = el.matches("a, button, .btn-glow, .btn-outline-glow");
+
+      el.classList.add("scroll-text");
+      if (isHeading) el.classList.add("scroll-text--heading");
+      else if (isItem) el.classList.add("scroll-text--item");
+      else if (isAction) el.classList.add("scroll-text--action");
+      else el.classList.add("scroll-text--body");
+
+      if (!isServiceText) return;
+
+      el.classList.add("scroll-text--service");
+      if (isHeading) el.classList.add("scroll-text--service-heading");
+      else if (isItem) el.classList.add("scroll-text--service-item");
+      else if (isAction) el.classList.add("scroll-text--service-action");
+      else el.classList.add("scroll-text--service-body");
+    };
+
+    textNodes.forEach((el, index) => {
+      classifyTextNode(el);
+      const isServiceText = Boolean(el.closest(".service-block, .services-home__group-heading"));
+      const delayStep = isServiceText ? 36 : 24;
+      const maxDelay = isServiceText ? 180 : 120;
+      el.style.setProperty("--scroll-text-delay", `${Math.min((index % 6) * delayStep, maxDelay)}ms`);
+    });
+
+    const isVisible = (el, before = 0.98, after = -0.08) => {
+      const rect = el.getBoundingClientRect();
+      return rect.top < window.innerHeight * before && rect.bottom > window.innerHeight * after;
+    };
+
+    const activateVisible = () => {
+      revealNodes.forEach((el) => {
+        el.classList.toggle("is-inview", isVisible(el, 1.12, -0.14));
+      });
+      textNodes.forEach((el) => {
+        el.classList.toggle("is-inview", isVisible(el));
+      });
+    };
+
+    activateVisible();
+
+    if (!("IntersectionObserver" in window)) {
+      window.addEventListener("scroll", activateVisible, { passive: true });
+      window.addEventListener("resize", activateVisible);
+      return;
+    }
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-inview", entry.isIntersecting);
+        });
+      },
+      { rootMargin: "18% 0px 18% 0px", threshold: 0.01 }
+    );
+
+    const textObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-inview", entry.isIntersecting);
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
+    );
+
+    revealNodes.forEach((el) => revealObserver.observe(el));
+    textNodes.forEach((el) => textObserver.observe(el));
+    requestAnimationFrame(activateVisible);
+  };
 
   /* ─── Navbar scroll ─── */
   const nav = document.querySelector(".site-nav");
@@ -37,7 +195,7 @@
   const isHomePage = path === "/" || path === "/index";
 
   /* ─── Hash navigation ─── */
-  const scrollToHash = (hash, behavior = reducedMotion ? "auto" : "smooth") => {
+  const scrollToHash = (hash, behavior = smoothBehavior) => {
     const id = (hash || "").replace(/^#/, "");
     if (!id) return;
     const el = document.getElementById(id);
@@ -105,7 +263,7 @@
   document.querySelectorAll("[data-about-reveal]").forEach((el) => aboutRevealObserver.observe(el));
 
   /* ─── AOS ─── */
-  if (typeof AOS !== "undefined" && !reducedMotion) {
+  if (aosCanAnimate()) {
     AOS.init({
       duration: 700,
       easing: "ease-out-cubic",
@@ -113,12 +271,15 @@
       offset: 60,
       disable: reducedMotion,
     });
+  } else {
+    revealAosElements();
   }
 
   /* ─── Render homepage services ─── */
   if (typeof HomeServices !== "undefined") {
     HomeServices.renderHomeServices();
-    if (typeof AOS !== "undefined" && !reducedMotion) {
+    HomeServices.preloadServiceImages?.();
+    if (aosCanAnimate()) {
       AOS.refresh();
       window.setTimeout(() => {
         document.querySelectorAll(".services-home [data-aos]:not(.aos-animate)").forEach((el) => {
@@ -128,11 +289,7 @@
         });
       }, 2500);
     } else {
-      document.querySelectorAll(".services-home [data-aos]").forEach((el) => {
-        el.classList.add("aos-animate");
-        el.style.opacity = "1";
-        el.style.transform = "none";
-      });
+      revealAosElements(document.querySelector(".services-home") || document);
     }
   }
 
@@ -271,6 +428,8 @@
   };
 
   renderHomeStats();
+  syncAosElements(document.querySelector(".section-stats") || document);
+  setupScrollEffects();
 
   const animatedStatElements = new WeakSet();
 
@@ -327,6 +486,9 @@
       { threshold: 0.35 }
     );
     statsObserver.observe(statsSection);
+    if (reducedMotion) {
+      statsSection.querySelectorAll("[data-stat-target]").forEach(animateStatValue);
+    }
   }
 
   /* ─── Progress bars ─── */
@@ -381,45 +543,253 @@
   /* ─── Contact form ─── */
   const form = document.getElementById("contactForm");
   if (form) {
+    const GOOGLE_FORM_ENDPOINT = "https://docs.google.com/forms/d/e/1FAIpQLSchFLajMTTEJIQOqaLkks-qoedDEYR1RMZsCumzN9jcIlvl2g/formResponse";
+    const GOOGLE_FORM_FBZ = "-1814369755346911261";
+    const GOOGLE_FORM_FIELDS = {
+      email: "entry.1523820956",
+      fullName: "entry.1846889827",
+      phone: "entry.1055864657",
+      company: "entry.164857000",
+      service: "entry.1458681657",
+      serviceOther: "entry.1458681657.other_option_response",
+      serviceSentinel: "entry.1458681657_sentinel",
+      message: "entry.1221370137",
+    };
+    const GOOGLE_SERVICE_VALUES = new Set([
+      "Search Engine Optimization (SEO)",
+      "Social Media Marketing (SMM)",
+      "Paid Advertising (Performance Marketing)",
+      "Content Marketing",
+      "Website Design & Development",
+      "Email Marketing",
+      "Lead Generation",
+      "Marketing Analytics & Reporting",
+      "Local Business Marketing",
+      "E-commerce Marketing",
+      "Personal Branding",
+      "Video Marketing",
+    ]);
+    const SERVICE_VALUE_MAP = new Map([
+      ["Search Engine Optimization (SEO) - NEED TEAM", "Search Engine Optimization (SEO)"],
+      ["Social Media Marketing (SMM) - SHIVA", "Social Media Marketing (SMM)"],
+      ["Paid Advertising (Performance Marketing) - ANJALI", "Paid Advertising (Performance Marketing)"],
+      ["Content Marketing - SHIVA", "Content Marketing"],
+      ["Website Design & Development - JEBA", "Website Design & Development"],
+      ["Email Marketing - NEED PERSON & IP", "Email Marketing"],
+      ["Lead Generation - SHIVA - 40% & DATA ANALYTICS - NEED PERSON", "Lead Generation"],
+      ["Marketing Analytics & Reporting - DATA ANALYTICS - NEED PERSON", "Marketing Analytics & Reporting"],
+      ["Local Business Marketing - NEED PERSON", "Local Business Marketing"],
+      ["E-commerce Marketing - SAMYA", "E-commerce Marketing"],
+      ["Personal Branding - SHIVA", "Personal Branding"],
+      ["Video Marketing - CHARAN", "Video Marketing"],
+    ]);
     const validateEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-    const validatePhone = (v) => /^[\d\s+\-()]{7,20}$/.test(v);
+    const getPhoneDigits = (v) => v.replace(/\D/g, "");
+    const validatePhone = (v) => {
+      const value = v.trim();
+      const digits = getPhoneDigits(value);
+      return /^\+?[\d\s\-()]+$/.test(value) && digits.length >= 10 && digits.length <= 15;
+    };
+    const sanitizePhone = (v) => v.replace(/[^\d+\-()\s]/g, "").replace(/(?!^)\+/g, "");
+    const getFieldInput = (name) => form.querySelector(`[data-field="${name}"]`);
+    const getFieldValue = (name) => getFieldInput(name)?.value.trim() || "";
+    const getServiceValues = () => Array.from(form.querySelectorAll('input[name="service"]:checked'))
+      .map((input) => input.value.trim())
+      .filter(Boolean);
+    const VALIDATION_RULES = {
+      fullName: { required: true },
+      email: { required: true, test: validateEmail },
+      phone: { required: true, test: validatePhone },
+      service: { required: true },
+      message: { required: true, min: 10 },
+    };
+
+    form.querySelectorAll("[data-no-autofill]").forEach((input) => {
+      const unlock = () => input.removeAttribute("readonly");
+      input.addEventListener("focus", unlock, { once: true });
+      input.addEventListener("pointerdown", unlock, { once: true });
+      input.addEventListener("keydown", unlock, { once: true });
+    });
+
+    const getValidationMessage = (name, rules = VALIDATION_RULES[name]) => {
+      if (!rules) return "";
+      const val = name === "service" ? getServiceValues() : getFieldValue(name);
+
+      if (name === "service" && rules.required && !val.length) {
+        return "Select at least one service.";
+      }
+      if (rules.required && !val) {
+        return "This field is required.";
+      }
+      if (name === "email" && val && !validateEmail(val)) {
+        return "Enter a valid email address.";
+      }
+      if (name === "phone" && val && !validatePhone(val)) {
+        return "Enter a valid phone number with 10 to 15 digits.";
+      }
+      if (rules.min && val.length < rules.min) {
+        return `At least ${rules.min} characters.`;
+      }
+
+      return "";
+    };
+
+    const applyFieldValidation = (name, showError = true) => {
+      const input = name === "service" ? form.querySelector('input[name="service"]') : getFieldInput(name);
+      const err = form.querySelector(`[data-error="${name}"]`);
+      if (!input) return true;
+
+      const msg = getValidationMessage(name);
+      const shouldShow = showError && Boolean(msg);
+      const validationTarget = name === "service" ? form.querySelector(".contact-service-field") : input;
+
+      validationTarget?.classList.toggle("is-invalid", shouldShow);
+      input.setAttribute("aria-invalid", shouldShow ? "true" : "false");
+      if (err) err.textContent = showError ? msg : "";
+
+      return !msg;
+    };
+
+    ["email", "phone"].forEach((name) => {
+      const input = getFieldInput(name);
+      if (!input) return;
+
+      input.addEventListener("input", () => {
+        if (name === "phone") {
+          const nextValue = sanitizePhone(input.value);
+          if (input.value !== nextValue) input.value = nextValue;
+        }
+        if (input.dataset.touched === "true" || input.classList.contains("is-invalid")) {
+          applyFieldValidation(name);
+        }
+      });
+
+      input.addEventListener("blur", () => {
+        input.dataset.touched = "true";
+        applyFieldValidation(name);
+      });
+    });
+
+    const appendValue = (payload, key, value) => {
+      if (value) payload.append(key, value);
+    };
+
+    const normalizeServiceForGoogle = (service) => {
+      const normalized = SERVICE_VALUE_MAP.get(service) || service;
+      if (GOOGLE_SERVICE_VALUES.has(normalized)) {
+        return { value: normalized, other: "" };
+      }
+
+      return {
+        value: "__other_option__",
+        other: normalized === "Other" ? "Other" : normalized,
+      };
+    };
+
+    const buildGoogleFormPayload = () => {
+      const payload = new URLSearchParams();
+      const services = getServiceValues().map(normalizeServiceForGoogle);
+
+      appendValue(payload, GOOGLE_FORM_FIELDS.email, getFieldValue("email"));
+      appendValue(payload, GOOGLE_FORM_FIELDS.fullName, getFieldValue("fullName"));
+      appendValue(payload, GOOGLE_FORM_FIELDS.phone, getFieldValue("phone"));
+      appendValue(payload, GOOGLE_FORM_FIELDS.company, getFieldValue("company"));
+      appendValue(payload, GOOGLE_FORM_FIELDS.message, getFieldValue("message"));
+      services.forEach((service) => {
+        payload.append(GOOGLE_FORM_FIELDS.service, service.value);
+        if (service.other) payload.append(GOOGLE_FORM_FIELDS.serviceOther, service.other);
+      });
+      payload.append(GOOGLE_FORM_FIELDS.serviceSentinel, "");
+      payload.append("fvv", "1");
+      payload.append("partialResponse", `[null,null,"${GOOGLE_FORM_FBZ}"]`);
+      payload.append("pageHistory", "0");
+      payload.append("fbzx", GOOGLE_FORM_FBZ);
+      payload.append("submissionTimestamp", "-1");
+
+      return payload;
+    };
+
+    const submitGoogleForm = (payload) => new Promise((resolve, reject) => {
+      if (!document.body) {
+        reject(new Error("Document is not ready"));
+        return;
+      }
+
+      const targetName = `google-form-target-${Date.now()}`;
+      const iframe = document.createElement("iframe");
+      const hiddenForm = document.createElement("form");
+      let submitted = false;
+      let settled = false;
+      let timerId = null;
+
+      const cleanup = () => {
+        if (timerId) window.clearTimeout(timerId);
+        window.setTimeout(() => {
+          hiddenForm.remove();
+          iframe.remove();
+        }, 250);
+      };
+
+      const settle = () => {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        resolve();
+      };
+
+      const fail = (error) => {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        reject(error);
+      };
+
+      iframe.name = targetName;
+      iframe.title = "Enquiry submission";
+      iframe.tabIndex = -1;
+      iframe.setAttribute("aria-hidden", "true");
+      iframe.style.display = "none";
+      iframe.addEventListener("load", () => {
+        if (submitted) settle();
+      });
+
+      hiddenForm.method = "POST";
+      hiddenForm.action = GOOGLE_FORM_ENDPOINT;
+      hiddenForm.target = targetName;
+      hiddenForm.style.display = "none";
+
+      payload.forEach((value, name) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        hiddenForm.appendChild(input);
+      });
+
+      timerId = window.setTimeout(settle, 6000);
+      document.body.append(iframe, hiddenForm);
+      window.requestAnimationFrame(() => {
+        try {
+          submitted = true;
+          hiddenForm.submit();
+        } catch (error) {
+          fail(error);
+        }
+      });
+    });
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const btn = form.querySelector(".btn-submit");
       const spinner = btn?.querySelector(".spinner-border");
+      const formError = document.getElementById("formError");
       let valid = true;
+      formError?.classList.add("d-none");
 
-      const fields = {
-        fullName: { required: true },
-        email: { required: true, test: validateEmail },
-        phone: { required: true, test: validatePhone },
-        service: { required: true },
-        message: { required: true, min: 10 },
-      };
-
-      Object.entries(fields).forEach(([name, rules]) => {
-        const input = form.elements[name];
-        const err = form.querySelector(`[data-error="${name}"]`);
-        if (!input) return;
-        let msg = "";
-        const val = rules.checkbox ? input.checked : input.value.trim();
-
-        if (rules.checkbox) {
-          if (!input.checked) msg = "Please agree to be contacted about your enquiry.";
-        } else if (rules.required && !val) {
-          msg = "This field is required.";
-        } else if (name === "email" && val && !validateEmail(val)) {
-          msg = "Enter a valid email.";
-        } else if (name === "phone" && val && !validatePhone(val)) {
-          msg = "Enter a valid phone.";
-        } else if (rules.min && val.length < rules.min) {
-          msg = `At least ${rules.min} characters.`;
-        }
-
-        input.classList.toggle("is-invalid", Boolean(msg));
-        if (err) err.textContent = msg;
-        if (msg) valid = false;
+      Object.keys(VALIDATION_RULES).forEach((name) => {
+        const input = name === "service" ? form.querySelector('input[name="service"]') : getFieldInput(name);
+        if (input) input.dataset.touched = "true";
+        if (!applyFieldValidation(name)) valid = false;
       });
 
       if (!valid) return;
@@ -427,12 +797,20 @@
       btn.disabled = true;
       spinner?.classList.remove("d-none");
 
-      await new Promise((r) => setTimeout(r, 800));
-
-      spinner?.classList.add("d-none");
-      btn.disabled = false;
-      form.classList.add("d-none");
-      document.getElementById("formSuccess")?.classList.remove("d-none");
+      try {
+        await submitGoogleForm(buildGoogleFormPayload());
+        form.reset();
+        form.classList.add("d-none");
+        document.getElementById("formSuccess")?.classList.remove("d-none");
+      } catch (error) {
+        if (formError) {
+          formError.textContent = "Unable to submit your enquiry right now. Please try again in a moment.";
+          formError.classList.remove("d-none");
+        }
+      } finally {
+        spinner?.classList.add("d-none");
+        btn.disabled = false;
+      }
     });
   }
 
@@ -473,7 +851,7 @@
 
     backToTop.addEventListener("click", () => {
       const home = document.getElementById("home");
-      const behavior = reducedMotion ? "auto" : "smooth";
+      const behavior = smoothBehavior;
 
       if (home) {
         home.scrollIntoView({ behavior, block: "start" });

@@ -145,16 +145,42 @@
     `;
   };
 
-  const renderVisual = (service) => {
+  const getServiceImages = () =>
+    SERVICE_GROUPS.flatMap((group) => group.services)
+      .map((service) => service.image)
+      .filter(Boolean);
+
+  const preloadServiceImages = () => {
+    const load = () => {
+      getServiceImages().forEach((src, index) => {
+        window.setTimeout(() => {
+          const img = new Image();
+          img.decoding = "async";
+          img.src = src;
+        }, index * 45);
+      });
+    };
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(load, { timeout: 800 });
+    } else {
+      window.setTimeout(load, 250);
+    }
+  };
+
+  const renderVisual = (service, blockIndex) => {
     if (!service.image) return "";
     const useContain = service.imageFit === "contain";
+    const isPriority = blockIndex < 3;
+    const priority = isPriority ? "high" : "low";
     return `
       <div class="service-visual${useContain ? " service-visual--contain" : ""}">
         <img
           src="${service.image}"
           alt="${service.imageAlt}"
           class="${useContain ? "contain-image" : ""}"
-          loading="lazy"
+          loading="${isPriority ? "eager" : "lazy"}"
+          fetchpriority="${priority}"
           width="1360"
           height="1120"
           decoding="async"
@@ -183,7 +209,7 @@
               <a href="#contact" class="btn-glow mt-3">Contact Us</a>
             </div>
             <div class="col-lg-6 service-block__visual">
-              ${renderVisual(service)}
+              ${renderVisual(service, blockIndex)}
             </div>
           </div>
         </div>
@@ -224,5 +250,5 @@
     }).join("");
   };
 
-  window.HomeServices = { renderHomeServices, SERVICE_GROUPS };
+  window.HomeServices = { renderHomeServices, preloadServiceImages, SERVICE_GROUPS };
 })();

@@ -442,22 +442,6 @@
   z-index: 1;
 }
 
-/* ─── Reduced motion ─── */
-@media (prefers-reduced-motion: reduce) {
-  .hero-motion-graphic .ring,
-  .hero-motion-graphic .orb-pulse,
-  .floating-dot,
-  .hero-glitch,
-  .blob-motion-graphic .morphing-blob,
-  .blob-motion-graphic .geo-shape,
-  .blob-motion-graphic .conn-line,
-  .blob-motion-graphic .conn-dot,
-  .circuit-motion-graphic .data-packet,
-  .aurora-motion-graphic .aurora-wave {
-    animation: none !important;
-  }
-}
-
 @media (max-width: 991px) {
   .hero--galaxy .hero__readability {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.75) 100%);

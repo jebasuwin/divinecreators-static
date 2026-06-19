@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduced = false;
   const mobile = window.matchMedia("(max-width: 768px)").matches;
   const hasGsap = typeof gsap !== "undefined";
   const hasST = typeof ScrollTrigger !== "undefined";
@@ -89,7 +89,7 @@
         ctx.stroke();
       }
 
-      const visible = Math.max(1, Math.floor(progress * points.length));
+      const visible = Math.max(1, Math.ceil(progress * points.length));
       const pts = points.slice(0, visible).map((p) => ({ x: p.x * w, y: p.y * h }));
 
       if (pts.length > 1) {
@@ -141,9 +141,6 @@
 
       if (!reduced && progress < 1) {
         progress = Math.min(1, progress + 0.008);
-        raf = requestAnimationFrame(draw);
-      } else if (!reduced) {
-        raf = requestAnimationFrame(draw);
       }
     };
 

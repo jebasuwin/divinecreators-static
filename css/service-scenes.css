@@ -138,15 +138,3 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .service-scene {
-    transform: none;
-    transition: none;
-  }
-
-  .service-scene__sweep,
-  .service-scene__beam {
-    animation: none !important;
-    opacity: 0.35;
-  }
-}
