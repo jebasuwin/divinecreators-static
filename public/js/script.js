@@ -565,26 +565,18 @@
       "Content Marketing",
       "Website Design & Development",
       "Email Marketing",
-      "Lead Generation",
-      "Marketing Analytics & Reporting",
+      "Lead Generation & DATA ANALYTICS",
+      "Marketing Analytics & Reporting - DATA ANALYTICS",
       "Local Business Marketing",
       "E-commerce Marketing",
       "Personal Branding",
       "Video Marketing",
     ]);
     const SERVICE_VALUE_MAP = new Map([
-      ["Search Engine Optimization (SEO) - NEED TEAM", "Search Engine Optimization (SEO)"],
-      ["Social Media Marketing (SMM) - SHIVA", "Social Media Marketing (SMM)"],
-      ["Paid Advertising (Performance Marketing) - ANJALI", "Paid Advertising (Performance Marketing)"],
-      ["Content Marketing - SHIVA", "Content Marketing"],
-      ["Website Design & Development - JEBA", "Website Design & Development"],
-      ["Email Marketing - NEED PERSON & IP", "Email Marketing"],
-      ["Lead Generation - SHIVA - 40% & DATA ANALYTICS - NEED PERSON", "Lead Generation"],
-      ["Marketing Analytics & Reporting - DATA ANALYTICS - NEED PERSON", "Marketing Analytics & Reporting"],
-      ["Local Business Marketing - NEED PERSON", "Local Business Marketing"],
-      ["E-commerce Marketing - SAMYA", "E-commerce Marketing"],
-      ["Personal Branding - SHIVA", "Personal Branding"],
-      ["Video Marketing - CHARAN", "Video Marketing"],
+      ["Lead Generation", "Lead Generation & DATA ANALYTICS"],
+      ["Marketing Analytics & Reporting", "Marketing Analytics & Reporting - DATA ANALYTICS"],
+      ["Personal Branding", "Personal Branding"],
+      ["Video Marketing", "Video Marketing"],
     ]);
     const validateEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
     const getPhoneDigits = (v) => v.replace(/\D/g, "");

@@ -115,8 +115,8 @@
 .brand-logo span,
 .site-logo span {
   font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   line-height: 1;
 }
@@ -478,17 +478,18 @@
 .site-footer h5 {
   font-family: var(--font-heading);
   font-size: 0.8rem;
+  line-height: 1;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--brand-white);
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
 }
 
 .site-footer--v2 .footer-heading,
 .site-footer .footer-heading {
-  display: inline-flex;
-  flex-direction: column;
+  display: block;
+  line-height: 1;
   align-items: flex-start;
 }
 

@@ -3,7 +3,7 @@ const IMAGE_BASE = `${import.meta.env.BASE_URL}assets/images/services`;
 export const digitalMarketingServices = [
   {
     id: "seo",
-    title: "Search Engine Optimization (SEO) - NEED TEAM",
+    title: "Search Engine Optimization (SEO)",
     intro: "Help businesses rank higher on search engines like Google.",
     servicesLabel: "Services include:",
     services: [
@@ -20,7 +20,7 @@ export const digitalMarketingServices = [
   },
   {
     id: "social-media-marketing",
-    title: "Social Media Marketing (SMM) - SHIVA",
+    title: "Social Media Marketing (SMM)",
     intro: "Manage and grow a company's social media presence.",
     platformsLabel: "Platforms:",
     platforms: ["Instagram", "Facebook", "LinkedIn", "X (Twitter)", "YouTube"],
@@ -37,7 +37,7 @@ export const digitalMarketingServices = [
   },
   {
     id: "paid-advertising",
-    title: "Paid Advertising (Performance Marketing) - ANJALI",
+    title: "Paid Advertising (Performance Marketing)",
     intro: "Run ads that generate leads or sales.",
     platformsLabel: "Platforms:",
     platforms: ["Google Ads", "Meta Ads", "LinkedIn Ads", "YouTube Ads"],
@@ -56,7 +56,7 @@ export const digitalMarketingServices = [
   },
   {
     id: "content-marketing",
-    title: "Content Marketing - SHIVA",
+    title: "Content Marketing",
     intro: "Create content that attracts customers.",
     servicesLabel: "Services:",
     services: [
@@ -72,7 +72,7 @@ export const digitalMarketingServices = [
   },
   {
     id: "website-development",
-    title: "Website Design & Development - JEBA",
+    title: "Website Design & Development",
     intro: "Many clients need a website before marketing.",
     servicesLabel: "Services:",
     services: [
@@ -87,7 +87,7 @@ export const digitalMarketingServices = [
   },
   {
     id: "email-marketing",
-    title: "Email Marketing - NEED PERSON & IP",
+    title: "Email Marketing",
     intro: "Generate repeat business and nurture leads.",
     servicesLabel: "Services:",
     services: [
@@ -102,7 +102,7 @@ export const digitalMarketingServices = [
   },
   {
     id: "lead-generation",
-    title: "Lead Generation - SHIVA - 40% & DATA ANALYTICS - NEED PERSON",
+    title: "Lead Generation & DATA ANALYTICS",
     intro: "Especially popular for B2B agencies.",
     servicesLabel: "Services:",
     services: [
@@ -117,7 +117,7 @@ export const digitalMarketingServices = [
   },
   {
     id: "marketing-analytics",
-    title: "Marketing Analytics & Reporting - DATA ANALYTICS - NEED PERSON",
+    title: "Marketing Analytics & Reporting - DATA ANALYTICS",
     intro: "Show clients the ROI of your work.",
     servicesLabel: "Services:",
     services: [
@@ -134,7 +134,7 @@ export const digitalMarketingServices = [
 export const specializedServices = [
   {
     id: "local-business-marketing",
-    title: "Local Business Marketing - NEED PERSON",
+    title: "Local Business Marketing",
     intro: "For restaurants, clinics, gyms, real estate agents, etc.",
     servicesLabel: "Services:",
     services: [
@@ -148,7 +148,7 @@ export const specializedServices = [
   },
   {
     id: "ecommerce-marketing",
-    title: "E-commerce Marketing - SAMYA",
+    title: "E-commerce Marketing",
     intro: "For online stores.",
     servicesLabel: "Services:",
     services: [
@@ -163,7 +163,7 @@ export const specializedServices = [
   },
   {
     id: "personal-branding",
-    title: "Personal Branding - SHIVA",
+    title: "Personal Branding",
     intro: "For founders, consultants, coaches, and creators.",
     servicesLabel: "Services:",
     services: [
@@ -177,7 +177,7 @@ export const specializedServices = [
   },
   {
     id: "video-marketing",
-    title: "Video Marketing - CHARAN",
+    title: "Video Marketing",
     servicesLabel: "Services:",
     services: [
       "Reels",
@@ -219,18 +219,18 @@ export const footerServices = [
 ];
 
 export const contactServiceOptions = [
-  "Search Engine Optimization (SEO) - NEED TEAM",
-  "Social Media Marketing (SMM) - SHIVA",
-  "Paid Advertising (Performance Marketing) - ANJALI",
-  "Content Marketing - SHIVA",
-  "Website Design & Development - JEBA",
-  "Email Marketing - NEED PERSON & IP",
-  "Lead Generation - SHIVA - 40% & DATA ANALYTICS - NEED PERSON",
-  "Marketing Analytics & Reporting - DATA ANALYTICS - NEED PERSON",
-  "Local Business Marketing - NEED PERSON",
-  "E-commerce Marketing - SAMYA",
-  "Personal Branding - SHIVA",
-  "Video Marketing - CHARAN",
+  "Search Engine Optimization (SEO)",
+  "Social Media Marketing (SMM)",
+  "Paid Advertising (Performance Marketing)",
+  "Content Marketing",
+  "Website Design & Development",
+  "Email Marketing",
+  "Lead Generation & DATA ANALYTICS",
+  "Marketing Analytics & Reporting - DATA ANALYTICS",
+  "Local Business Marketing",
+  "E-commerce Marketing",
+  "Personal Branding",
+  "Video Marketing",
   "YouTube Growth Management",
   "Other",
 ];

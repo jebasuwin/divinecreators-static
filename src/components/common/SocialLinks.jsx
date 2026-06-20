@@ -20,7 +20,7 @@ const SocialLinks = ({ className = "social-row", icons = defaultIcons }) => {
         <a
           key={key}
           href={businessInfo.socialLinks[key]}
-          aria-label={`Follow DIVINECREATORS on ${label}`}
+          aria-label={`Follow DIVINE CREATORS on ${label}`}
           target="_blank"
           rel="noopener noreferrer"
         >

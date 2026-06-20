@@ -11,7 +11,7 @@ const Footer = () => {
   return (
   <footer className="site-footer site-footer--v2">
     <div className="site-footer__watermark" aria-hidden="true">
-      DIVINECREATORS
+      DIVINE CREATORS
     </div>
 
     <div className="site-footer__inner">
@@ -70,7 +70,7 @@ const Footer = () => {
       </div>
 
       <div className="site-footer__bottom footer-bottom">
-        <p className="site-footer__copy">&copy; 2026 DIVINECREATORS. All rights reserved.</p>
+        <p className="site-footer__copy">&copy; 2026 DIVINE CREATORS. All rights reserved.</p>
       </div>
     </div>
   </footer>

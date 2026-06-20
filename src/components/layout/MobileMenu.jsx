@@ -59,9 +59,9 @@ const MobileMenu = ({ isOpen, onClose, returnFocusRef, activeSection, onNavClick
 
       <div className="mobile-menu__inner">
         <div className="mobile-menu__header">
-          <Link to="/" className="brand-logo mobile-menu__logo" onClick={handleNavClick} aria-label="DIVINECREATORS home">
+          <Link to="/" className="brand-logo mobile-menu__logo" onClick={handleNavClick} aria-label="DIVINE CREATORS home">
             <img src={logoImg} alt="Divine Creators logo" width={40} height={40} />
-            <span>DIVINECREATORS</span>
+            <span>DIVINE CREATORS</span>
           </Link>
           <button
             ref={closeButtonRef}

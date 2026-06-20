@@ -9,7 +9,7 @@
   const DIGITAL_MARKETING_SERVICES = [
     {
       id: "seo",
-      title: "Search Engine Optimization (SEO) - NEED TEAM",
+      title: "Search Engine Optimization (SEO)",
       intro: "Help businesses rank higher on search engines like Google.",
       servicesLabel: "Services include:",
       services: ["Keyword research", "On-page SEO", "Technical SEO", "Local SEO", "Link building", "SEO audits", "SEO reporting"],
@@ -18,7 +18,7 @@
     },
     {
       id: "social-media-marketing",
-      title: "Social Media Marketing (SMM) - SHIVA",
+      title: "Social Media Marketing (SMM)",
       intro: "Manage and grow a company's social media presence.",
       platformsLabel: "Platforms:",
       platforms: ["Instagram", "Facebook", "LinkedIn", "X (Twitter)", "YouTube"],
@@ -29,7 +29,7 @@
     },
     {
       id: "paid-advertising",
-      title: "Paid Advertising (Performance Marketing) - ANJALI",
+      title: "Paid Advertising (Performance Marketing)",
       intro: "Run ads that generate leads or sales.",
       platformsLabel: "Platforms:",
       platforms: ["Google Ads", "Meta Ads", "LinkedIn Ads", "YouTube Ads"],
@@ -41,7 +41,7 @@
     },
     {
       id: "content-marketing",
-      title: "Content Marketing - SHIVA",
+      title: "Content Marketing",
       intro: "Create content that attracts customers.",
       servicesLabel: "Services:",
       services: ["Blog writing", "Website copywriting", "Case studies", "E-books", "Landing page content", "Content strategy"],
@@ -50,7 +50,7 @@
     },
     {
       id: "website-development",
-      title: "Website Design & Development - JEBA",
+      title: "Website Design & Development",
       intro: "Many clients need a website before marketing.",
       servicesLabel: "Services:",
       services: ["Business websites", "Landing pages", "E-commerce websites", "Website maintenance", "Conversion optimization"],
@@ -59,7 +59,7 @@
     },
     {
       id: "email-marketing",
-      title: "Email Marketing - NEED PERSON & IP",
+      title: "Email Marketing",
       intro: "Generate repeat business and nurture leads.",
       servicesLabel: "Services:",
       services: ["Newsletter creation", "Email automation", "Lead nurturing sequences", "Customer retention campaigns", "Email performance analysis"],
@@ -68,7 +68,7 @@
     },
     {
       id: "lead-generation",
-      title: "Lead Generation - SHIVA - 40% & DATA ANALYTICS - NEED PERSON",
+      title: "Lead Generation & DATA ANALYTICS",
       intro: "Especially popular for B2B agencies.",
       servicesLabel: "Services:",
       services: ["Lead funnels", "Landing pages", "CRM integration", "Appointment booking systems", "Lead qualification"],
@@ -77,7 +77,7 @@
     },
     {
       id: "marketing-analytics",
-      title: "Marketing Analytics & Reporting - DATA ANALYTICS - NEED PERSON",
+      title: "Marketing Analytics & Reporting - DATA ANALYTICS",
       intro: "Show clients the ROI of your work.",
       servicesLabel: "Services:",
       services: ["Dashboard setup", "Conversion tracking", "Campaign reporting", "Customer journey analysis"],
@@ -89,7 +89,7 @@
   const SPECIALIZED_SERVICES = [
     {
       id: "local-business-marketing",
-      title: "Local Business Marketing - NEED PERSON",
+      title: "Local Business Marketing",
       intro: "For restaurants, clinics, gyms, real estate agents, etc.",
       servicesLabel: "Services:",
       services: ["Local SEO", "Business profile optimization", "Review management", "Local ads"],
@@ -98,7 +98,7 @@
     },
     {
       id: "ecommerce-marketing",
-      title: "E-commerce Marketing - SAMYA",
+      title: "E-commerce Marketing",
       intro: "For online stores.",
       servicesLabel: "Services:",
       services: ["Store optimization", "Product ads", "Cart abandonment campaigns", "Retargeting", "Conversion rate optimization"],
@@ -107,7 +107,7 @@
     },
     {
       id: "personal-branding",
-      title: "Personal Branding - SHIVA",
+      title: "Personal Branding",
       intro: "For founders, consultants, coaches, and creators.",
       servicesLabel: "Services:",
       services: ["LinkedIn growth", "Content strategy", "Thought leadership", "Personal websites"],
@@ -116,7 +116,7 @@
     },
     {
       id: "video-marketing",
-      title: "Video Marketing - CHARAN",
+      title: "Video Marketing",
       servicesLabel: "Services:",
       services: ["Reels", "Shorts", "YouTube management", "Video editing", "Motion graphics"],
       image: `${IMAGE_BASE}/video-marketing-new.webp`,

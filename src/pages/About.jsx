@@ -34,7 +34,7 @@ const About = () => (
           </p>
         </div>
         <div className="page-hero__media reveal reveal-up">
-          <ImageReveal src={images.about.hero} alt="DIVINECREATORS digital marketing team at work" ratio="landscape" loading="eager" />
+          <ImageReveal src={images.about.hero} alt="DIVINE CREATORS digital marketing team at work" ratio="landscape" loading="eager" />
         </div>
       </div>
     </section>
@@ -69,7 +69,7 @@ const About = () => (
         <div className="about-partner-image reveal reveal-left">
           <img
             src={images.home.whyPartner}
-            alt="DIVINECREATORS team collaboration and strategy planning"
+            alt="DIVINE CREATORS team collaboration and strategy planning"
             loading="lazy"
           />
         </div>

@@ -33,7 +33,7 @@
 
 .about-section .eyebrow {
   display: block;
-  font-family: var(--font-heading, "Space Grotesk", system-ui, sans-serif);
+  font-family: var(--font-heading, "Manrope", system-ui, sans-serif);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.14em;

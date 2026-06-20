@@ -8,7 +8,7 @@ const Logo = ({ className = "", dark = false, variant = "nav" }) => {
     <Link
       to="/"
       className={`brand-logo site-logo ${isFooter ? "footer-brand-logo" : ""} ${dark ? "site-logo--dark" : ""} ${className}`}
-      aria-label="DIVINECREATORS home"
+      aria-label="DIVINE CREATORS home"
     >
       <img
         src={logoImg}
@@ -17,7 +17,7 @@ const Logo = ({ className = "", dark = false, variant = "nav" }) => {
         width={isFooter ? 58 : 48}
         height={isFooter ? 58 : 48}
       />
-      <span>DIVINECREATORS</span>
+      <span>DIVINE CREATORS</span>
     </Link>
   );
 };

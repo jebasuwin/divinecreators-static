@@ -27,7 +27,7 @@ export const aboutSectionContent = {
 };
 
 export const aboutWhyPartnerContent = {
-  heading: "Why Partner with DIVINECREATORS?",
+  heading: "Why Partner with DIVINE CREATORS?",
   paragraphs: [
     "At Divine Creators, we believe effective digital marketing is built on strategy, not guesswork. We partner with businesses to create impactful digital experiences, strengthen brand presence, and drive measurable growth through tailored marketing solutions.",
     "With a focus on innovation, transparency, and performance, we deliver strategies that not only elevate your brand but also contribute to long-term business success.",
@@ -35,7 +35,7 @@ export const aboutWhyPartnerContent = {
 };
 
 export const homeWhyPartnerPreview = {
-  heading: "Why Partner with DIVINECREATORS?",
+  heading: "Why Partner with DIVINE CREATORS?",
   paragraph:
     "We combine research-led strategy, creative execution and performance marketing to help businesses attract the right audience and grow sustainably online.",
   highlights: partnerHighlights,

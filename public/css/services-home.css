@@ -131,8 +131,8 @@
 }
 
 .services-home .service-visual {
-  width: min(100%, 606px);
-  height: 500px;
+  width: min(100%, 540px);
+  height: 440px;
   margin-inline: auto;
   align-self: center;
   overflow: hidden;
@@ -205,15 +205,15 @@ html.aos-init:not(.aos-disabled) .services-home [data-aos].aos-animate {
 
 @media (max-width: 1024px) {
   .services-home .service-visual {
-    width: min(100%, 518px);
-    height: 410px;
+    width: min(100%, 470px);
+    height: 370px;
   }
 }
 
 @media (max-width: 768px) {
   .services-home .service-visual {
     width: 100%;
-    height: 340px;
+    height: 310px;
   }
 
   .services-home .service-block h2 {
@@ -223,7 +223,7 @@ html.aos-init:not(.aos-disabled) .services-home [data-aos].aos-animate {
 
 @media (max-width: 480px) {
   .services-home .service-visual {
-    height: 270px;
+    height: 240px;
   }
 }
 
