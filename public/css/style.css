@@ -1496,6 +1496,52 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
+@media (min-width: 990px) and (max-width: 1150px) {
+  .site-footer__grid {
+    --bs-gutter-x: clamp(1.5rem, 4vw, 2.5rem);
+    --bs-gutter-y: 2.5rem;
+    align-items: flex-start;
+  }
+
+  .site-footer__grid > .col-12 {
+    flex: 0 0 50%;
+    width: 50%;
+    max-width: 50%;
+  }
+
+  .site-footer__accordion-btn.d-lg-none {
+    display: none !important;
+  }
+
+  .site-footer__heading.d-none.d-lg-block {
+    display: block !important;
+  }
+
+  .site-footer .collapse.d-lg-block {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+  }
+
+  .site-footer__services-list {
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    gap: 0.25rem clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .site-footer__services-list .site-footer__links a {
+    white-space: nowrap;
+  }
+
+  .site-footer__contact-col {
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
+  }
+
+  .site-footer__contact a,
+  .site-footer__contact span {
+    overflow-wrap: anywhere;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .whatsapp-float {
     animation: none;
