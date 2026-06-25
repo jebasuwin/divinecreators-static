@@ -1,125 +1,159 @@
 export const heroContent = {
-  headline: "Your Trusted Partner for Digital Growth",
+  eyebrow: "Divine Creators",
+  headline: "We Turn Ideas Into Content That Builds Brands",
   subheadline:
-    "Helping businesses attract the right audience, generate qualified leads, and achieve sustainable growth through strategic digital marketing solutions.",
-  primaryCta: { label: "Get Started", hash: "contact" },
-  secondaryCta: { label: "Explore Services", href: `${import.meta.env.BASE_URL}#services` },
+    "Helping businesses, founders, and professionals grow their online presence through strategic content, compelling visuals, and impactful storytelling.",
+  primaryCta: { label: "Book a Free Consultation", hash: "contact" },
+  secondaryCta: { label: "What We Do", href: `${import.meta.env.BASE_URL}#services` },
 };
 
-export const companyStats = [
-  { target: 4, suffix: "+", decimals: 0, duration: 1400, label: "Years of Expertise" },
-  { target: 30, suffix: "+", decimals: 0, duration: 1500, label: "Trusted Clients" },
-  { target: 2, suffix: "M+", decimals: 0, duration: 1600, label: "Audience Reached" },
-  { target: 99.9, suffix: "%", decimals: 1, duration: 1700, label: "Client Retention" },
-];
+export const audienceChallenge = {
+  heading: "Your Audience Is Online. The Question Is - Are They Noticing You?",
+  intro: "Many businesses struggle to:",
+  items: [
+    "Maintain a consistent online presence",
+    "Create engaging content regularly",
+    "Build authority in their industry",
+    "Generate meaningful engagement on social media",
+    "Turn content into business opportunities",
+  ],
+  closing:
+    "Creating content is easy. Creating content that people remember, trust, and engage with is where the real challenge begins.",
+  note: "That's where Divine Creators comes in.",
+};
 
-const partnerHighlights = [
-  { icon: "bi-compass", title: "Strategic approach", text: "Plans grounded in research, audience insight and clear business goals." },
-  { icon: "bi-chat-dots", title: "Transparent communication", text: "Regular updates and honest reporting so you always know where things stand." },
-  { icon: "bi-graph-up", title: "Performance-focused execution", text: "Campaigns built to drive measurable outcomes across your marketing channels." },
+export const companyStats = [];
+
+const whyChooseHighlights = [
+  {
+    icon: "bi-lightbulb",
+    title: "Content First Approach",
+    text: "We believe strong content is the foundation of every successful digital presence.",
+  },
+  {
+    icon: "bi-chat-square-quote",
+    title: "Creative Storytelling",
+    text: "We help brands communicate their message in a way that resonates with their audience.",
+  },
+  {
+    icon: "bi-calendar-check",
+    title: "Consistency Matters",
+    text: "We create systems that help businesses stay visible and relevant online.",
+  },
+  {
+    icon: "bi-people",
+    title: "Collaborative Partnership",
+    text: "We work closely with our clients to understand their goals and deliver content aligned with their vision.",
+  },
 ];
 
 export const aboutSectionContent = {
-  label: "About Us",
-  heading: "Why Partner with Divine Creators?",
+  label: "About Divine Creators",
+  heading: "Great content has the power to build trust, create influence, and drive business growth.",
   paragraph:
-    "At Divine Creators, we believe effective digital marketing is built on strategy, not guesswork. We partner with businesses to create impactful digital experiences, strengthen brand presence, and drive measurable growth through tailored marketing solutions. With a focus on innovation, transparency, and performance, we deliver strategies that not only elevate your brand but also contribute to long-term business success.",
+    "Our mission is to help businesses and professionals establish a strong digital presence through creative content, strategic communication, and consistent brand storytelling.",
 };
 
 export const aboutWhyPartnerContent = {
-  heading: "Why Partner with DIVINE CREATORS?",
-  paragraphs: [
-    "At Divine Creators, we believe effective digital marketing is built on strategy, not guesswork. We partner with businesses to create impactful digital experiences, strengthen brand presence, and drive measurable growth through tailored marketing solutions.",
-    "With a focus on innovation, transparency, and performance, we deliver strategies that not only elevate your brand but also contribute to long-term business success.",
-  ],
+  heading: "Why Choose Divine Creators?",
+  paragraphs: whyChooseHighlights.map((item) => item.text),
 };
 
 export const homeWhyPartnerPreview = {
-  heading: "Why Partner with DIVINE CREATORS?",
+  heading: "Why Choose Divine Creators?",
   paragraph:
-    "We combine research-led strategy, creative execution and performance marketing to help businesses attract the right audience and grow sustainably online.",
-  highlights: partnerHighlights,
+    "We focus on creating meaningful content experiences that help our clients connect with the right audience and strengthen their brand over time.",
+  highlights: whyChooseHighlights,
 };
 
 export const processSteps = [
-  { step: "01", title: "Understand", description: "We learn about your business, audience, competitors and current marketing setup." },
-  { step: "02", title: "Plan", description: "We clarify goals, select channels and shape a focused marketing roadmap." },
-  { step: "03", title: "Create", description: "Content, campaigns and creative assets are built with clear intent." },
-  { step: "04", title: "Launch", description: "Campaigns go live with structured timelines and tracking in place." },
-  { step: "05", title: "Improve", description: "Insights guide ongoing optimization for stronger long-term results." },
+  { step: "01", title: "Discover", description: "Understanding your brand, audience, and goals." },
+  { step: "02", title: "Strategize", description: "Creating a content roadmap designed around your objectives." },
+  { step: "03", title: "Create", description: "Producing engaging content, visuals, and assets." },
+  { step: "04", title: "Publish", description: "Managing distribution across relevant platforms." },
+  { step: "05", title: "Optimize", description: "Reviewing performance and refining future content." },
 ];
 
-export const homeProcessSteps = [
-  { step: "01", title: "Understand", description: "We learn about your business, audience, competitors and current marketing setup." },
-  { step: "02", title: "Plan", description: "We clarify goals, select channels and shape a focused marketing roadmap." },
-  { step: "03", title: "Create", description: "Content, campaigns and creative assets are built with clear intent." },
-  { step: "04", title: "Launch", description: "We publish campaigns, content and digital assets across the selected channels." },
-  { step: "05", title: "Improve", description: "We review performance, identify opportunities and refine the strategy using real data." },
-];
+export const homeProcessSteps = processSteps;
 
 export const aboutMission = {
-  title: "Mission",
-  text: "To help businesses grow online through strategic digital marketing that combines clarity, creativity and measurable performance.",
+  title: "About Divine Creators",
+  text:
+    "Divine Creators was founded with a simple belief: Great content has the power to build trust, create influence, and drive business growth.",
 };
 
 export const aboutVision = {
-  title: "Vision",
-  text: "To be a trusted digital marketing partner for businesses that value thoughtful strategy, transparent communication and sustainable growth.",
+  title: "Our Mission",
+  text:
+    "Our mission is to help businesses and professionals establish a strong digital presence through creative content, strategic communication, and consistent brand storytelling.",
 };
 
-export const aboutValues = [
-  { title: "Strategy first", description: "Every recommendation starts with understanding your business and audience." },
-  { title: "Transparency", description: "We communicate plans, progress and results in plain language." },
-  { title: "Consistency", description: "Steady execution builds momentum across marketing channels." },
-  { title: "Adaptability", description: "We refine strategies based on data, feedback and changing goals." },
-  { title: "Partnership", description: "We work alongside your team with a shared focus on long-term success." },
-  { title: "Performance", description: "Campaigns are measured, reviewed and improved over time." },
-];
+export const aboutValues = whyChooseHighlights.map(({ title, text }) => ({
+  title,
+  description: text,
+}));
 
 const sharedCtaActions = {
-  primaryCta: { label: "Contact Us", hash: "contact" },
-  phoneCta: { label: "Call +91 63021 42813", path: "tel:+916302142813" },
+  primaryCta: {
+    label: "Book Your Free Consultation",
+    hash: "contact",
+    path: `${import.meta.env.BASE_URL}#contact`,
+  },
+  phoneCta: { label: "Call +91 6302142813", path: "tel:+916302142813" },
 };
 
 export const pageCtas = {
   home: {
-    heading: "Ready to Grow Your Business Online?",
+    heading: "Let's Build Something Worth Remembering",
     ...sharedCtaActions,
   },
   about: {
-    heading: "Looking for a Long-Term Digital Growth Partner?",
+    heading: "Let's Build Something Worth Remembering",
     ...sharedCtaActions,
   },
   services: {
-    heading: "Not Sure Which Service Fits Your Business?",
+    heading: "Let's Build Something Worth Remembering",
     ...sharedCtaActions,
   },
 };
 
-export const testimonials = [
-  {
-    quote:
-      "Divine Creators helped us bring structure to our marketing. Strategy, reporting and execution finally worked together instead of feeling disconnected.",
-    author: "E-commerce brand",
-    role: "Online retail client",
-  },
-  {
-    quote:
-      "The team communicated clearly at every stage. We understood what was being done, why it mattered, and how performance was improving over time.",
-    author: "Local service business",
-    role: "Chennai-based client",
-  },
-  {
-    quote:
-      "From content planning to campaign optimization, the approach was practical and focused on measurable growth rather than vanity metrics.",
-    author: "Growing consultancy",
-    role: "Personal branding client",
-  },
-];
+export const testimonials = [];
 
 export const aboutStatement = {
   eyebrow: "About Divine Creators",
   statement:
-    "We help businesses build stronger digital presence through strategy-led marketing, creative communication and performance-focused execution.",
-  keywords: ["strategy-led", "creative communication", "performance-focused"],
+    "We focus on creating meaningful content experiences that help our clients connect with the right audience and strengthen their brand over time.",
+  keywords: ["meaningful content experiences", "right audience", "strengthen their brand"],
 };
+
+export const whoWeWorkWith = [
+  "Founders",
+  "Consultants",
+  "Coaches",
+  "Startups",
+  "Small Businesses",
+  "Personal Brands",
+  "E-Commerce Brands",
+  "Service-Based Businesses",
+];
+
+export const faqs = [
+  {
+    question: "Do you create content from scratch?",
+    answer: "Yes. We can assist with content strategy, content creation, design, and publishing support.",
+  },
+  {
+    question: "Do you manage LinkedIn accounts?",
+    answer:
+      "Yes. We help founders, professionals, and businesses strengthen their LinkedIn presence through strategic content and profile optimization.",
+  },
+  {
+    question: "Do you provide video editing services?",
+    answer:
+      "Absolutely. We edit reels, shorts, podcasts, YouTube videos, and other branded video content.",
+  },
+  {
+    question: "Can you manage our social media accounts?",
+    answer: "Yes. We offer social media management and content support across major platforms.",
+  },
+];

@@ -16,15 +16,15 @@ const Footer = () => {
 
     <div className="site-footer__inner">
       <div className="site-footer__grid">
-        <div className="footer-brand">
+        <div className="footer-brand footer-column footer-column--brand">
           <Logo variant="footer" />
           <p className="site-footer__desc">
-            {businessInfo.tagline}. Strategic digital marketing services for businesses in Chennai and beyond.
+            {businessInfo.tagline}.
           </p>
           <SocialLinks />
         </div>
 
-        <div className="footer-navigation">
+        <nav className="footer-navigation footer-column footer-column--nav" aria-label="Footer navigation">
           <h5 className="footer-heading">
             Navigation
             <span className="footer-heading-line" aria-hidden="true" />
@@ -40,9 +40,9 @@ const Footer = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
-        <div className="footer-services">
+        <div className="footer-services footer-column footer-column--services">
           <h5 className="footer-heading">
             Services
             <span className="footer-heading-line" aria-hidden="true" />
@@ -56,15 +56,15 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="footer-contact">
+        <div className="footer-contact footer-column footer-column--contact">
           <h5 className="footer-heading">
             Contact
             <span className="footer-heading-line" aria-hidden="true" />
           </h5>
-          <ul className="site-footer__links">
-            <li><a href={businessInfo.phoneLink}>{businessInfo.phoneDisplay}</a></li>
-            <li><a href={`mailto:${businessInfo.email}`}>{businessInfo.email}</a></li>
-            <li>{businessInfo.location}</li>
+          <ul className="site-footer__contact">
+            <li><i className="bi bi-telephone" aria-hidden="true" /><a href={businessInfo.phoneLink}>{businessInfo.phoneDisplay}</a></li>
+            <li><i className="bi bi-envelope" aria-hidden="true" /><a href={`mailto:${businessInfo.email}`}>{businessInfo.email}</a></li>
+            <li><i className="bi bi-geo-alt" aria-hidden="true" /><span>{businessInfo.location}</span></li>
           </ul>
         </div>
       </div>

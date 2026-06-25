@@ -1,138 +1,78 @@
 /**
- * DIVINECREATORS — Homepage Services (static images, service-block UI)
+ * DIVINECREATORS - Homepage Services (static images, service-block UI)
  */
 (function () {
   "use strict";
 
   const IMAGE_BASE = "/divinecreators-static/assets/images/services";
 
-  const DIGITAL_MARKETING_SERVICES = [
+  const SERVICES = [
     {
-      id: "seo",
-      title: "Search Engine Optimization (SEO)",
-      intro: "Help businesses rank higher on search engines like Google.",
-      servicesLabel: "Services include:",
-      services: ["Keyword research", "On-page SEO", "Technical SEO", "Local SEO", "Link building", "SEO audits", "SEO reporting"],
-      image: `${IMAGE_BASE}/seo.webp`,
-      imageAlt: "SEO search rankings, keyword research and organic traffic growth",
-    },
-    {
-      id: "social-media-marketing",
-      title: "Social Media Marketing (SMM)",
-      intro: "Manage and grow a company's social media presence.",
-      platformsLabel: "Platforms:",
-      platforms: ["Instagram", "Facebook", "LinkedIn", "X (Twitter)", "YouTube"],
-      servicesLabel: "Services:",
-      services: ["Content creation", "Post scheduling", "Community management", "Growth strategies", "Analytics reporting"],
+      id: "social-media-management",
+      title: "Social Media Management",
+      intro: "Build a consistent and professional presence across platforms with content tailored to your audience and business goals.",
+      servicesLabel: "Services Include:",
+      services: ["Content Planning", "Content Creation", "Social Media Management", "Post Scheduling", "Performance Reporting"],
       image: `${IMAGE_BASE}/social-media-marketing-new.webp`,
-      imageAlt: "Social media marketing dashboard with content, engagement and audience growth",
+      imageAlt: "Social media content planning and management",
     },
     {
-      id: "paid-advertising",
-      title: "Paid Advertising (Performance Marketing)",
-      intro: "Run ads that generate leads or sales.",
-      platformsLabel: "Platforms:",
-      platforms: ["Google Ads", "Meta Ads", "LinkedIn Ads", "YouTube Ads"],
-      servicesLabel: "Services:",
-      services: ["Campaign setup", "Audience targeting", "Ad creatives", "A/B testing", "Conversion tracking", "ROAS optimization"],
-      image: `${IMAGE_BASE}/paid-advertising-new.webp`,
-      imageAlt: "Paid advertising campaign dashboard with targeting, conversions and performance growth",
-      imageFit: "contain",
-    },
-    {
-      id: "content-marketing",
-      title: "Content Marketing",
-      intro: "Create content that attracts customers.",
-      servicesLabel: "Services:",
-      services: ["Blog writing", "Website copywriting", "Case studies", "E-books", "Landing page content", "Content strategy"],
-      image: `${IMAGE_BASE}/content-marketing.webp`,
-      imageAlt: "Content marketing strategy, writing and editorial planning",
-    },
-    {
-      id: "website-development",
-      title: "Website Design & Development",
-      intro: "Many clients need a website before marketing.",
-      servicesLabel: "Services:",
-      services: ["Business websites", "Landing pages", "E-commerce websites", "Website maintenance", "Conversion optimization"],
-      image: `${IMAGE_BASE}/website-design-development.webp`,
-      imageAlt: "Responsive website design and development across desktop and mobile",
-    },
-    {
-      id: "email-marketing",
-      title: "Email Marketing",
-      intro: "Generate repeat business and nurture leads.",
-      servicesLabel: "Services:",
-      services: ["Newsletter creation", "Email automation", "Lead nurturing sequences", "Customer retention campaigns", "Email performance analysis"],
-      image: `${IMAGE_BASE}/email-marketing.webp`,
-      imageAlt: "Email marketing automation, newsletters and customer nurturing",
-    },
-    {
-      id: "lead-generation",
-      title: "Lead Generation & DATA ANALYTICS",
-      intro: "Especially popular for B2B agencies.",
-      servicesLabel: "Services:",
-      services: ["Lead funnels", "Landing pages", "CRM integration", "Appointment booking systems", "Lead qualification"],
-      image: `${IMAGE_BASE}/lead-generation.webp`,
-      imageAlt: "Lead generation funnel, CRM and qualified customer acquisition",
-    },
-    {
-      id: "marketing-analytics",
-      title: "Marketing Analytics & Reporting - DATA ANALYTICS",
-      intro: "Show clients the ROI of your work.",
-      servicesLabel: "Services:",
-      services: ["Dashboard setup", "Conversion tracking", "Campaign reporting", "Customer journey analysis"],
-      image: `${IMAGE_BASE}/marketing-analytics-reporting-new.webp`,
-      imageAlt: "Marketing analytics dashboard with campaign reporting, ROI charts and conversion tracking",
-    },
-  ];
-
-  const SPECIALIZED_SERVICES = [
-    {
-      id: "local-business-marketing",
-      title: "Local Business Marketing",
-      intro: "For restaurants, clinics, gyms, real estate agents, etc.",
-      servicesLabel: "Services:",
-      services: ["Local SEO", "Business profile optimization", "Review management", "Local ads"],
-      image: `${IMAGE_BASE}/local-business-marketing.webp`,
-      imageAlt: "Local business marketing, map visibility and nearby customer search",
-    },
-    {
-      id: "ecommerce-marketing",
-      title: "E-commerce Marketing",
-      intro: "For online stores.",
-      servicesLabel: "Services:",
-      services: ["Store optimization", "Product ads", "Cart abandonment campaigns", "Retargeting", "Conversion rate optimization"],
-      image: `${IMAGE_BASE}/ecommerce-marketing.webp`,
-      imageAlt: "E-commerce marketing, product advertising and online sales conversion",
-    },
-    {
-      id: "personal-branding",
-      title: "Personal Branding",
-      intro: "For founders, consultants, coaches, and creators.",
-      servicesLabel: "Services:",
-      services: ["LinkedIn growth", "Content strategy", "Thought leadership", "Personal websites"],
+      id: "linkedin-personal-branding",
+      title: "LinkedIn Personal Branding",
+      intro: "Position yourself as a trusted voice in your industry and build meaningful professional visibility.",
+      servicesLabel: "Services Include:",
+      services: ["LinkedIn Profile Optimization", "Content Strategy", "Thought Leadership Content", "Personal Brand Development", "LinkedIn Growth Support"],
       image: `${IMAGE_BASE}/personal-branding.webp`,
-      imageAlt: "Professional personal branding, creator identity and thought leadership",
+      imageAlt: "LinkedIn personal branding and professional visibility",
     },
     {
-      id: "video-marketing",
-      title: "Video Marketing",
-      servicesLabel: "Services:",
-      services: ["Reels", "Shorts", "YouTube management", "Video editing", "Motion graphics"],
+      id: "video-editing-short-form-content",
+      title: "Video Editing & Short-Form Content",
+      intro: "Capture attention and maximize engagement through professionally edited video content.",
+      servicesLabel: "Services Include:",
+      services: ["Reels Editing", "Shorts Editing", "Podcast Clips", "Talking Head Videos", "Motion Graphics", "YouTube Video Editing"],
       image: `${IMAGE_BASE}/video-marketing-new.webp`,
-      imageAlt: "Video marketing production with editing timeline, reels and short-form videos",
+      imageAlt: "Video editing and short-form content",
     },
     {
-      id: "youtube-growth-management",
-      title: "YouTube Growth Management",
+      id: "graphic-design",
+      title: "Graphic Design",
+      intro: "Create visuals that strengthen your brand identity and communicate your message effectively.",
+      servicesLabel: "Services Include:",
+      services: ["Social Media Creatives", "Carousel Designs", "Marketing Materials", "Brand Visual Assets", "Presentation Design"],
+      image: `${IMAGE_BASE}/content-marketing.webp`,
+      imageAlt: "Graphic design and brand visual assets",
+    },
+    {
+      id: "content-writing-script-development",
+      title: "Content Writing & Script Development",
+      intro: "Transform ideas into content that informs, engages, and drives action.",
+      servicesLabel: "Services Include:",
+      services: ["Social Media Content", "LinkedIn Posts", "Website Copy", "Blog Articles", "Video Scripts", "Content Calendars"],
+      image: `${IMAGE_BASE}/lead-generation.webp`,
+      imageAlt: "Content writing and script development",
+    },
+    {
+      id: "youtube-growth-support",
+      title: "YouTube Growth Support",
+      intro: "Build a stronger YouTube presence through strategic content planning and channel management.",
+      servicesLabel: "Services Include:",
+      services: ["Content Planning", "Video Publishing Support", "Thumbnail Design", "Channel Optimization", "Content Strategy"],
       image: `${IMAGE_BASE}/youtube-growth-management.webp`,
-      imageAlt: "YouTube channel growth, subscribers, watch time and video analytics",
+      imageAlt: "YouTube growth support and channel optimization",
+    },
+    {
+      id: "website-app-development",
+      title: "Website & App Development",
+      servicesLabel: "Services Include:",
+      services: ["Website Development", "Web Application Development", "Mobile App Development (Android & iOS)", "UI/UX Design", "Software Testing & QA", "Cloud & DevOps", "Maintenance & Support", "AI & Automation Solutions"],
+      image: `${IMAGE_BASE}/website-design-development.webp`,
+      imageAlt: "Website and app development",
     },
   ];
 
   const SERVICE_GROUPS = [
-    { id: "digital-marketing", title: "Digital Marketing Services", services: DIGITAL_MARKETING_SERVICES, eyebrowPrefix: "Service" },
-    { id: "specialized", title: "High-Demand Specialized Services", services: SPECIALIZED_SERVICES, eyebrowPrefix: "Specialized Service" },
+    { id: "what-we-do", title: "What We Do", services: SERVICES },
   ];
 
   const renderList = (label, items, className = "") => {
@@ -189,25 +129,24 @@
     `;
   };
 
-  const renderBlock = (service, blockIndex, reverse, eyebrowLabel) => {
+  const renderBlock = (service, blockIndex, reverse) => {
     const altClass = blockIndex % 2 === 1 ? " service-block--alt" : "";
     const reverseClass = reverse ? " flex-lg-row-reverse" : "";
     const intro = service.intro ? `<p class="text-secondary">${service.intro}</p>` : "";
-    const platforms = service.platforms ? renderList(service.platformsLabel, service.platforms, "service-block__list--platforms") : "";
     const services = service.services ? renderList(service.servicesLabel, service.services) : "";
 
     return `
       <div id="${service.id}" class="service-block${altClass}">
         <div class="container-xl">
           <div class="row g-5 align-items-center${reverseClass}" data-aos="fade-up">
-            <div class="col-lg-6">
-              <span class="eyebrow">${eyebrowLabel}</span>
+          <div class="col-lg-6 service-block__copy">
+            <div class="service-block__content">
               <h2>${service.title}</h2>
               ${intro}
-              ${platforms}
               ${services}
-              <a href="#contact" class="btn-glow mt-3">Contact Us</a>
+              <a href="#contact" class="btn-glow mt-3">Book a Free Consultation</a>
             </div>
+          </div>
             <div class="col-lg-6 service-block__visual">
               ${renderVisual(service, blockIndex)}
             </div>
@@ -225,15 +164,12 @@
     root.innerHTML = SERVICE_GROUPS.map((group, groupIndex) => {
       const isFirstGroup = groupIndex === 0;
       const headingClass = `container-xl services-home__group-heading${isFirstGroup ? " services-heading" : ""}`;
-      const headingLabel = isFirstGroup
-        ? `<span class="eyebrow section-label">Services</span>`
-        : "";
+      const headingLabel = "";
       const headingId = isFirstGroup ? ' id="services-heading"' : "";
 
       const blocks = group.services.map((service, groupServiceIndex) => {
         const reverse = blockIndex % 2 === 1;
-        const eyebrowLabel = `${group.eyebrowPrefix} ${String(groupServiceIndex + 1).padStart(2, "0")}`;
-        const html = renderBlock(service, blockIndex, reverse, eyebrowLabel);
+        const html = renderBlock(service, blockIndex, reverse);
         blockIndex += 1;
         return html;
       }).join("");

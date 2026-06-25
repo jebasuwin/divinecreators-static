@@ -3,27 +3,27 @@ export const defaultOgImage = `${siteUrl}/og-image.jpg`;
 
 export const pageSeo = {
   home: {
-    title: "Digital Marketing Agency in Chennai | DIVINE CREATORS",
+    title: "Divine Creators | Content That Builds Brands",
     description:
-      "DIVINE CREATORS offers SEO, social media marketing, paid advertising, content marketing, web development and YouTube growth management for businesses in Chennai and beyond.",
+      "Divine Creators helps businesses, founders, and professionals grow their online presence through strategic content, compelling visuals, and impactful storytelling.",
     path: "/",
   },
   about: {
-    title: "About Our Digital Marketing Agency | DIVINE CREATORS",
+    title: "About Divine Creators | Content, Storytelling and Brand Growth",
     description:
-      "Learn about DIVINE CREATORS - a digital marketing agency focused on strategy, transparency and measurable growth for businesses.",
+      "Divine Creators helps businesses and professionals establish a strong digital presence through creative content, strategic communication, and consistent brand storytelling.",
     path: "/about",
   },
   services: {
-    title: "SEO, Social Media and Paid Advertising Services | DIVINE CREATORS",
+    title: "What We Do | Divine Creators",
     description:
-      "Explore digital marketing services including SEO, social media marketing, paid advertising, content marketing, email marketing, lead generation and YouTube growth management.",
+      "Explore Divine Creators services including social media management, LinkedIn personal branding, video editing, graphic design, content writing, YouTube growth support, and Website & App Development.",
     path: "/#services",
   },
   contact: {
-    title: "Contact Our Digital Marketing Team | DIVINE CREATORS",
+    title: "Book a Free Consultation | Divine Creators",
     description:
-      "Contact DIVINE CREATORS in Sholinganallur, Chennai. Discuss SEO, ads, social media, content marketing and YouTube growth for your business.",
+      "Book a free consultation with Divine Creators in Sholinganallur, Chennai - 600100.",
     path: "/#contact",
   },
   notFound: {

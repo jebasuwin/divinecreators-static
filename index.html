@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#050a14" />
   <meta name="robots" content="index, follow" />
-  <title>Digital Marketing Agency in Chennai | DIVINE CREATORS</title>
-  <meta name="description" content="DIVINE CREATORS offers SEO, social media marketing, paid advertising, content marketing, web development and YouTube growth management for businesses in Chennai and beyond." />
+  <title>Divine Creators | Content That Builds Brands</title>
+  <meta name="description" content="Divine Creators helps businesses, founders, and professionals grow their online presence through strategic content, compelling visuals, and impactful storytelling." />
   <link rel="icon" type="image/png" href="/divinecreators-static/dc.png" />
   <link rel="manifest" href="/divinecreators-static/site.webmanifest" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <link href="/divinecreators-static/css/style.css?v=opacity-fix-2" rel="stylesheet" />
+  <link href="/divinecreators-static/css/style.css?v=stats-proof-14" rel="stylesheet" />
   <link href="/divinecreators-static/css/motion-graphics.css" rel="stylesheet" />
-  <link href="/divinecreators-static/css/about-section.css" rel="stylesheet" />
-  <link href="/divinecreators-static/css/services-home.css" rel="stylesheet" />
-  <link href="/divinecreators-static/css/contact-section.css" rel="stylesheet" />
+  <link href="/divinecreators-static/css/about-section.css?v=about-heading-1" rel="stylesheet" />
+  <link href="/divinecreators-static/css/services-home.css?v=services-layout-10" rel="stylesheet" />
+  <link href="/divinecreators-static/css/contact-section.css?v=contact-align-1" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 </head>
@@ -35,7 +35,7 @@
         <li><a href="#contact" class="site-nav__link" data-nav-section="contact">Contact</a></li>
       </ul>
       <div class="d-flex align-items-center gap-2">
-        <a href="#contact" class="btn-glow d-none d-lg-inline-flex">Get Started</a>
+        <a href="#contact" class="btn-glow site-nav__cta d-none d-lg-inline-flex" aria-label="Book a free consultation"><span>Book a Call</span></a>
         <button type="button" class="site-nav__toggle" data-menu-open aria-label="Open menu"><i class="bi bi-list"></i></button>
       </div>
     </div>
@@ -55,7 +55,7 @@
       <a href="#about" class="mobile-drawer__link" data-nav-section="about">About Us</a>
       <a href="#services" class="mobile-drawer__link" data-nav-section="services">Services</a>
       <a href="#contact" class="mobile-drawer__link" data-nav-section="contact">Contact</a>
-      <a href="#contact" class="btn-glow w-100 justify-content-center mt-4">Get Started</a>
+      <a href="#contact" class="btn-glow w-100 justify-content-center mt-4">Book a Free Consultation</a>
     </div>
   </div>
 
@@ -64,17 +64,20 @@
     <section class="hero hero--galaxy" id="home">
       <div class="hero__readability"></div>
       <div class="container-xl hero__content">
-        <div class="row align-items-center min-vh-100 py-5">
-          <div class="col-lg-6 col-xl-6 hero__copy">
-            <span class="eyebrow hero__eyebrow">Digital Experiences • Creative Technology</span>
-            <h1 class="hero__title"><span class="hero__title-part">Your Trusted</span> <span class="hero__title-part">Partner for</span> <span class="hero__title-part">Digital Growth</span></h1>
-            <p class="hero__subtitle">Helping businesses attract the right audience, generate qualified leads, and achieve sustainable growth through strategic digital marketing solutions.</p>
+        <div class="row hero__row">
+          <div class="col-lg-7 col-xxl-6 hero__copy">
+            <span class="eyebrow hero__eyebrow">Divine Creators</span>
+            <h1 class="hero__title">
+              <span class="hero__title-part">We Turn Ideas Into</span>
+              <span class="hero__title-part hero__title-highlight">Content That Builds Brands</span>
+            </h1>
+            <p class="hero__subtitle">Helping businesses, founders, and professionals grow their online presence through strategic content, compelling visuals, and impactful storytelling.</p>
             <div class="hero__actions">
-              <a href="#contact" class="btn-glow">Get Started <i class="bi bi-arrow-right"></i></a>
-              <a href="#services" class="btn-outline-glow">Explore Services</a>
+              <a href="#contact" class="btn-glow">Book a Free Consultation <i class="bi bi-arrow-right"></i></a>
+              <a href="#services" class="btn-outline-glow">What We Do</a>
             </div>
           </div>
-          <div class="col-lg-6 hero__visual-col" data-aos="fade-left">
+          <div class="col-lg-5 col-xxl-6 hero__visual-col" data-aos="fade-left">
             <div class="hero-motion-graphic" aria-hidden="true"></div>
           </div>
         </div>
@@ -82,32 +85,64 @@
     </section>
     <div class="section-divider" aria-hidden="true"></div>
 
-    <!-- STATS -->
-    <section id="statistics" class="section-pad section-pad--compact section-stats" aria-label="Company statistics">
+    <!-- AUDIENCE -->
+    <section id="audience" class="section-pad audience-section" aria-labelledby="audience-heading">
       <div class="container-xl">
-        <div class="row g-3 g-md-4" data-home-stats></div>
-      </div>
-    </section>
-    <div class="section-divider" aria-hidden="true"></div>
-
-    <!-- ABOUT -->
-    <section id="about" class="about-section section-pad">
-      <div class="container-xl about-section__container">
-        <div class="row align-items-center g-5">
-          <div class="col-lg-6 about-section__content" data-about-reveal>
-            <span class="eyebrow">About Us</span>
-            <h2>Why Partner with Divine Creators?</h2>
-            <p>At Divine Creators, we believe effective digital marketing is built on strategy, not guesswork. We partner with businesses to create impactful digital experiences, strengthen brand presence, and drive measurable growth through tailored marketing solutions. With a focus on innovation, transparency, and performance, we deliver strategies that not only elevate your brand but also contribute to long-term business success.</p>
-          </div>
-          <div class="col-lg-6 about-section__visual" data-about-reveal aria-hidden="true">
-            <div class="about-dashboard-viz">
-              <canvas class="about-dashboard-viz__canvas"></canvas>
-              <div class="about-dashboard-viz__orbit">
-                <span class="about-dashboard-viz__orbit-icon"><i class="bi bi-broadcast"></i></span>
+        <div class="row g-5 align-items-center audience-section__row">
+          <div class="col-lg-6 audience-section__copy" data-aos="fade-right">
+            <div class="audience-section__copy-inner">
+              <span class="eyebrow">Audience Challenge</span>
+              <h2 id="audience-heading">
+                <span class="audience-heading__lead">Your Audience Is Online. The Question Is</span>
+                <span class="audience-heading__highlight audience-heading__nowrap">- Are They Noticing You?</span>
+              </h2>
+              <div class="audience-challenge-card">
+                <p class="audience-challenge-card__intro">Many businesses struggle to:</p>
+                <ul class="audience-challenge-list">
+                  <li>Maintain a consistent online presence</li>
+                  <li>Create engaging content regularly</li>
+                  <li>Build authority in their industry</li>
+                  <li>Generate meaningful engagement on social media</li>
+                  <li>Turn content into business opportunities</li>
+                </ul>
               </div>
-              <span class="about-dashboard-viz__chip about-dashboard-viz__chip--1"><i class="bi bi-compass"></i> Strategy</span>
-              <span class="about-dashboard-viz__chip about-dashboard-viz__chip--2"><i class="bi bi-graph-up-arrow"></i> Analytics</span>
-              <span class="about-dashboard-viz__chip about-dashboard-viz__chip--3"><i class="bi bi-lightning"></i> Innovation</span>
+              <p class="text-secondary">Creating content is easy.</p>
+              <p class="text-secondary">Creating content that people remember, trust, and engage with is where the real challenge begins.</p>
+              <p class="text-secondary">That's where Divine Creators comes in.</p>
+            </div>
+          </div>
+          <div class="col-lg-6 audience-section__visual" data-aos="fade-left">
+            <div class="audience-flow" aria-label="Content visibility motion graphic">
+              <div class="audience-flow__trail" aria-hidden="true"><span></span></div>
+              <div class="audience-flow__panel audience-flow__panel--insight">
+                <span>Insight</span>
+                <strong>Audience Needs</strong>
+                <small>Intent, timing, and trust gaps</small>
+              </div>
+              <div class="audience-flow__studio">
+                <div class="audience-flow__phone">
+                  <div class="audience-flow__phone-bar"></div>
+                  <div class="audience-flow__post">
+                    <i class="bi bi-camera-reels" aria-hidden="true"></i>
+                    <span>Strategic Content</span>
+                  </div>
+                  <div class="audience-flow__lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <span class="audience-flow__signal audience-flow__signal--one"></span>
+                <span class="audience-flow__signal audience-flow__signal--two"></span>
+              </div>
+              <div class="audience-flow__panel audience-flow__panel--response">
+                <span>Response</span>
+                <strong>Visible Brand</strong>
+                <small>Comments, saves, and leads</small>
+              </div>
+              <span class="audience-flow__chip audience-flow__chip--one"><i class="bi bi-calendar-check" aria-hidden="true"></i> Consistency</span>
+              <span class="audience-flow__chip audience-flow__chip--two"><i class="bi bi-chat-dots" aria-hidden="true"></i> Engagement</span>
+              <span class="audience-flow__chip audience-flow__chip--three"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i> Opportunity</span>
             </div>
           </div>
         </div>
@@ -121,49 +156,365 @@
     </section>
     <div class="section-divider" aria-hidden="true"></div>
 
+    <!-- WHY CHOOSE -->
+    <section id="why-choose" class="why-choose-section" aria-labelledby="why-choose-heading">
+      <div class="container-xl">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-7 why-choose-section__content">
+            <span class="eyebrow">Why Divine Creators</span>
+            <h2 id="why-choose-heading">Why Choose Divine Creators?</h2>
+            <div class="why-choose-grid">
+              <article class="why-card">
+                <span class="why-card__icon"><i class="bi bi-bullseye" aria-hidden="true"></i></span>
+                <div>
+                  <h3>Content First Approach</h3>
+                  <p>We believe strong content is the foundation of every successful digital presence.</p>
+                </div>
+              </article>
+              <article class="why-card">
+                <span class="why-card__icon"><i class="bi bi-brush" aria-hidden="true"></i></span>
+                <div>
+                  <h3>Creative Storytelling</h3>
+                  <p>We help brands communicate their message in a way that resonates with their audience.</p>
+                </div>
+              </article>
+              <article class="why-card">
+                <span class="why-card__icon"><i class="bi bi-calendar2-check" aria-hidden="true"></i></span>
+                <div>
+                  <h3>Consistency Matters</h3>
+                  <p>We create systems that help businesses stay visible and relevant online.</p>
+                </div>
+              </article>
+              <article class="why-card">
+                <span class="why-card__icon"><i class="bi bi-people" aria-hidden="true"></i></span>
+                <div>
+                  <h3>Collaborative Partnership</h3>
+                  <p>We work closely with our clients to understand their goals and deliver content aligned with their vision.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="col-lg-5 why-choose-section__visual">
+            <div class="why-choose-viz" aria-label="Brand growth motion graphic">
+              <span class="why-choose-viz__ring why-choose-viz__ring--outer" aria-hidden="true"></span>
+              <span class="why-choose-viz__ring why-choose-viz__ring--inner" aria-hidden="true"></span>
+              <span class="why-choose-viz__signal why-choose-viz__signal--one" aria-hidden="true"></span>
+              <span class="why-choose-viz__signal why-choose-viz__signal--two" aria-hidden="true"></span>
+              <span class="why-choose-viz__beam why-choose-viz__beam--one" aria-hidden="true"></span>
+              <span class="why-choose-viz__beam why-choose-viz__beam--two" aria-hidden="true"></span>
+              <span class="why-choose-viz__orbital why-choose-viz__orbital--1" aria-hidden="true"></span>
+              <span class="why-choose-viz__orbital why-choose-viz__orbital--2" aria-hidden="true"></span>
+              <span class="why-choose-viz__orbital why-choose-viz__orbital--3" aria-hidden="true"></span>
+              <div class="why-choose-viz__hub">
+                <i class="bi bi-stars" aria-hidden="true"></i>
+                <span>Brand Momentum</span>
+              </div>
+              <span class="why-choose-viz__node why-choose-viz__node--strategy"><i class="bi bi-lightbulb" aria-hidden="true"></i> Strategy</span>
+              <span class="why-choose-viz__node why-choose-viz__node--content"><i class="bi bi-camera-reels" aria-hidden="true"></i> Content</span>
+              <span class="why-choose-viz__node why-choose-viz__node--trust"><i class="bi bi-shield-check" aria-hidden="true"></i> Trust</span>
+              <span class="why-choose-viz__node why-choose-viz__node--growth"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i> Growth</span>
+              <div class="why-choose-viz__metric why-choose-viz__metric--one">
+                <span>Visibility</span>
+                <strong>Active</strong>
+                <i aria-hidden="true"></i>
+              </div>
+              <div class="why-choose-viz__metric why-choose-viz__metric--two">
+                <span>Engagement</span>
+                <strong>Rising</strong>
+                <i aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- PROCESS -->
+    <section class="section-pad process-section" aria-labelledby="process-heading">
+      <div class="container-xl">
+        <header class="process-section__header" data-aos="fade-up">
+          <span class="eyebrow">Workflow</span>
+          <h2 id="process-heading" class="process-section__title">
+            <span>Our</span>
+            <span class="process-section__title-accent">Process</span>
+          </h2>
+          <p>Understanding your brand, creating the roadmap, producing content, managing distribution, and refining future content.</p>
+        </header>
+
+        <div class="process-flow" aria-label="Divine Creators workflow">
+          <div class="process-flow__track" aria-hidden="true">
+            <svg class="process-flow__jump-map" viewBox="0 0 1000 150" preserveAspectRatio="none">
+              <path class="process-flow__jump-shadow" d="M 24 160 C 96 18 190 18 262 160 C 334 18 428 18 500 160 C 572 18 666 18 738 160 C 810 18 904 18 976 160" />
+              <path id="process-flow-path" class="process-flow__jump-path" d="M 24 160 C 96 18 190 18 262 160 C 334 18 428 18 500 160 C 572 18 666 18 738 160 C 810 18 904 18 976 160" />
+              <g class="process-flow__spark">
+                <animateMotion dur="8.8s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" keySplines="0.22 1 0.36 1;0.22 1 0.36 1;0.22 1 0.36 1;0.22 1 0.36 1">
+                  <mpath href="#process-flow-path" />
+                </animateMotion>
+                <circle class="process-flow__spark-glow" r="27"></circle>
+                <circle class="process-flow__spark-core" r="18"></circle>
+                <path class="process-flow__spark-icon" d="M -14 -9 L 16 0 L -14 9 L -9 2 L 1 0 L -9 -2 Z" />
+                <circle class="process-flow__spark-dot" cx="15" cy="-13" r="3"></circle>
+              </g>
+            </svg>
+          </div>
+
+          <div class="process-flow__steps">
+            <article class="process-step" style="--step-delay: 0ms;">
+              <span class="process-step__icon"><i class="bi bi-search" aria-hidden="true"></i></span>
+              <h3>Discover</h3>
+              <p>Understanding your brand, audience, and goals.</p>
+            </article>
+            <article class="process-step" style="--step-delay: 140ms;">
+              <span class="process-step__icon"><i class="bi bi-diagram-3" aria-hidden="true"></i></span>
+              <h3>Strategize</h3>
+              <p>Creating a content roadmap designed around your objectives.</p>
+            </article>
+            <article class="process-step" style="--step-delay: 280ms;">
+              <span class="process-step__icon"><i class="bi bi-camera-reels" aria-hidden="true"></i></span>
+              <h3>Create</h3>
+              <p>Producing engaging content, visuals, and assets.</p>
+            </article>
+            <article class="process-step" style="--step-delay: 420ms;">
+              <span class="process-step__icon"><i class="bi bi-send" aria-hidden="true"></i></span>
+              <h3>Publish</h3>
+              <p>Managing distribution across relevant platforms.</p>
+            </article>
+            <article class="process-step" style="--step-delay: 560ms;">
+              <span class="process-step__icon"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i></span>
+              <h3>Optimize</h3>
+              <p>Reviewing performance and refining future content.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- WHO WE WORK WITH -->
+    <section id="who-we-work-with" class="work-with-section" aria-labelledby="who-heading">
+      <div class="container-xl">
+        <header class="work-with__header" data-work-reveal>
+          <h2 id="who-heading">Who We Work With</h2>
+        </header>
+
+        <ul class="work-with__list">
+          <li class="work-with-item" style="--i: 0;" data-work-card>Founders</li>
+          <li class="work-with-item" style="--i: 1;" data-work-card>Consultants</li>
+          <li class="work-with-item" style="--i: 2;" data-work-card>Coaches</li>
+          <li class="work-with-item" style="--i: 3;" data-work-card>Startups</li>
+          <li class="work-with-item" style="--i: 4;" data-work-card>Small Businesses</li>
+          <li class="work-with-item" style="--i: 5;" data-work-card>Personal Brands</li>
+          <li class="work-with-item" style="--i: 6;" data-work-card>E-Commerce Brands</li>
+          <li class="work-with-item" style="--i: 7;" data-work-card>Service-Based Businesses</li>
+        </ul>
+      </div>
+    </section>
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- STATISTICS -->
+    <section id="statistics" class="section-pad proof-stats-section" aria-labelledby="statistics-heading">
+      <div class="container-xl">
+        <div class="proof-stats-heading scroll-soft" data-aos="fade-up">
+          <h2 id="statistics-heading">Statistics</h2>
+        </div>
+        <div class="proof-stats-layout">
+          <div class="proof-stats-copy scroll-soft" data-aos="fade-right">
+            <h3>Worked with more than 50+ clients and 70+ channels.</h3>
+            <p>Clients from USA, Canada, Netherlands, Nigeria, Australia, and India.</p>
+            <div class="proof-stat-cards" aria-label="Divine Creators statistics">
+              <article class="proof-stat-card" style="--i: 0;">
+                <span>Clients</span>
+                <strong>50+</strong>
+              </article>
+              <article class="proof-stat-card" style="--i: 1;">
+                <span>Channels</span>
+                <strong>70+</strong>
+              </article>
+              <article class="proof-stat-card" style="--i: 2;">
+                <span>Markets</span>
+                <strong>6</strong>
+              </article>
+            </div>
+          </div>
+
+          <div class="proof-analytics-card scroll-soft" data-aos="fade-left" aria-label="Animated statistics graphic">
+            <div class="proof-analytics-card__top">
+              <span class="proof-analytics-card__title">Client Growth</span>
+              <span class="proof-analytics-card__status">Live Reach</span>
+            </div>
+            <div class="proof-analytics-card__metrics">
+              <div>
+                <span>Clients</span>
+                <strong>50+</strong>
+              </div>
+              <div>
+                <span>Channels</span>
+                <strong>70+</strong>
+              </div>
+            </div>
+            <div class="proof-chart" aria-hidden="true">
+              <span class="proof-chart__grid"></span>
+              <svg viewBox="0 0 520 250" role="img" focusable="false">
+                <path class="proof-chart__area" d="M28 214 C88 190 116 164 154 128 C196 88 236 100 278 74 C328 42 374 56 422 38 C464 22 492 24 508 20 L508 224 L28 224 Z"></path>
+                <path id="proofGrowthPath" class="proof-chart__line" d="M28 214 C88 190 116 164 154 128 C196 88 236 100 278 74 C328 42 374 56 422 38 C464 22 492 24 508 20"></path>
+                <path class="proof-chart__flow" d="M28 214 C88 190 116 164 154 128 C196 88 236 100 278 74 C328 42 374 56 422 38 C464 22 492 24 508 20"></path>
+                <g class="proof-chart__points">
+                  <circle cx="28" cy="214" r="5"></circle>
+                  <circle cx="154" cy="128" r="5"></circle>
+                  <circle cx="278" cy="74" r="5"></circle>
+                  <circle cx="422" cy="38" r="5"></circle>
+                  <circle cx="508" cy="20" r="5"></circle>
+                </g>
+                <circle class="proof-chart__runner" cx="28" cy="214" r="5.5"></circle>
+              </svg>
+              <div class="proof-chart__labels">
+                <span>Start</span>
+                <span>Growth</span>
+                <span>Now</span>
+              </div>
+            </div>
+            <div class="proof-market-row" aria-label="Client markets">
+              <span>USA</span>
+              <span>Canada</span>
+              <span>Netherlands</span>
+              <span>Nigeria</span>
+              <span>Australia</span>
+              <span>India</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ABOUT -->
+    <section id="about" class="about-section section-pad" aria-labelledby="about-heading">
+      <div class="container-xl about-section__container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 about-section__content" data-about-reveal>
+            <h2 id="about-heading" class="about-section__heading">About Divine Creators</h2>
+            <p class="about-section__lead">Divine Creators was founded with a simple belief:</p>
+            <h3 class="about-section__statement">Great content has the power to build trust, create influence, and drive business growth.</h3>
+            <p>Our mission is to help businesses and professionals establish a strong digital presence through creative content, strategic communication, and consistent brand storytelling. We focus on creating meaningful content experiences that help our clients connect with the right audience and strengthen their brand over time.</p>
+          </div>
+          <div class="col-lg-6 about-section__visual" data-about-reveal aria-hidden="true">
+            <div class="about-dashboard-viz">
+              <canvas class="about-dashboard-viz__canvas"></canvas>
+              <div class="about-dashboard-viz__orbit">
+                <span class="about-dashboard-viz__orbit-icon"><i class="bi bi-broadcast"></i></span>
+              </div>
+              <span class="about-dashboard-viz__chip about-dashboard-viz__chip--1"><i class="bi bi-compass"></i> Brand Strategy</span>
+              <span class="about-dashboard-viz__chip about-dashboard-viz__chip--2"><i class="bi bi-graph-up-arrow"></i> Business Growth</span>
+              <span class="about-dashboard-viz__chip about-dashboard-viz__chip--3"><i class="bi bi-pencil-square"></i> Content System</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- FAQ -->
+    <section class="faq-section section-pad" aria-labelledby="faq-heading">
+      <div class="container-xl">
+        <header class="faq-section__header">
+          <h2 id="faq-heading" class="faq-section__title">Frequently Asked Questions</h2>
+        </header>
+        <div class="faq-list" data-faq-list>
+          <article class="faq-item" style="--i: 0;">
+            <h3 class="faq-item__heading">
+              <button class="faq-item__button" type="button" id="faq-question-1" aria-expanded="false" aria-controls="faq-answer-1" data-faq-toggle>
+                <span>Do you create content from scratch?</span>
+                <span class="faq-item__icon" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-answer-1" role="region" aria-labelledby="faq-question-1" aria-hidden="true">
+              <div class="faq-item__answer">
+                <p>Yes. We can assist with content strategy, content creation, design, and publishing support.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item" style="--i: 1;">
+            <h3 class="faq-item__heading">
+              <button class="faq-item__button" type="button" id="faq-question-2" aria-expanded="false" aria-controls="faq-answer-2" data-faq-toggle>
+                <span>Do you manage LinkedIn accounts?</span>
+                <span class="faq-item__icon" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-answer-2" role="region" aria-labelledby="faq-question-2" aria-hidden="true">
+              <div class="faq-item__answer">
+                <p>Yes. We help founders, professionals, and businesses strengthen their LinkedIn presence through strategic content and profile optimization.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item" style="--i: 2;">
+            <h3 class="faq-item__heading">
+              <button class="faq-item__button" type="button" id="faq-question-3" aria-expanded="false" aria-controls="faq-answer-3" data-faq-toggle>
+                <span>Do you provide video editing services?</span>
+                <span class="faq-item__icon" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-answer-3" role="region" aria-labelledby="faq-question-3" aria-hidden="true">
+              <div class="faq-item__answer">
+                <p>Absolutely. We edit reels, shorts, podcasts, YouTube videos, and other branded video content.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item" style="--i: 3;">
+            <h3 class="faq-item__heading">
+              <button class="faq-item__button" type="button" id="faq-question-4" aria-expanded="false" aria-controls="faq-answer-4" data-faq-toggle>
+                <span>Can you manage our social media accounts?</span>
+                <span class="faq-item__icon" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-answer-4" role="region" aria-labelledby="faq-question-4" aria-hidden="true">
+              <div class="faq-item__answer">
+                <p>Yes. We offer social media management and content support across major platforms.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <div class="section-divider" aria-hidden="true"></div>
+
     <!-- CONTACT -->
     <section id="contact" class="contact-section" aria-labelledby="contact-page-heading">
       <div class="contact-section__inner">
         <header class="contact-section__intro" data-aos="fade-up">
           <span class="contact-section__eyebrow eyebrow">Contact Us</span>
-          <h2 id="contact-page-heading" class="contact-section__title">Let's Build Something That Grows Your Business</h2>
-          <p class="contact-section__subtitle">Tell us about your requirements and our team will contact you with the right solution.</p>
+          <h2 id="contact-page-heading" class="contact-section__title">Let's Build Something Worth Remembering</h2>
           <div class="contact-section__divider" aria-hidden="true"></div>
         </header>
 
         <div class="contact-grid">
           <aside class="contact-info-card" data-aos="fade-right">
             <span class="contact-info-card__label">Contact Details</span>
-            <h3 class="contact-info-card__title">Start a Conversation With Our Team.</h3>
-            <p class="contact-info-card__text">Whether you need better search visibility, more qualified leads, a stronger social presence or YouTube growth support, we are here to help.</p>
+            <p class="contact-info-card__text">Whether you're building a personal brand, growing a business, or strengthening your online presence, we're here to help you create content that makes an impact.</p>
 
             <div class="contact-detail-list">
               <div class="contact-detail-row">
                 <div class="contact-detail-icon" aria-hidden="true"><i class="bi bi-telephone"></i></div>
                 <div>
                   <span class="contact-detail-label">Phone</span>
-                  <div class="contact-detail-value"><a href="tel:+916302142813">+91 63021 42813</a></div>
+                  <div class="contact-detail-value"><a href="tel:+916302142813">+91 6302142813</a></div>
                 </div>
               </div>
               <div class="contact-detail-row">
                 <div class="contact-detail-icon" aria-hidden="true"><i class="bi bi-envelope"></i></div>
                 <div>
                   <span class="contact-detail-label">Email</span>
-                  <div class="contact-detail-value"><a href="mailto:Divinecreators999@gmail.com">Divinecreators999@gmail.com</a></div>
+                  <div class="contact-detail-value"><a href="mailto:DivineCreators999@gmail.com">DivineCreators999@gmail.com</a></div>
                 </div>
               </div>
               <div class="contact-detail-row">
                 <div class="contact-detail-icon" aria-hidden="true"><i class="bi bi-geo-alt"></i></div>
                 <div>
-                  <span class="contact-detail-label">Address</span>
-                  <div class="contact-detail-value">Sholinganallur, Chennai – 600100, Tamil Nadu, India</div>
-                </div>
-              </div>
-              <div class="contact-detail-row">
-                <div class="contact-detail-icon" aria-hidden="true"><i class="bi bi-clock"></i></div>
-                <div>
-                  <span class="contact-detail-label">Working hours</span>
-                  <div class="contact-detail-value">Monday to Saturday, 9:30 AM to 6:30 PM</div>
+                  <span class="contact-detail-label">Location</span>
+                  <div class="contact-detail-value">Sholinganallur, Chennai - 600100</div>
                 </div>
               </div>
             </div>
@@ -171,9 +522,9 @@
 
           <div class="contact-form-card" data-aos="fade-left">
             <header class="contact-form-card__header">
-              <span class="contact-form-card__label">Send Us an Enquiry</span>
-              <h3 class="contact-form-card__title">We're here to help.</h3>
-              <p class="contact-form-card__desc">Share your requirements and our team will contact you.</p>
+              <span class="contact-form-card__label">Free Consultation</span>
+              <h3 class="contact-form-card__title">Book Your Free Consultation</h3>
+              <p class="contact-form-card__desc">Tell us about your brand, goals, and the content support you need. Our team will contact you to discuss the next step.</p>
             </header>
 
             <form id="contactForm" class="contact-form" novalidate autocomplete="off">
@@ -201,20 +552,13 @@
                 <fieldset class="contact-form__field form-field--full contact-service-field">
                   <legend id="serviceLabel">Service Required *</legend>
                   <div class="service-checkbox-grid" role="group" aria-labelledby="serviceLabel">
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Search Engine Optimization (SEO)" /><span>Search Engine Optimization (SEO)</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Social Media Marketing (SMM)" /><span>Social Media Marketing (SMM)</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Paid Advertising (Performance Marketing)" /><span>Paid Advertising (Performance Marketing)</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Content Marketing" /><span>Content Marketing</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Website Design &amp; Development" /><span>Website Design &amp; Development</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Email Marketing" /><span>Email Marketing</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Lead Generation &amp; DATA ANALYTICS" /><span>Lead Generation &amp; DATA ANALYTICS</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Marketing Analytics &amp; Reporting - DATA ANALYTICS" /><span>Marketing Analytics &amp; Reporting - DATA ANALYTICS</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Local Business Marketing" /><span>Local Business Marketing</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="E-commerce Marketing" /><span>E-commerce Marketing</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Personal Branding" /><span>Personal Branding</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Video Marketing" /><span>Video Marketing</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="YouTube Growth Management" /><span>YouTube Growth Management</span></label>
-                    <label class="service-checkbox"><input type="checkbox" name="service" value="Other" /><span>Other</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Social Media Management" /><span>Social Media Management</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="LinkedIn Personal Branding" /><span>LinkedIn Personal Branding</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Video Editing &amp; Short-Form Content" /><span>Video Editing &amp; Short-Form Content</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Graphic Design" /><span>Graphic Design</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Content Writing &amp; Script Development" /><span>Content Writing &amp; Script Development</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="YouTube Growth Support" /><span>YouTube Growth Support</span></label>
+                    <label class="service-checkbox"><input type="checkbox" name="service" value="Website &amp; App Development" /><span>Website &amp; App Development</span></label>
                   </div>
                   <div class="invalid-feedback d-block contact-form__error" data-error="service"></div>
                 </fieldset>
@@ -227,7 +571,7 @@
                   Unable to submit your enquiry right now. Please try again in a moment.
                 </div>
                 <div class="form-field--full contact-form-actions">
-                  <button type="submit" class="contact-submit-button btn-submit">Submit Enquiry <span class="spinner-border spinner-border-sm d-none ms-2" role="status"></span></button>
+                  <button type="submit" class="contact-submit-button btn-submit">SUBMIT <span class="spinner-border spinner-border-sm d-none ms-2" role="status"></span></button>
                 </div>
               </div>
             </form>
@@ -246,68 +590,50 @@
 
   <footer class="site-footer">
     <div class="footer-glow-line" aria-hidden="true"></div>
-    <div class="container-xl">
-      <div class="row g-4 site-footer__grid">
-        <div class="col-12 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-          <div class="site-footer__brand footer-brand">
-            <a href="#home" class="footer-brand-logo brand-logo">
-              <img src="/divinecreators-static/dc.png" alt="Divine Creators logo" width="58" height="58" />
-              <span>DIVINE CREATORS</span>
-            </a>
-            <p class="site-footer__tagline">Your Trusted Partner for Digital Growth. Strategic digital marketing services for businesses in Chennai and beyond.</p>
-            <div class="site-footer__social">
-              <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-              <a href="#" class="social-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-            </div>
+    <div class="container-xl site-footer__inner">
+      <div class="site-footer__grid">
+        <div class="site-footer__brand footer-brand footer-column footer-column--brand" data-aos="fade-up" data-aos-delay="0">
+          <a href="#home" class="footer-brand-logo brand-logo">
+            <img src="/divinecreators-static/dc.png" alt="Divine Creators logo" width="58" height="58" />
+            <span>DIVINE CREATORS</span>
+          </a>
+          <p class="site-footer__tagline">We Turn Ideas Into Content That Builds Brands.</p>
+          <div class="site-footer__social">
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="social-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
-        <div class="col-12 col-lg-2" data-aos="fade-up" data-aos-delay="100">
-          <button class="site-footer__accordion-btn collapsed d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#footerNavCollapse" aria-expanded="false" aria-controls="footerNavCollapse">
-            Navigation <i class="bi bi-chevron-down"></i>
-          </button>
-          <h6 class="site-footer__heading footer-heading d-none d-lg-block">Navigation<span class="footer-heading-line" aria-hidden="true"></span></h6>
-          <div id="footerNavCollapse" class="collapse d-lg-block">
-            <nav aria-label="Footer navigation">
-              <ul class="site-footer__links list-unstyled mb-0">
-                <li><a href="/divinecreators-static/#home">Home</a></li>
-                <li><a href="/divinecreators-static/#about">About Us</a></li>
-                <li><a href="/divinecreators-static/#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="col-12 col-lg-4 site-footer__services-col" data-aos="fade-up" data-aos-delay="200">
+
+        <nav class="footer-column footer-column--nav" aria-label="Footer navigation" data-aos="fade-up" data-aos-delay="100">
+          <h6 class="site-footer__heading footer-heading">Navigation<span class="footer-heading-line" aria-hidden="true"></span></h6>
+          <ul class="site-footer__links list-unstyled mb-0">
+            <li><a href="/divinecreators-static/#home">Home</a></li>
+            <li><a href="/divinecreators-static/#about">About Us</a></li>
+            <li><a href="/divinecreators-static/#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-column footer-column--services" data-aos="fade-up" data-aos-delay="200">
           <h6 class="site-footer__heading footer-heading">Services<span class="footer-heading-line" aria-hidden="true"></span></h6>
-          <div class="site-footer__services-list">
-            <ul class="site-footer__links list-unstyled mb-0">
-              <li><a href="/divinecreators-static/#seo">SEO</a></li>
-              <li><a href="/divinecreators-static/#social-media-marketing">Social Media</a></li>
-              <li><a href="/divinecreators-static/#paid-advertising">Paid Advertising</a></li>
-              <li><a href="/divinecreators-static/#content-marketing">Content Marketing</a></li>
-              <li><a href="/divinecreators-static/#website-development">Web Design</a></li>
-            </ul>
-            <ul class="site-footer__links list-unstyled mb-0">
-              <li><a href="/divinecreators-static/#email-marketing">Email Marketing</a></li>
-              <li><a href="/divinecreators-static/#lead-generation">Lead Generation</a></li>
-              <li><a href="/divinecreators-static/#marketing-analytics">Analytics</a></li>
-              <li><a href="/divinecreators-static/#local-business-marketing">Local Marketing</a></li>
-            </ul>
-            <ul class="site-footer__links list-unstyled mb-0">
-              <li><a href="/divinecreators-static/#ecommerce-marketing">E-commerce</a></li>
-              <li><a href="/divinecreators-static/#personal-branding">Personal Branding</a></li>
-              <li><a href="/divinecreators-static/#video-marketing">Video Marketing</a></li>
-              <li><a href="/divinecreators-static/#youtube-growth-management">YouTube Growth</a></li>
-            </ul>
-          </div>
+          <ul class="site-footer__links site-footer__services-list list-unstyled mb-0">
+            <li><a href="/divinecreators-static/#social-media-management">Social Media Management</a></li>
+            <li><a href="/divinecreators-static/#linkedin-personal-branding">LinkedIn Personal Branding</a></li>
+            <li><a href="/divinecreators-static/#video-editing-short-form-content">Video Editing &amp; Short-Form Content</a></li>
+            <li><a href="/divinecreators-static/#graphic-design">Graphic Design</a></li>
+            <li><a href="/divinecreators-static/#content-writing-script-development">Content Writing &amp; Script Development</a></li>
+            <li><a href="/divinecreators-static/#youtube-growth-support">YouTube Growth Support</a></li>
+            <li><a href="/divinecreators-static/#website-app-development">Website &amp; App Development</a></li>
+          </ul>
         </div>
-        <div class="col-12 col-lg-3 site-footer__contact-col" data-aos="fade-up" data-aos-delay="300">
+
+        <div class="footer-column footer-column--contact site-footer__contact-col" data-aos="fade-up" data-aos-delay="300">
           <h6 class="site-footer__heading footer-heading">Contact<span class="footer-heading-line" aria-hidden="true"></span></h6>
           <ul class="site-footer__contact list-unstyled mb-0">
-            <li><i class="bi bi-telephone" aria-hidden="true"></i><a href="tel:+916302142813">+91 63021 42813</a></li>
-            <li><i class="bi bi-envelope" aria-hidden="true"></i><a href="mailto:Divinecreators999@gmail.com">Divinecreators999@gmail.com</a></li>
-            <li><i class="bi bi-geo-alt" aria-hidden="true"></i><span>Sholinganallur, Chennai – 600100</span></li>
+            <li><i class="bi bi-telephone" aria-hidden="true"></i><a href="tel:+916302142813">+91 6302142813</a></li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i><a href="mailto:DivineCreators999@gmail.com">DivineCreators999@gmail.com</a></li>
+            <li><i class="bi bi-geo-alt" aria-hidden="true"></i><span>Sholinganallur, Chennai - 600100</span></li>
           </ul>
         </div>
       </div>
@@ -320,12 +646,12 @@
   <button type="button" class="floating-back-to-top" data-back-to-top aria-label="Back to top" title="Back to top">
     <i class="bi bi-arrow-up" aria-hidden="true"></i>
   </button>
-  <a href="https://wa.me/916302142813?text=Hello%20DIVINE%20CREATORS%2C%20I%20would%20like%20to%20discuss%20digital%20marketing%20services%20for%20my%20business." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+  <a href="https://wa.me/916302142813?text=Hello%20DIVINE%20CREATORS%2C%20I%20would%20like%20to%20book%20a%20free%20consultation." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="/divinecreators-static/js/motion-graphics.js" defer></script>
-  <script src="/divinecreators-static/js/home-services.js" defer></script>
-  <script src="/divinecreators-static/js/section-motion.js" defer></script>
-  <script src="/divinecreators-static/js/script.js?v=opacity-fix-2" defer></script>
+  <script src="/divinecreators-static/js/home-services.js?v=services-layout-2" defer></script>
+  <script src="/divinecreators-static/js/section-motion.js?v=about-polish-5" defer></script>
+  <script src="/divinecreators-static/js/script.js?v=form-service-2" defer></script>
 </body>
 </html>

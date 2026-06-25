@@ -98,7 +98,7 @@ const MobileMenu = ({ isOpen, onClose, returnFocusRef, activeSection, onNavClick
           className="mobile-menu__cta"
           onClick={(event) => onNavClick(event, "contact")}
         >
-          Get Started
+          Book a Free Consultation
           <i className="bi bi-arrow-right" aria-hidden="true" />
         </a>
 

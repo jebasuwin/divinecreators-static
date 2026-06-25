@@ -1,11 +1,11 @@
 const items = [
-  "SEO",
-  "Social Media",
-  "Paid Ads",
-  "Content",
-  "Web Design",
-  "Lead Generation",
-  "Analytics",
+  "Social Media Management",
+  "LinkedIn Personal Branding",
+  "Video Editing",
+  "Graphic Design",
+  "Content Writing",
+  "YouTube Growth Support",
+  "Website & App Development",
 ];
 
 const MarqueeStrip = () => {
@@ -16,7 +16,7 @@ const MarqueeStrip = () => {
       <div className="marquee-track">
         {track.map((item, i) => (
           <span key={`${item}-${i}`}>
-            <em>{item}</em> •
+            <em>{item}</em> *
           </span>
         ))}
       </div>

@@ -32,6 +32,7 @@
         nodeFill: "rgba(0, 0, 0, 0.88)",
         nodeStroke: "rgba(0, 0, 0, 0.95)",
         connector: "rgba(0, 0, 0, 0.22)",
+        label: "rgba(0, 0, 0, 0.72)",
       };
     }
 
@@ -44,6 +45,7 @@
       nodeFill: "rgba(255, 255, 255, 0.95)",
       nodeStroke: "#ffffff",
       connector: "rgba(255, 255, 255, 0.35)",
+      label: "rgba(255, 255, 255, 0.72)",
     };
   }
 
@@ -52,29 +54,109 @@
     const canvas = root?.querySelector(".about-dashboard-viz__canvas");
     if (!root || !canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true, desynchronized: true });
     const points = [
-      { x: 0.08, y: 0.78, label: "Start" },
-      { x: 0.28, y: 0.62 },
-      { x: 0.48, y: 0.48 },
-      { x: 0.68, y: 0.32 },
-      { x: 0.88, y: 0.18, label: "Growth" },
+      { x: 0.1, y: 0.74, label: "Position", labelDx: 14, labelDy: -22 },
+      { x: 0.3, y: 0.61, label: "Content", labelDx: 12, labelDy: 23 },
+      { x: 0.5, y: 0.47, label: "Trust", labelDx: 14, labelDy: -24 },
+      { x: 0.68, y: 0.34, label: "Leads", labelDx: 12, labelDy: 24 },
+      { x: 0.84, y: 0.21, label: "Growth", labelDx: -8, labelDy: 30, labelAlign: "right" },
     ];
-    let progress = reduced ? 1 : 0;
+    const duration = mobile ? 950 : 1350;
+    const repeatDelay = mobile ? 3400 : 3800;
+    let progress = 0;
     let raf = 0;
+    let repeatTimer = 0;
+    let startTime = 0;
+    let completed = false;
+    let visible = false;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
 
     const resize = () => {
       const rect = root.getBoundingClientRect();
-      const dpr = Math.min(devicePixelRatio || 1, 2);
+      const dpr = Math.min(devicePixelRatio || 1, mobile ? 1.25 : 1.5);
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw(performance.now());
     };
 
-    const draw = () => {
+    const getVisiblePoints = (scaledPoints, eased) => {
+      const maxSegment = scaledPoints.length - 1;
+      const position = eased * maxSegment;
+      const fullSegments = Math.floor(position);
+      const segmentProgress = position - fullSegments;
+      const visiblePoints = [scaledPoints[0]];
+
+      for (let i = 1; i <= fullSegments && i < scaledPoints.length; i += 1) {
+        visiblePoints.push(scaledPoints[i]);
+      }
+
+      if (fullSegments < maxSegment) {
+        const a = scaledPoints[fullSegments];
+        const b = scaledPoints[fullSegments + 1];
+        visiblePoints.push({
+          x: a.x + (b.x - a.x) * segmentProgress,
+          y: a.y + (b.y - a.y) * segmentProgress,
+        });
+      }
+
+      return visiblePoints;
+    };
+
+    function drawLabels(scaledPoints, eased, theme, w) {
+      const segmentCount = Math.max(points.length - 1, 1);
+      const labelSize = Math.max(10, Math.min(12, w * 0.026));
+      ctx.font = `700 ${labelSize}px Manrope, system-ui, sans-serif`;
+      ctx.textBaseline = "middle";
+
+      scaledPoints.forEach((point, index) => {
+        const meta = points[index];
+        if (!meta.label) return;
+
+        const pointProgress = index === 0 ? 1 : clamp((eased - (index - 0.35) / segmentCount) * segmentCount, 0, 1);
+        if (pointProgress <= 0.05) return;
+
+        const label = meta.label;
+        const metrics = ctx.measureText(label);
+        let x = point.x + (meta.labelDx ?? 10);
+        let y = point.y + (meta.labelDy ?? -18);
+
+        if (meta.labelAlign === "right") x = point.x - metrics.width + (meta.labelDx ?? -10);
+
+        if (x + metrics.width > w - 14) x = point.x - metrics.width - 12;
+        if (y < 18) y = point.y + 22;
+
+        ctx.save();
+        ctx.globalAlpha = 0.25 + pointProgress * 0.65;
+        ctx.shadowColor = "rgba(0, 0, 0, 0.48)";
+        ctx.shadowBlur = 10;
+        ctx.fillStyle = "rgba(0, 0, 0, 0.32)";
+        if (typeof ctx.roundRect === "function") {
+          ctx.beginPath();
+          ctx.roundRect(x - 7, y - labelSize * 0.8, metrics.width + 14, labelSize * 1.55, 999);
+          ctx.fill();
+        }
+        ctx.fillStyle = theme.label;
+        ctx.fillText(label, x, y);
+        ctx.restore();
+      });
+    }
+
+    function draw(t = performance.now()) {
       const theme = getAboutChartTheme();
       const w = root.clientWidth;
       const h = root.clientHeight;
+      if (!w || !h) return;
+
+      const eased = easeOutCubic(progress);
+      const scaledPoints = points.map((p) => ({ x: p.x * w, y: p.y * h }));
+      const visiblePoints = getVisiblePoints(scaledPoints, eased);
+
       ctx.clearRect(0, 0, w, h);
       ctx.shadowBlur = 0;
       ctx.shadowColor = "transparent";
@@ -89,46 +171,71 @@
         ctx.stroke();
       }
 
-      const visible = Math.max(1, Math.ceil(progress * points.length));
-      const pts = points.slice(0, visible).map((p) => ({ x: p.x * w, y: p.y * h }));
-
-      if (pts.length > 1) {
-        ctx.strokeStyle = theme.line;
-        ctx.lineWidth = 3;
-        ctx.shadowColor = theme.lineGlow;
-        ctx.shadowBlur = 8;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.045)";
+      for (let i = 1; i < 4; i += 1) {
+        const x = (w / 4) * i;
         ctx.beginPath();
-        ctx.moveTo(pts[0].x, pts[0].y);
-        for (let i = 1; i < pts.length; i += 1) ctx.lineTo(pts[i].x, pts[i].y);
+        ctx.moveTo(x, h * 0.16);
+        ctx.lineTo(x, h * 0.86);
         ctx.stroke();
-        ctx.shadowBlur = 0;
+      }
 
-        ctx.lineTo(pts[pts.length - 1].x, h);
-        ctx.lineTo(pts[0].x, h);
+      if (visiblePoints.length > 1) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(visiblePoints[0].x, visiblePoints[0].y);
+        visiblePoints.slice(1).forEach((p) => ctx.lineTo(p.x, p.y));
+        ctx.lineTo(visiblePoints[visiblePoints.length - 1].x, h);
+        ctx.lineTo(visiblePoints[0].x, h);
         ctx.closePath();
-        const fill = ctx.createLinearGradient(0, 0, 0, h);
+        const fill = ctx.createLinearGradient(0, h * 0.1, 0, h);
         fill.addColorStop(0, theme.fillTop);
         fill.addColorStop(1, theme.fillBottom);
         ctx.fillStyle = fill;
         ctx.fill();
+        ctx.restore();
+
+        ctx.save();
+        ctx.strokeStyle = theme.line;
+        ctx.lineWidth = 3;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.shadowColor = theme.lineGlow;
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.moveTo(visiblePoints[0].x, visiblePoints[0].y);
+        visiblePoints.slice(1).forEach((p) => ctx.lineTo(p.x, p.y));
+        ctx.stroke();
+        ctx.restore();
       }
 
-      pts.forEach((p, i) => {
-        const pulse = reduced ? 1 : 0.6 + Math.sin(Date.now() * 0.002 + i) * 0.4;
+      scaledPoints.forEach((p, i) => {
+        const segmentCount = Math.max(points.length - 1, 1);
+        const pointProgress = i === 0 ? 1 : clamp((eased - (i - 0.2) / segmentCount) * segmentCount, 0, 1);
+        if (pointProgress <= 0) return;
+        const pulse = completed ? 0 : Math.sin(t * 0.004 + i) * 0.5 + 0.5;
+
+        ctx.save();
+        ctx.globalAlpha = pointProgress;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 6 + pulse * 2, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, 5.5 + pulse * 1.2, 0, Math.PI * 2);
         ctx.fillStyle = theme.nodeFill;
         ctx.fill();
         ctx.strokeStyle = theme.nodeStroke;
-        ctx.lineWidth = 2.5;
+        ctx.lineWidth = 2;
         ctx.stroke();
+        ctx.restore();
       });
 
-      for (let i = 0; i < pts.length - 1; i += 1) {
-        const a = pts[i];
-        const b = pts[i + 1];
+      for (let i = 0; i < scaledPoints.length - 1; i += 1) {
+        const connectorProgress = clamp((eased - i / (scaledPoints.length - 1)) * 3, 0, 1);
+        if (connectorProgress <= 0) continue;
+        const a = scaledPoints[i];
+        const b = scaledPoints[i + 1];
         const mx = (a.x + b.x) / 2;
         const my = (a.y + b.y) / 2;
+        ctx.save();
+        ctx.globalAlpha = connectorProgress * 0.75;
         ctx.strokeStyle = theme.connector;
         ctx.lineWidth = 1.5;
         ctx.setLineDash([4, 6]);
@@ -137,33 +244,69 @@
         ctx.lineTo(mx + (i % 2 ? 30 : -30), my - 20);
         ctx.stroke();
         ctx.setLineDash([]);
+        ctx.restore();
       }
 
-      if (!reduced && progress < 1) {
-        progress = Math.min(1, progress + 0.008);
+      drawLabels(scaledPoints, eased, theme, w);
+    }
+
+    const animate = (t) => {
+      if (!startTime) startTime = t;
+      progress = clamp((t - startTime) / duration, 0, 1);
+      draw(t);
+
+      if (progress < 1) {
+        raf = requestAnimationFrame(animate);
+      } else {
+        completed = true;
+        raf = 0;
+        draw(t);
+        if (visible && !document.hidden) {
+          repeatTimer = window.setTimeout(start, repeatDelay);
+        }
       }
+    };
+
+    const start = () => {
+      if (!visible || document.hidden) return;
+      window.clearTimeout(repeatTimer);
+      cancelAnimationFrame(raf);
+      completed = false;
+      progress = 0;
+      startTime = 0;
+      raf = requestAnimationFrame(animate);
+    };
+
+    const stop = () => {
+      window.clearTimeout(repeatTimer);
+      repeatTimer = 0;
+      cancelAnimationFrame(raf);
+      raf = 0;
     };
 
     resize();
     window.addEventListener("resize", resize, { passive: true });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stop();
+      } else if (visible) {
+        start();
+      }
+    });
 
-    if (hasGsap && hasST && !reduced) {
-      ScrollTrigger.create({
-        trigger: root,
-        start: "top 80%",
-        onEnter: () => {
-          progress = 0;
-          cancelAnimationFrame(raf);
-          const animate = () => {
-            draw();
-            if (progress < 1) raf = requestAnimationFrame(animate);
-          };
-          raf = requestAnimationFrame(animate);
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          visible = entry.isIntersecting;
+          if (visible) start();
+          else stop();
         },
-      });
+        { rootMargin: "0px 0px -18% 0px", threshold: 0.2 }
+      );
+      observer.observe(root);
     } else {
-      progress = 1;
-      draw();
+      visible = true;
+      start();
     }
   }
 

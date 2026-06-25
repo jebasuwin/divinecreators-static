@@ -1,21 +1,12 @@
-const industries = [
-  "E-commerce",
-  "Local Services",
-  "Healthcare",
-  "Real Estate",
-  "Coaching",
-  "SaaS",
-  "Creators",
-  "Retail",
-];
+import { whoWeWorkWith } from "../../data/homeContent";
 
 const ClientStrip = () => {
-  const track = [...industries, ...industries];
+  const track = [...whoWeWorkWith, ...whoWeWorkWith];
 
   return (
-    <section className="client-strip" aria-label="Industries we serve">
+    <section className="client-strip" aria-label="Who we work with">
       <div className="container-gd">
-        <p className="client-strip__label reveal reveal-up">Trusted across industries</p>
+        <p className="client-strip__label reveal reveal-up">Who We Work With</p>
       </div>
       <div className="client-strip__marquee" aria-hidden="true">
         <div className="client-strip__track">

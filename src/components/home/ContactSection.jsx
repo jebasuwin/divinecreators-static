@@ -17,13 +17,8 @@ const contactItems = [
   },
   {
     icon: "bi-geo-alt",
-    label: "Address",
+    label: "Location",
     content: businessInfo.location,
-  },
-  {
-    icon: "bi-clock",
-    label: "Working hours",
-    content: businessInfo.workingHours,
   },
 ];
 
@@ -73,20 +68,16 @@ const ContactSection = () => {
         <header className="contact-section__intro reveal reveal-up">
           <span className="contact-section__eyebrow eyebrow">Contact Us</span>
           <h2 id="contact-page-heading" className="contact-section__title">
-            Let&apos;s Build Something That Grows Your Business
+            Let&apos;s Build Something Worth Remembering
           </h2>
-          <p className="contact-section__subtitle">
-            Tell us about your requirements and our team will contact you with the right solution.
-          </p>
           <div className="contact-section__divider" aria-hidden="true" />
         </header>
 
         <div className="contact-grid">
           <aside className="contact-info-card reveal reveal-up">
             <span className="contact-info-card__label">Contact Details</span>
-            <h3 className="contact-info-card__title">Start a Conversation With Our Team.</h3>
             <p className="contact-info-card__text">
-              Whether you need better search visibility, more qualified leads, a stronger social presence or YouTube growth support, we are here to help.
+              Whether you&apos;re building a personal brand, growing a business, or strengthening your online presence, we&apos;re here to help you create content that makes an impact.
             </p>
 
             <div className="contact-detail-list">
@@ -116,10 +107,10 @@ const ContactSection = () => {
             ) : (
               <>
                 <header className="contact-form-card__header">
-                  <span className="contact-form-card__label">Send Us an Enquiry</span>
-                  <h3 className="contact-form-card__title">We&apos;re here to help.</h3>
+                  <span className="contact-form-card__label">Free Consultation</span>
+                  <h3 className="contact-form-card__title">Book Your Free Consultation</h3>
                   <p className="contact-form-card__desc">
-                    Share your requirements and our team will contact you.
+                    Tell us about your brand, goals, and the content support you need. Our team will contact you to discuss the next step.
                   </p>
                 </header>
 
@@ -240,7 +231,7 @@ const ContactSection = () => {
                         className="contact-submit-button"
                         disabled={submitting}
                       >
-                        {submitting ? "Sending..." : "Submit Enquiry"}
+                        {submitting ? "Sending..." : "SUBMIT"}
                       </button>
                     </div>
                   </div>

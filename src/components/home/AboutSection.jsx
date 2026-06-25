@@ -189,10 +189,10 @@ const AboutSection = () => {
                 <i className="bi bi-compass" /> Strategy
               </span>
               <span className="about-dashboard-viz__chip about-dashboard-viz__chip--2">
-                <i className="bi bi-graph-up-arrow" /> Analytics
+                <i className="bi bi-pencil-square" /> Content
               </span>
               <span className="about-dashboard-viz__chip about-dashboard-viz__chip--3">
-                <i className="bi bi-lightning" /> Innovation
+                <i className="bi bi-chat-square-quote" /> Storytelling
               </span>
             </div>
           </div>

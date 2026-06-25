@@ -31,7 +31,7 @@ const AboutPreview = () => {
         <div className="about-preview__visual reveal reveal-right image-tilt">
           <ImageReveal
             src={images.home.whyPartner}
-            alt="Strategy planning for digital marketing"
+            alt="Divine Creators content strategy"
             ratio="standard"
           />
         </div>

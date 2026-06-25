@@ -70,6 +70,8 @@
       ".circuit-motion-graphic",
       ".blob-motion-graphic",
       ".aurora-motion-graphic",
+      ".work-with-section",
+      ".faq-section",
       "canvas",
       "svg",
       "picture",
@@ -159,6 +161,587 @@
     revealNodes.forEach((el) => revealObserver.observe(el));
     textNodes.forEach((el) => textObserver.observe(el));
     requestAnimationFrame(activateVisible);
+  };
+
+  const setupWorkWithScrollEffects = () => {
+    const section = document.querySelector(".work-with-section");
+    if (!section) return;
+
+    const isVisible = () => {
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+      return rect.top < viewportHeight * 0.82 && rect.bottom > viewportHeight * 0.08;
+    };
+
+    const update = () => {
+      section.classList.toggle("is-inview", isVisible());
+    };
+
+    update();
+
+    if (!("IntersectionObserver" in window)) {
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-inview", entry.isIntersecting);
+        });
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.08 }
+    );
+
+    observer.observe(section);
+  };
+
+  const setupProofStatsEffects = () => {
+    const section = document.querySelector(".proof-stats-section");
+    if (!section) return;
+
+    let isActive = false;
+    const setInView = (visible) => {
+      isActive = visible;
+      section.classList.toggle("is-inview", visible);
+    };
+
+    const checkInView = () => {
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+      setInView(rect.top < viewportHeight * 0.86 && rect.bottom > viewportHeight * 0.08);
+    };
+
+    checkInView();
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => setInView(entry.isIntersecting));
+        },
+        { rootMargin: "0px 0px -14% 0px", threshold: 0.08 }
+      );
+
+      observer.observe(section);
+    } else {
+      window.addEventListener("scroll", checkInView, { passive: true });
+      window.addEventListener("resize", checkInView);
+    }
+
+    const path = section.querySelector(".proof-chart__line");
+    const flow = section.querySelector(".proof-chart__flow");
+    const runner = section.querySelector(".proof-chart__runner");
+    if (!path || !runner || typeof path.getTotalLength !== "function") return;
+
+    let length = 0;
+    try {
+      length = path.getTotalLength();
+    } catch (error) {
+      length = 0;
+    }
+    if (!length) return;
+
+    section.classList.add("motion-ready");
+    const duration = reducedMotion ? 9000 : 7200;
+    const dashCycle = 466;
+    const startTime = performance.now();
+
+    const render = (now) => {
+      const progress = ((now - startTime) % duration) / duration;
+      const point = path.getPointAtLength(progress * length);
+      runner.setAttribute("cx", point.x.toFixed(2));
+      runner.setAttribute("cy", point.y.toFixed(2));
+
+      if (flow) {
+        flow.style.strokeDashoffset = String(-(progress * dashCycle));
+      }
+
+      if (!isActive) {
+        runner.style.opacity = "0.48";
+      } else {
+        runner.style.opacity = "1";
+      }
+
+      window.requestAnimationFrame(render);
+    };
+
+    window.requestAnimationFrame(render);
+  };
+
+  const setupFaqAccordion = () => {
+    const section = document.querySelector(".faq-section");
+    const list = document.querySelector("[data-faq-list]");
+    if (!section || !list) return;
+
+    const items = Array.from(list.querySelectorAll(".faq-item"));
+
+    const setPanelHeight = (item, open) => {
+      const panel = item.querySelector(".faq-item__panel");
+      if (!panel) return;
+      panel.style.maxHeight = open ? `${panel.scrollHeight}px` : "0px";
+    };
+
+    const closeItem = (item) => {
+      const button = item.querySelector("[data-faq-toggle]");
+      const panel = item.querySelector(".faq-item__panel");
+      item.classList.remove("is-open");
+      if (button) button.setAttribute("aria-expanded", "false");
+      if (panel) panel.setAttribute("aria-hidden", "true");
+      setPanelHeight(item, false);
+    };
+
+    const openItem = (item) => {
+      const button = item.querySelector("[data-faq-toggle]");
+      const panel = item.querySelector(".faq-item__panel");
+      item.classList.add("is-open");
+      if (button) button.setAttribute("aria-expanded", "true");
+      if (panel) panel.setAttribute("aria-hidden", "false");
+      setPanelHeight(item, true);
+    };
+
+    items.forEach((item) => {
+      const button = item.querySelector("[data-faq-toggle]");
+      closeItem(item);
+
+      if (!button) return;
+      button.addEventListener("click", () => {
+        const shouldOpen = !item.classList.contains("is-open");
+        items.forEach((other) => {
+          if (other !== item) closeItem(other);
+        });
+        if (shouldOpen) openItem(item);
+        else closeItem(item);
+      });
+    });
+
+    let enteringTimer = null;
+    const setInView = (visible) => {
+      if (enteringTimer) {
+        window.clearTimeout(enteringTimer);
+        enteringTimer = null;
+      }
+
+      if (!visible) {
+        section.classList.remove("is-inview", "is-entering");
+        return;
+      }
+
+      section.classList.add("is-inview", "is-entering");
+      enteringTimer = window.setTimeout(() => {
+        section.classList.remove("is-entering");
+        enteringTimer = null;
+      }, 760);
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      setInView(true);
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            setInView(entry.isIntersecting);
+          });
+        },
+        { rootMargin: "0px 0px -22% 0px", threshold: 0.12 }
+      );
+
+      observer.observe(section);
+    }
+
+    window.addEventListener("resize", () => {
+      items.forEach((item) => {
+        if (item.classList.contains("is-open")) setPanelHeight(item, true);
+      });
+    }, { passive: true });
+  };
+
+  const setupAudienceScrollEffects = () => {
+    const section = document.querySelector(".audience-section");
+    if (!section) return;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const setFinalState = () => {
+      section.classList.add("is-inview");
+      section.style.setProperty("--audience-copy-y", "0px");
+      section.style.setProperty("--audience-copy-opacity", "1");
+      section.style.setProperty("--audience-flow-y", "0px");
+      section.style.setProperty("--audience-flow-scale", "1");
+      section.style.setProperty("--audience-flow-tilt", "0deg");
+      section.style.setProperty("--audience-flow-opacity", "1");
+      section.style.setProperty("--audience-highlight-reveal", "1");
+      section.style.setProperty("--audience-highlight-width", "100%");
+      section.style.setProperty("--audience-line-opacity", "0.24");
+      section.style.setProperty("--audience-line-shift", "0%");
+      section.style.setProperty("--audience-sweep-x", "34%");
+    };
+
+    if (reducedMotion) {
+      setFinalState();
+      return;
+    }
+
+    let ticking = false;
+    const update = () => {
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+      const progress = clamp(
+        (viewportHeight * 0.86 - rect.top) / (viewportHeight * 0.78 + Math.min(rect.height, viewportHeight * 0.45)),
+        0,
+        1
+      );
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const isInView = rect.top < viewportHeight * 0.82 && rect.bottom > viewportHeight * 0.14;
+
+      section.classList.toggle("is-inview", isInView);
+      section.style.setProperty("--audience-copy-y", `${(1 - eased) * 18}px`);
+      section.style.setProperty("--audience-copy-opacity", `${0.74 + eased * 0.26}`);
+      section.style.setProperty("--audience-flow-y", `${(1 - eased) * 28}px`);
+      section.style.setProperty("--audience-flow-scale", `${0.96 + eased * 0.04}`);
+      section.style.setProperty("--audience-flow-tilt", `${(1 - eased) * -4}deg`);
+      section.style.setProperty("--audience-flow-opacity", `${0.78 + eased * 0.22}`);
+      section.style.setProperty("--audience-highlight-reveal", `${clamp(eased * 1.18, 0, 1)}`);
+      section.style.setProperty("--audience-highlight-width", `${clamp(eased * 112, 0, 100)}%`);
+      section.style.setProperty("--audience-line-opacity", `${0.12 + eased * 0.16}`);
+      section.style.setProperty("--audience-line-shift", `${-18 + eased * 36}%`);
+      section.style.setProperty("--audience-sweep-x", `${-78 + eased * 112}%`);
+    };
+
+    const requestUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        update();
+      });
+    };
+
+    update();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+  };
+
+  const setupAudienceLiveMotion = () => {
+    const section = document.querySelector(".audience-section");
+    const flow = section?.querySelector(".audience-flow");
+    if (!section || !flow || !window.requestAnimationFrame) return;
+
+    section.classList.add("audience-motion-live");
+
+    const studio = flow.querySelector(".audience-flow__studio");
+    const phone = flow.querySelector(".audience-flow__phone");
+    const insight = flow.querySelector(".audience-flow__panel--insight");
+    const response = flow.querySelector(".audience-flow__panel--response");
+    const trail = flow.querySelector(".audience-flow__trail");
+    const trailDot = flow.querySelector(".audience-flow__trail span");
+    const signals = Array.from(flow.querySelectorAll(".audience-flow__signal"));
+    const chips = Array.from(flow.querySelectorAll(".audience-flow__chip"));
+    const lines = Array.from(flow.querySelectorAll(".audience-flow__lines span"));
+
+    const orbitDots = [0, 1].map((index) => {
+      const dot = document.createElement("span");
+      dot.className = `audience-flow__orbital audience-flow__orbital--${index + 1}`;
+      dot.setAttribute("aria-hidden", "true");
+      flow.appendChild(dot);
+      return dot;
+    });
+
+    let active = false;
+    let frameId = null;
+    let start = performance.now();
+
+    const animate = (now) => {
+      const time = (now - start) / 1000;
+      const flowWidth = flow.clientWidth || 570;
+      const trailWidth = trail?.clientWidth || flowWidth * 0.86;
+      const orbitRadius = Math.min(flowWidth * 0.24, 150);
+
+      flow.style.setProperty("--audience-grid-x", `${(time * 9) % 38}px`);
+      flow.style.setProperty("--audience-grid-y", `${(time * 6) % 38}px`);
+      flow.style.setProperty("--audience-live-sweep", `${-58 + ((time * 30) % 145)}%`);
+
+      if (studio) {
+        studio.style.transform = `translate3d(${Math.sin(time * 0.72) * 8}px, ${Math.cos(time * 0.78) * -6}px, 0)`;
+      }
+
+      if (phone) {
+        const phoneLift = Math.sin(time * 1.3) * -7;
+        const phoneScale = 1 + Math.cos(time * 1.05) * 0.024;
+        phone.style.transform = `translate3d(${Math.cos(time * 0.9) * 4}px, ${phoneLift}px, 0) scale(${phoneScale})`;
+      }
+
+      if (insight) {
+        insight.style.transform = `translate3d(${Math.sin(time * 0.82) * -7}px, ${Math.cos(time * 0.95) * 5}px, 0)`;
+      }
+
+      if (response) {
+        response.style.transform = `translate3d(${Math.cos(time * 0.76) * 7}px, ${Math.sin(time * 0.9) * -5}px, 0)`;
+      }
+
+      if (trailDot) {
+        const dotProgress = (time * 0.32) % 1;
+        trailDot.style.left = "0";
+        trailDot.style.transform = `translate3d(${dotProgress * Math.max(trailWidth - 9, 0)}px, 0, 0)`;
+        trailDot.style.opacity = dotProgress > 0.08 && dotProgress < 0.92 ? "1" : "0";
+      }
+
+      signals.forEach((signal, index) => {
+        const pulse = (Math.sin(time * 1.2 + index * Math.PI) + 1) / 2;
+        signal.style.transform = `translateX(-50%) scale(${0.84 + pulse * 0.24})`;
+        signal.style.opacity = String(0.18 + pulse * 0.28);
+      });
+
+      chips.forEach((chip, index) => {
+        chip.style.transform = `translate3d(${Math.sin(time * 0.95 + index) * 5}px, ${Math.cos(time * 1.08 + index * 0.8) * -7}px, 0)`;
+      });
+
+      lines.forEach((line, index) => {
+        const wave = (Math.sin(time * 2.1 + index * 0.72) + 1) / 2;
+        line.style.transform = `scaleX(${0.62 + wave * 0.38})`;
+        line.style.opacity = String(0.58 + wave * 0.38);
+      });
+
+      orbitDots.forEach((dot, index) => {
+        const angle = time * (index ? -0.72 : 0.9) + index * Math.PI;
+        const x = Math.cos(angle) * orbitRadius;
+        const y = Math.sin(angle) * orbitRadius * 0.72;
+        dot.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0)`;
+        dot.style.opacity = String(0.28 + ((Math.sin(time * 1.4 + index) + 1) / 2) * 0.72);
+      });
+
+      if (active && !document.hidden) {
+        frameId = requestAnimationFrame(animate);
+      } else {
+        frameId = null;
+      }
+    };
+
+    const startLoop = () => {
+      if (active && frameId !== null) return;
+      active = true;
+      start = performance.now();
+      frameId = requestAnimationFrame(animate);
+    };
+
+    const stopLoop = () => {
+      active = false;
+      if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+        frameId = null;
+      }
+    };
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) startLoop();
+          else stopLoop();
+        },
+        { rootMargin: "18% 0px 18% 0px", threshold: 0.01 }
+      );
+      observer.observe(section);
+    } else {
+      startLoop();
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopLoop();
+      else startLoop();
+    });
+  };
+
+  const setupWhyChooseScrollEffects = () => {
+    const section = document.querySelector(".why-choose-section");
+    if (!section) return;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const setFinalState = () => {
+      section.classList.add("is-inview");
+      section.style.setProperty("--why-copy-y", "0px");
+      section.style.setProperty("--why-copy-opacity", "1");
+      section.style.setProperty("--why-card-y", "0px");
+      section.style.setProperty("--why-card-opacity", "1");
+      section.style.setProperty("--why-viz-y", "0px");
+      section.style.setProperty("--why-viz-scale", "1");
+      section.style.setProperty("--why-viz-opacity", "1");
+      section.style.setProperty("--why-glow-opacity", "0.95");
+      section.style.setProperty("--why-line-opacity", "0.24");
+    };
+
+    if (reducedMotion) {
+      setFinalState();
+      return;
+    }
+
+    let ticking = false;
+    const update = () => {
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+      const progress = clamp(
+        (viewportHeight * 0.9 - rect.top) / (viewportHeight * 0.82 + Math.min(rect.height, viewportHeight * 0.45)),
+        0,
+        1
+      );
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const isInView = rect.top < viewportHeight * 0.88 && rect.bottom > viewportHeight * 0.12;
+
+      section.classList.toggle("is-inview", isInView);
+      section.style.setProperty("--why-copy-y", `${(1 - eased) * 30}px`);
+      section.style.setProperty("--why-copy-opacity", `${0.5 + eased * 0.5}`);
+      section.style.setProperty("--why-card-y", `${(1 - eased) * 38}px`);
+      section.style.setProperty("--why-card-opacity", `${0.38 + eased * 0.62}`);
+      section.style.setProperty("--why-viz-y", `${(1 - eased) * 42}px`);
+      section.style.setProperty("--why-viz-scale", `${0.9 + eased * 0.1}`);
+      section.style.setProperty("--why-viz-opacity", `${0.42 + eased * 0.58}`);
+      section.style.setProperty("--why-glow-opacity", `${0.3 + eased * 0.65}`);
+      section.style.setProperty("--why-line-opacity", `${0.06 + eased * 0.18}`);
+    };
+
+    const requestUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        update();
+      });
+    };
+
+    update();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+  };
+
+  const setupWhyChooseLiveMotion = () => {
+    const section = document.querySelector(".why-choose-section");
+    const viz = section?.querySelector(".why-choose-viz");
+    if (!section || !viz || !window.requestAnimationFrame) return;
+
+    section.classList.add("why-choose-motion-live");
+    const motionScale = reducedMotion ? 0.42 : 1;
+
+    const hub = viz.querySelector(".why-choose-viz__hub");
+    const outerRing = viz.querySelector(".why-choose-viz__ring--outer");
+    const innerRing = viz.querySelector(".why-choose-viz__ring--inner");
+    const signals = Array.from(viz.querySelectorAll(".why-choose-viz__signal"));
+    const beams = Array.from(viz.querySelectorAll(".why-choose-viz__beam"));
+    const nodes = Array.from(viz.querySelectorAll(".why-choose-viz__node"));
+    const metrics = Array.from(viz.querySelectorAll(".why-choose-viz__metric"));
+
+    const orbitDots = [0, 1, 2].map((index) => {
+      const existingDot = viz.querySelector(`.why-choose-viz__orbital--${index + 1}`);
+      if (existingDot) return existingDot;
+      const dot = document.createElement("span");
+      dot.className = `why-choose-viz__orbital why-choose-viz__orbital--${index + 1}`;
+      dot.setAttribute("aria-hidden", "true");
+      viz.appendChild(dot);
+      return dot;
+    });
+
+    let active = false;
+    let frameId = null;
+    let start = performance.now();
+
+    const animate = (now) => {
+      const time = (now - start) / 1000;
+      const width = viz.clientWidth || 440;
+      const orbitRadius = Math.min(width * 0.31, 148) * motionScale;
+
+      viz.style.setProperty("--why-viz-grid-x", `${(time * 10 * motionScale) % 34}px`);
+      viz.style.setProperty("--why-viz-grid-y", `${(time * 7 * motionScale) % 34}px`);
+      viz.style.setProperty("--why-viz-sheen-x", `${-80 + ((time * 28 * motionScale) % 170)}%`);
+
+      if (outerRing) {
+        outerRing.style.transform = `translate(-50%, -50%) rotate(${time * 13 * motionScale}deg)`;
+      }
+
+      if (innerRing) {
+        innerRing.style.transform = `translate(-50%, -50%) rotate(${-time * 18 * motionScale}deg)`;
+      }
+
+      if (hub) {
+        const hubY = Math.sin(time * 1.1) * -8 * motionScale;
+        const hubScale = 1 + Math.cos(time * 1.35) * 0.025 * motionScale;
+        hub.style.transform = `translate(-50%, -50%) translate3d(${Math.cos(time * 0.8) * 3 * motionScale}px, ${hubY}px, 0) scale(${hubScale})`;
+      }
+
+      signals.forEach((signal, index) => {
+        const pulse = (Math.sin(time * 1.55 + index * Math.PI) + 1) / 2;
+        signal.style.transform = `translate(-50%, -50%) scale(${0.74 + pulse * 0.44 * motionScale})`;
+        signal.style.opacity = String(0.08 + pulse * 0.42 * motionScale);
+      });
+
+      beams.forEach((beam, index) => {
+        const direction = index ? -1 : 1;
+        const speed = index ? 22 : 30;
+        const opacityWave = (Math.sin(time * 1.4 + index * 1.8) + 1) / 2;
+        beam.style.transform = `rotate(${direction * time * speed * motionScale}deg) translateY(-22px)`;
+        beam.style.opacity = String(0.08 + opacityWave * 0.26 * motionScale);
+      });
+
+      nodes.forEach((node, index) => {
+        const x = Math.sin(time * 0.92 + index * 1.15) * 7 * motionScale;
+        const y = Math.cos(time * 1.08 + index * 0.8) * -9 * motionScale;
+        node.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      });
+
+      metrics.forEach((metric, index) => {
+        const y = Math.sin(time * 0.88 + index * 1.7) * -8 * motionScale;
+        const x = Math.cos(time * 0.7 + index) * 4 * motionScale;
+        metric.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        const bar = metric.querySelector("i");
+        const wave = (Math.sin(time * 2 + index * 1.35) + 1) / 2;
+        bar?.style.setProperty("--why-metric-fill", `${56 + wave * 38 * motionScale}%`);
+      });
+
+      orbitDots.forEach((dot, index) => {
+        const angle = time * (index === 1 ? -0.95 : 0.78 + index * 0.12) + index * 2.1;
+        const x = Math.cos(angle) * orbitRadius;
+        const y = Math.sin(angle) * orbitRadius * 0.76;
+        dot.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0)`;
+        dot.style.opacity = String(0.22 + ((Math.sin(time * 1.25 + index) + 1) / 2) * 0.7);
+      });
+
+      if (active && !document.hidden) {
+        frameId = requestAnimationFrame(animate);
+      } else {
+        frameId = null;
+      }
+    };
+
+    const startLoop = () => {
+      if (active && frameId !== null) return;
+      active = true;
+      start = performance.now();
+      frameId = requestAnimationFrame(animate);
+    };
+
+    const stopLoop = () => {
+      active = false;
+      if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+        frameId = null;
+      }
+    };
+
+    startLoop();
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) startLoop();
+          else stopLoop();
+        },
+        { rootMargin: "20% 0px 20% 0px", threshold: 0.01 }
+      );
+      observer.observe(section);
+    } else {
+      startLoop();
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopLoop();
+      else startLoop();
+    });
   };
 
   /* ─── Navbar scroll ─── */
@@ -403,12 +986,7 @@
     return `${num}${suffix}`;
   };
 
-  const HOME_STATS = [
-    { target: 4, suffix: "+", decimals: 0, duration: 1400, label: "Years of Expertise" },
-    { target: 30, suffix: "+", decimals: 0, duration: 1500, label: "Trusted Clients" },
-    { target: 2, suffix: "M+", decimals: 0, duration: 1600, label: "Audience Reached" },
-    { target: 99.9, suffix: "%", decimals: 1, duration: 1700, label: "Client Retention" },
-  ];
+  const HOME_STATS = [];
 
   const renderHomeStats = () => {
     const row = document.querySelector("[data-home-stats]");
@@ -433,6 +1011,13 @@
   renderHomeStats();
   syncAosElements(document.querySelector(".section-stats") || document);
   setupScrollEffects();
+  setupWorkWithScrollEffects();
+  setupProofStatsEffects();
+  setupFaqAccordion();
+  setupAudienceScrollEffects();
+  setupAudienceLiveMotion();
+  setupWhyChooseScrollEffects();
+  setupWhyChooseLiveMotion();
 
   const animatedStatElements = new WeakSet();
 
@@ -559,25 +1144,15 @@
       message: "entry.1221370137",
     };
     const GOOGLE_SERVICE_VALUES = new Set([
-      "Search Engine Optimization (SEO)",
-      "Social Media Marketing (SMM)",
-      "Paid Advertising (Performance Marketing)",
-      "Content Marketing",
-      "Website Design & Development",
-      "Email Marketing",
-      "Lead Generation & DATA ANALYTICS",
-      "Marketing Analytics & Reporting - DATA ANALYTICS",
-      "Local Business Marketing",
-      "E-commerce Marketing",
-      "Personal Branding",
-      "Video Marketing",
+      "Social Media Management",
+      "LinkedIn Personal Branding",
+      "Video Editing & Short-Form Content",
+      "Graphic Design",
+      "Content Writing & Script Development",
+      "YouTube Growth Support",
+      "Website & App Development",
     ]);
-    const SERVICE_VALUE_MAP = new Map([
-      ["Lead Generation", "Lead Generation & DATA ANALYTICS"],
-      ["Marketing Analytics & Reporting", "Marketing Analytics & Reporting - DATA ANALYTICS"],
-      ["Personal Branding", "Personal Branding"],
-      ["Video Marketing", "Video Marketing"],
-    ]);
+    const SERVICE_VALUE_MAP = new Map();
     const validateEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
     const getPhoneDigits = (v) => v.replace(/\D/g, "");
     const validatePhone = (v) => {
@@ -677,7 +1252,7 @@
 
       return {
         value: "__other_option__",
-        other: normalized === "Other" ? "Other" : normalized,
+        other: normalized,
       };
     };
 

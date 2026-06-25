@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 
 const serviceTags = {
-  "local-business-marketing": ["Local SEO", "Google Business", "Local Ads"],
-  "ecommerce-marketing": ["Product Ads", "Retargeting", "CRO"],
-  "personal-branding": ["LinkedIn", "Content", "Authority"],
-  "video-marketing": ["Reels", "Shorts", "YouTube"],
-  "youtube-growth-management": ["YouTube SEO", "Strategy", "Analytics"],
+  "social-media-management": ["Content Planning", "Content Creation", "Post Scheduling"],
+  "linkedin-personal-branding": ["LinkedIn Profile Optimization", "Content Strategy", "Thought Leadership Content"],
+  "video-editing-short-form-content": ["Reels Editing", "Shorts Editing", "Motion Graphics"],
+  "youtube-growth-support": ["Content Planning", "Thumbnail Design", "Channel Optimization"],
 };
 
 const ProjectCard = ({ project, image, index, reverse = false }) => {
-  const tags = serviceTags[project.id] || ["Digital Marketing"];
+  const tags = serviceTags[project.id] || ["Content Strategy"];
 
   return (
     <article className={`project-card reveal reveal-up ${reverse ? "project-card--reverse" : ""}`}>

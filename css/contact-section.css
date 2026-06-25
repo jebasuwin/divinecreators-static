@@ -101,14 +101,11 @@
 
 .contact-form-card {
   position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.1), transparent 34%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025));
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.38),
-    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  overflow: visible;
+  padding: 0;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .contact-form-card::before {
@@ -119,7 +116,7 @@
   background:
     linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent) top / 100% 1px no-repeat,
     radial-gradient(circle at 84% 16%, rgba(255, 255, 255, 0.08), transparent 26%);
-  opacity: 0.9;
+  opacity: 0;
 }
 
 .contact-form-card > * {
@@ -606,7 +603,7 @@
   }
 
   .contact-form-card {
-    padding-bottom: 5.5rem;
+    padding: 0 0 5.5rem;
   }
 }
 
@@ -647,9 +644,9 @@
 }
 
 [data-theme="light"] .contact-form-card {
-  background:
-    radial-gradient(circle at 18% 0%, rgba(0, 0, 0, 0.05), transparent 34%),
-    linear-gradient(145deg, rgba(0, 0, 0, 0.035), rgba(0, 0, 0, 0.012));
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 [data-theme="light"] .contact-form-card__header {

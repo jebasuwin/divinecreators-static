@@ -63,7 +63,7 @@ const Header = () => {
               className="floating-nav__cta d-none d-lg-inline-flex"
               onClick={(event) => handleNavClick(event, "contact")}
             >
-              Get Started
+              Book a Free Consultation
             </PrimaryButton>
             <button
               ref={menuToggleRef}

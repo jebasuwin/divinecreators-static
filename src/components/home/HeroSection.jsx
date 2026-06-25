@@ -24,13 +24,13 @@ const HeroSection = () => {
       <div className="container-gd hero-v2__grid">
         <div className="hero-v2__content">
           <p className="hero-v2__eyebrow hero-v2__seq hero-v2__seq--1">
-            DIGITAL EXPERIENCES • CREATIVE TECHNOLOGY
+            {heroContent.eyebrow}
           </p>
 
           <h1 id="hero-heading" className="hero-v2__title hero-v2__seq hero-v2__seq--2">
-            <span className="hero-v2__title-part">Your Trusted</span>{" "}
-            <span className="hero-v2__title-part">Partner for</span>{" "}
-            <span className="hero-v2__title-part gradient-text">Digital Growth</span>
+            <span className="hero-v2__title-part">We Turn Ideas Into</span>{" "}
+            <span className="hero-v2__title-part">Content That</span>{" "}
+            <span className="hero-v2__title-part gradient-text">Builds Brands</span>
           </h1>
 
           <p className="hero-v2__text hero-v2__seq hero-v2__seq--3">
