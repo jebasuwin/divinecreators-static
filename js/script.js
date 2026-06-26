@@ -171,7 +171,7 @@
     const isVisible = () => {
       const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
-      return rect.top < viewportHeight * 0.82 && rect.bottom > viewportHeight * 0.08;
+      return rect.top < viewportHeight * 0.96 && rect.bottom > viewportHeight * 0.04;
     };
 
     const update = () => {
@@ -192,7 +192,7 @@
           entry.target.classList.toggle("is-inview", entry.isIntersecting);
         });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.08 }
+      { rootMargin: "18% 0px 18% 0px", threshold: 0.01 }
     );
 
     observer.observe(section);
@@ -332,7 +332,7 @@
       enteringTimer = window.setTimeout(() => {
         section.classList.remove("is-entering");
         enteringTimer = null;
-      }, 760);
+      }, 360);
     };
 
     if (!("IntersectionObserver" in window)) {
@@ -344,7 +344,7 @@
             setInView(entry.isIntersecting);
           });
         },
-        { rootMargin: "0px 0px -22% 0px", threshold: 0.12 }
+        { rootMargin: "18% 0px 18% 0px", threshold: 0.01 }
       );
 
       observer.observe(section);
