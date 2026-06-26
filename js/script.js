@@ -431,6 +431,8 @@
     const flow = section?.querySelector(".audience-flow");
     if (!section || !flow || !window.requestAnimationFrame) return;
 
+    if (mobile) return;
+
     section.classList.add("audience-motion-live");
 
     const studio = flow.querySelector(".audience-flow__studio");
