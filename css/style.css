@@ -1565,8 +1565,13 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .audience-heading__lead,
+.audience-heading__question,
 .audience-heading__highlight {
   display: block;
+}
+
+.audience-heading__question {
+  white-space: nowrap;
 }
 
 .audience-heading__nowrap {
