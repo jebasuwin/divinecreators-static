@@ -3,6 +3,7 @@
   "use strict";
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const mobile = window.matchMedia("(max-width: 575px)").matches;
   const revealAosElements = (scope = document) => {
     scope.querySelectorAll("[data-aos]").forEach((el) => {
       el.classList.add("aos-init", "aos-animate");
@@ -576,6 +577,11 @@
     };
 
     if (reducedMotion) {
+      setFinalState();
+      return;
+    }
+
+    if (mobile) {
       setFinalState();
       return;
     }
