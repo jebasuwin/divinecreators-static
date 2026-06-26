@@ -381,6 +381,11 @@
       return;
     }
 
+    if (mobile) {
+      setFinalState();
+      return;
+    }
+
     let ticking = false;
     const update = () => {
       const rect = section.getBoundingClientRect();
@@ -617,6 +622,8 @@
     if (!section || !viz || !window.requestAnimationFrame) return;
 
     section.classList.add("why-choose-motion-live");
+    if (mobile) return;
+
     const motionScale = reducedMotion ? 0.42 : 1;
 
     const hub = viz.querySelector(".why-choose-viz__hub");

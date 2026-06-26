@@ -2521,7 +2521,7 @@ img { max-width: 100%; height: auto; display: block; }
 
   .hero__title {
     max-width: 100%;
-    font-size: clamp(2rem, 10vw, 2.55rem);
+    font-size: clamp(1.9rem, 9vw, 2.32rem);
     line-height: 1.06;
   }
 
@@ -2540,8 +2540,20 @@ img { max-width: 100%; height: auto; display: block; }
 
   .hero__actions {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 0.75rem;
+    width: min(100%, 20.5rem);
+  }
+
+  .hero__actions .btn-glow,
+  .hero__actions .btn-outline-glow {
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    margin: 0;
+    padding-inline: 1.1rem;
+    text-align: center;
+    white-space: nowrap;
   }
 
   .hero__proof {
@@ -4108,6 +4120,15 @@ img { max-width: 100%; height: auto; display: block; }
 
 @media (max-width: 575px) {
   .why-choose-section {
+    --why-copy-y: 0px;
+    --why-copy-opacity: 1;
+    --why-card-y: 0px;
+    --why-card-opacity: 1;
+    --why-viz-y: 0px;
+    --why-viz-scale: 1;
+    --why-viz-opacity: 1;
+    --why-glow-opacity: 0.72;
+    --why-line-opacity: 0.16;
     padding: 3.75rem 0;
   }
 
@@ -4121,6 +4142,20 @@ img { max-width: 100%; height: auto; display: block; }
 
   .why-card {
     min-height: auto;
+    transition: none;
+  }
+
+  .why-card:nth-child(2),
+  .why-card:nth-child(3),
+  .why-card:nth-child(4) {
+    transition-delay: 0ms;
+  }
+
+  .why-choose-section__content > .eyebrow,
+  .why-choose-section h2,
+  .why-choose-section__intro,
+  .why-choose-viz {
+    transition: none;
   }
 
   .why-choose-viz {
@@ -5008,6 +5043,33 @@ img { max-width: 100%; height: auto; display: block; }
 
 .site-footer__contact a:hover {
   color: #fff;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .site-footer__links a,
+  .site-footer__contact a {
+    transition-duration: 0.16s;
+  }
+
+  .site-footer__links a:hover {
+    color: var(--text-secondary);
+    transform: none;
+  }
+
+  .site-footer__contact a:hover {
+    color: var(--text-secondary);
+  }
+
+  .site-footer__links a:active {
+    color: #ffffff;
+    transform: translateX(4px);
+    transition-duration: 0.08s;
+  }
+
+  .site-footer__contact a:active {
+    color: #ffffff;
+    transition-duration: 0.08s;
+  }
 }
 
 .social-icon {
