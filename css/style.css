@@ -5043,8 +5043,8 @@ img { max-width: 100%; height: auto; display: block; }
 
 .footer-brand-logo {
   justify-content: flex-start;
-  align-items: center;
-  gap: 0.72rem;
+  align-items: flex-start;
+  gap: 0.82rem;
   margin-bottom: 1.05rem;
 }
 
@@ -5057,7 +5057,7 @@ img { max-width: 100%; height: auto; display: block; }
 .site-footer .footer-brand-logo img {
   width: 46px;
   height: 46px;
-  transform: none;
+  transform: translateY(-12px);
 }
 
 .site-footer__logo {
@@ -5209,12 +5209,14 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .site-footer__contact .bi {
-  box-sizing: content-box;
-  width: 17px;
-  height: 17px;
-  padding: 7px;
-  display: block;
-  margin-top: -5px;
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  display: inline-grid;
+  place-items: center;
+  margin-top: -4px;
+  overflow: visible;
   border-radius: 50%;
   color: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.11);
@@ -5462,6 +5464,14 @@ img { max-width: 100%; height: auto; display: block; }
 
   .footer-column--brand {
     grid-column: 1 / -1;
+  }
+
+  .footer-brand-logo {
+    align-items: center;
+  }
+
+  .site-footer .footer-brand-logo img {
+    transform: none;
   }
 
   .site-footer__heading.d-none.d-lg-block {
