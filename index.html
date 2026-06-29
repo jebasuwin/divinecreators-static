@@ -9,9 +9,12 @@
   <meta name="description" content="Divine Creators helps businesses, founders, and professionals grow their online presence through strategic content, compelling visuals, and impactful storytelling." />
   <link rel="icon" type="image/png" href="/divinecreators-static/dc.png" />
   <link rel="manifest" href="/divinecreators-static/site.webmanifest" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <link href="/divinecreators-static/css/style.css?v=mobile-fix-10" rel="stylesheet" />
+  <link rel="preload" href="/divinecreators-static/css/bootstrap-icons.min.css?v=performance-1" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="/divinecreators-static/css/bootstrap-icons.min.css?v=performance-1" rel="stylesheet" /></noscript>
+  <link href="/divinecreators-static/css/style.css?v=performance-1" rel="stylesheet" />
   <link href="/divinecreators-static/css/motion-graphics.css" rel="stylesheet" />
   <link href="/divinecreators-static/css/about-section.css?v=about-heading-1" rel="stylesheet" />
   <link href="/divinecreators-static/css/services-home.css?v=services-layout-10" rel="stylesheet" />
@@ -24,8 +27,8 @@
 
   <header class="site-nav">
     <div class="container-xl site-nav__inner">
-      <a href="#home" class="brand-logo site-nav__logo" aria-label="DIVINE CREATORS home">
-        <img src="/divinecreators-static/dc.png" alt="Divine Creators logo" width="48" height="48" />
+      <a href="#home" class="brand-logo site-nav__logo">
+        <img src="/divinecreators-static/dc-64.png" srcset="/divinecreators-static/dc-64.png 64w, /divinecreators-static/dc-128.png 128w" sizes="48px" alt="" width="48" height="48" aria-hidden="true" />
         <span>DIVINE CREATORS</span>
       </a>
       <ul class="site-nav__menu">
@@ -45,8 +48,8 @@
     <button type="button" class="mobile-drawer__backdrop" data-menu-close aria-label="Close menu"></button>
     <div class="mobile-drawer__panel">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <a href="#home" class="brand-logo brand-logo--compact" aria-label="DIVINE CREATORS home">
-          <img src="/divinecreators-static/dc.png" alt="Divine Creators logo" width="40" height="40" />
+        <a href="#home" class="brand-logo brand-logo--compact">
+          <img src="/divinecreators-static/dc-64.png" srcset="/divinecreators-static/dc-64.png 64w, /divinecreators-static/dc-128.png 128w" sizes="40px" alt="" width="40" height="40" aria-hidden="true" />
           <span>DIVINE CREATORS</span>
         </a>
         <button type="button" class="site-nav__toggle" data-menu-close aria-label="Close"><i class="bi bi-x-lg"></i></button>
@@ -595,7 +598,7 @@
       <div class="site-footer__grid">
         <div class="site-footer__brand footer-brand footer-column footer-column--brand" data-aos="fade-up" data-aos-delay="0">
           <a href="#home" class="footer-brand-logo brand-logo">
-            <img src="/divinecreators-static/dc.png" alt="Divine Creators logo" width="58" height="58" />
+            <img src="/divinecreators-static/dc-64.png" srcset="/divinecreators-static/dc-64.png 64w, /divinecreators-static/dc-128.png 128w" sizes="58px" alt="" width="58" height="58" aria-hidden="true" loading="lazy" decoding="async" />
             <span>DIVINE CREATORS</span>
           </a>
           <p class="site-footer__tagline">We Turn Ideas Into Content That Builds Brands.</p>
@@ -607,7 +610,7 @@
         </div>
 
         <nav class="footer-column footer-column--nav" aria-label="Footer navigation" data-aos="fade-up" data-aos-delay="100">
-          <h6 class="site-footer__heading footer-heading">Navigation<span class="footer-heading-line" aria-hidden="true"></span></h6>
+          <h2 class="site-footer__heading footer-heading">Navigation<span class="footer-heading-line" aria-hidden="true"></span></h2>
           <ul class="site-footer__links list-unstyled mb-0">
             <li><a href="/divinecreators-static/#home">Home</a></li>
             <li><a href="/divinecreators-static/#about">About Us</a></li>
@@ -617,7 +620,7 @@
         </nav>
 
         <div class="footer-column footer-column--services" data-aos="fade-up" data-aos-delay="200">
-          <h6 class="site-footer__heading footer-heading">Services<span class="footer-heading-line" aria-hidden="true"></span></h6>
+          <h2 class="site-footer__heading footer-heading">Services<span class="footer-heading-line" aria-hidden="true"></span></h2>
           <ul class="site-footer__links site-footer__services-list list-unstyled mb-0">
             <li><a href="/divinecreators-static/#social-media-management">Social Media Management</a></li>
             <li><a href="/divinecreators-static/#linkedin-personal-branding">LinkedIn Personal Branding</a></li>
@@ -630,7 +633,7 @@
         </div>
 
         <div class="footer-column footer-column--contact site-footer__contact-col" data-aos="fade-up" data-aos-delay="300">
-          <h6 class="site-footer__heading footer-heading">Contact<span class="footer-heading-line" aria-hidden="true"></span></h6>
+          <h2 class="site-footer__heading footer-heading">Contact<span class="footer-heading-line" aria-hidden="true"></span></h2>
           <ul class="site-footer__contact list-unstyled mb-0">
             <li><i class="bi bi-telephone" aria-hidden="true"></i><a href="tel:+916302142813">+91 6302142813</a></li>
             <li><i class="bi bi-envelope" aria-hidden="true"></i><a href="mailto:DivineCreators999@gmail.com">DivineCreators999@gmail.com</a></li>
@@ -651,8 +654,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="/divinecreators-static/js/motion-graphics.js" defer></script>
-  <script src="/divinecreators-static/js/home-services.js?v=services-layout-2" defer></script>
+  <script src="/divinecreators-static/js/home-services.js?v=performance-1" defer></script>
   <script src="/divinecreators-static/js/section-motion.js?v=about-polish-5" defer></script>
-  <script src="/divinecreators-static/js/script.js?v=mobile-fix-5" defer></script>
+  <script src="/divinecreators-static/js/script.js?v=performance-1" defer></script>
 </body>
 </html>
