@@ -1,58 +1,60 @@
 /* DIVINECREATORS — Static site styles */
-@font-face {
-  font-family: "Manrope";
-  src: url("../assets/fonts/manrope-regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+@media (min-width: 769px) {
+  @font-face {
+    font-family: "Manrope";
+    src: url("../assets/fonts/manrope-regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: "Manrope";
-  src: url("../assets/fonts/manrope-medium.otf") format("opentype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+  @font-face {
+    font-family: "Manrope";
+    src: url("../assets/fonts/manrope-medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: "Manrope";
-  src: url("../assets/fonts/manrope-semibold.otf") format("opentype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
+  @font-face {
+    font-family: "Manrope";
+    src: url("../assets/fonts/manrope-semibold.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: "Manrope";
-  src: url("../assets/fonts/manrope-bold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+  @font-face {
+    font-family: "Manrope";
+    src: url("../assets/fonts/manrope-bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: "Manrope";
-  src: url("../assets/fonts/manrope-extrabold.otf") format("opentype");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
+  @font-face {
+    font-family: "Manrope";
+    src: url("../assets/fonts/manrope-extrabold.otf") format("opentype");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: "Inter";
-  src: url("../assets/fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
+  @font-face {
+    font-family: "Inter";
+    src: url("../assets/fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: "Inter";
-  src: url("../assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
+  @font-face {
+    font-family: "Inter";
+    src: url("../assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+  }
 }
 
 :root {
@@ -438,16 +440,39 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 1.4rem;
 }
 
-.site-nav__toggle .bi-list::before {
-  content: "\2630";
-  font-family: system-ui, sans-serif !important;
-  font-weight: 600;
+.site-nav__toggle-icon {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 16px;
+  color: currentColor;
 }
 
-.site-nav__toggle .bi-x-lg::before {
-  content: "\00d7";
-  font-family: system-ui, sans-serif !important;
-  font-weight: 500;
+.site-nav__toggle-icon--menu {
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor;
+}
+
+.site-nav__toggle-icon--close::before,
+.site-nav__toggle-icon--close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.site-nav__toggle-icon--close::before {
+  transform: rotate(45deg);
+}
+
+.site-nav__toggle-icon--close::after {
+  transform: rotate(-45deg);
 }
 
 @media (min-width: 992px) {

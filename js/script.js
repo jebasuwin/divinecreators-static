@@ -244,6 +244,8 @@
     if (!length) return;
 
     section.classList.add("motion-ready");
+    if (mobile) return;
+
     const duration = reducedMotion ? 9000 : 7200;
     const dashCycle = 466;
     const startTime = performance.now();
