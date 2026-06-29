@@ -976,7 +976,7 @@
 
   /* ─── GSAP hero timeline ─── */
   const heroTl = () => {
-    if (typeof gsap === "undefined" || reducedMotion) return;
+    if (typeof gsap === "undefined" || reducedMotion || mobile) return;
 
     const visibleHeroCopy = ".hero__eyebrow, .hero__title, .hero__subtitle, .hero__actions";
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
