@@ -67,22 +67,55 @@
     let progress = 0;
     let raf = 0;
     let repeatTimer = 0;
+    let resizeRaf = 0;
+    let sizeRetryTimer = 0;
     let startTime = 0;
     let completed = false;
     let visible = false;
+    let sizeReady = false;
 
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
     const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
 
     const resize = () => {
       const rect = root.getBoundingClientRect();
+      const width = Math.round(rect.width);
+      const height = Math.round(rect.height);
+      const minReadyHeight = mobile ? 240 : 260;
+
+      if (width < 220 || height < minReadyHeight) {
+        sizeReady = false;
+        window.clearTimeout(sizeRetryTimer);
+        sizeRetryTimer = window.setTimeout(scheduleResize, 90);
+        return false;
+      }
+
       const dpr = Math.min(devicePixelRatio || 1, mobile ? 1.25 : 1.5);
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
+      const nextWidth = Math.round(width * dpr);
+      const nextHeight = Math.round(height * dpr);
+
+      if (canvas.width !== nextWidth || canvas.height !== nextHeight) {
+        canvas.width = nextWidth;
+        canvas.height = nextHeight;
+      }
+
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      sizeReady = true;
       draw(performance.now());
+      return true;
+    };
+
+    const scheduleResize = () => {
+      cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(() => {
+        resizeRaf = 0;
+        const ready = resize();
+        if (ready && visible && !raf && !document.hidden && !completed) {
+          start();
+        }
+      });
     };
 
     const getVisiblePoints = (scaledPoints, eased) => {
@@ -269,6 +302,7 @@
 
     const start = () => {
       if (!visible || document.hidden) return;
+      if (!sizeReady && !resize()) return;
       window.clearTimeout(repeatTimer);
       cancelAnimationFrame(raf);
       completed = false;
@@ -280,12 +314,22 @@
     const stop = () => {
       window.clearTimeout(repeatTimer);
       repeatTimer = 0;
+      window.clearTimeout(sizeRetryTimer);
+      sizeRetryTimer = 0;
       cancelAnimationFrame(raf);
       raf = 0;
     };
 
     resize();
-    window.addEventListener("resize", resize, { passive: true });
+    if ("ResizeObserver" in window) {
+      const resizeObserver = new ResizeObserver(scheduleResize);
+      resizeObserver.observe(root);
+    }
+    window.addEventListener("resize", scheduleResize, { passive: true });
+    window.addEventListener("load", scheduleResize, { once: true, passive: true });
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(scheduleResize).catch(() => {});
+    }
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
         stop();
