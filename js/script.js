@@ -877,7 +877,6 @@
   /* ─── Render homepage services ─── */
   if (typeof HomeServices !== "undefined") {
     HomeServices.renderHomeServices();
-    HomeServices.preloadServiceImages?.();
     if (aosCanAnimate()) {
       AOS.refresh();
       window.setTimeout(() => {

@@ -85,6 +85,14 @@
     `;
   };
 
+  const getResponsiveImage = (src) => {
+    const base = src.replace(/\.[a-z0-9]+$/i, "");
+    return {
+      src: `${base}-640.jpg`,
+      srcset: `${base}-640.jpg 640w, ${base}-960.jpg 960w`,
+    };
+  };
+
   const getServiceImages = () =>
     SERVICE_GROUPS.flatMap((group) => group.services)
       .map((service) => service.image)
@@ -108,19 +116,20 @@
     }
   };
 
-  const renderVisual = (service, blockIndex) => {
+  const renderVisual = (service) => {
     if (!service.image) return "";
     const useContain = service.imageFit === "contain";
-    const isPriority = blockIndex < 3;
-    const priority = isPriority ? "high" : "low";
+    const image = getResponsiveImage(service.image);
     return `
       <div class="service-visual${useContain ? " service-visual--contain" : ""}">
         <img
-          src="${service.image}"
+          src="${image.src}"
+          srcset="${image.srcset}"
+          sizes="(max-width: 575px) calc(100vw - 26px), (max-width: 991px) 423px, 498px"
           alt="${service.imageAlt}"
           class="${useContain ? "contain-image" : ""}"
-          loading="${isPriority ? "eager" : "lazy"}"
-          fetchpriority="${priority}"
+          loading="lazy"
+          fetchpriority="low"
           width="1360"
           height="1120"
           decoding="async"
@@ -148,7 +157,7 @@
             </div>
           </div>
             <div class="col-lg-6 service-block__visual">
-              ${renderVisual(service, blockIndex)}
+              ${renderVisual(service)}
             </div>
           </div>
         </div>

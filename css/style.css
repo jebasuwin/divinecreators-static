@@ -169,17 +169,17 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .scroll-text--service-heading {
-  opacity: 0.42;
+  opacity: 0.78;
   transform: translate3d(-28px, 0, 0);
 }
 
 .scroll-text--service-body {
-  opacity: 0.56;
+  opacity: 0.78;
   transform: translate3d(22px, 0, 0);
 }
 
 .scroll-text--service-item {
-  opacity: 0.5;
+  opacity: 0.78;
   transform: translate3d(-18px, 0, 0);
 }
 
