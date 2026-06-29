@@ -548,7 +548,7 @@
   padding: 2rem 1rem;
 }
 
-.contact-form-success i {
+.contact-form-success .bi {
   font-size: 2rem;
   color: var(--accent-cyan, #ffffff);
   margin-bottom: 0.75rem;

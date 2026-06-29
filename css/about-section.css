@@ -199,7 +199,7 @@
   will-change: transform;
 }
 
-.about-dashboard-viz__chip i {
+.about-dashboard-viz__chip .bi {
   font-size: 0.85rem;
   opacity: 0.95;
 }
@@ -210,7 +210,7 @@
   animation-delay: 0s;
 }
 
-.about-dashboard-viz__chip--1 i {
+.about-dashboard-viz__chip--1 .bi {
   color: #a5b4fc;
 }
 
@@ -220,7 +220,7 @@
   animation-delay: -1.5s;
 }
 
-.about-dashboard-viz__chip--2 i {
+.about-dashboard-viz__chip--2 .bi {
   color: #67e8f9;
 }
 
@@ -230,7 +230,7 @@
   animation-delay: -3s;
 }
 
-.about-dashboard-viz__chip--3 i {
+.about-dashboard-viz__chip--3 .bi {
   color: #fdba74;
 }
 
@@ -312,15 +312,15 @@
   color: #000000;
 }
 
-[data-theme="light"] .about-dashboard-viz__chip--1 i {
+[data-theme="light"] .about-dashboard-viz__chip--1 .bi {
   color: #4f46e5;
 }
 
-[data-theme="light"] .about-dashboard-viz__chip--2 i {
+[data-theme="light"] .about-dashboard-viz__chip--2 .bi {
   color: #0891b2;
 }
 
-[data-theme="light"] .about-dashboard-viz__chip--3 i {
+[data-theme="light"] .about-dashboard-viz__chip--3 .bi {
   color: #ea580c;
 }
 
