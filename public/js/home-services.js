@@ -5,6 +5,15 @@
   "use strict";
 
   const IMAGE_BASE = "/divinecreators-static/assets/images/services";
+  const IMAGE_DIMENSIONS = {
+    "content-marketing": { width: 640, height: 427, mobileWidth: 480, mobileHeight: 320 },
+    "lead-generation": { width: 640, height: 360, mobileWidth: 480, mobileHeight: 270 },
+    "personal-branding": { width: 640, height: 480, mobileWidth: 480, mobileHeight: 360 },
+    "social-media-marketing-new": { width: 640, height: 427, mobileWidth: 480, mobileHeight: 320 },
+    "video-marketing-new": { width: 640, height: 427, mobileWidth: 480, mobileHeight: 320 },
+    "website-design-development": { width: 640, height: 426, mobileWidth: 480, mobileHeight: 320 },
+    "youtube-growth-management": { width: 640, height: 427, mobileWidth: 480, mobileHeight: 320 },
+  };
 
   const SERVICES = [
     {
@@ -85,18 +94,33 @@
     `;
   };
 
+  const getResponsiveImage = (src) => {
+    const base = src.replace(/\.[a-z0-9]+$/i, "");
+    const imageName = base.split("/").pop();
+    const dimensions = IMAGE_DIMENSIONS[imageName] || { width: 640, height: 427, mobileWidth: 480, mobileHeight: 320 };
+    return {
+      mobileSrc: `${base}-480.jpg`,
+      src: `${base}-640.jpg`,
+      srcset: `${base}-640.jpg 640w, ${base}-960.jpg 960w`,
+      ...dimensions,
+    };
+  };
+
   const getServiceImages = () =>
     SERVICE_GROUPS.flatMap((group) => group.services)
       .map((service) => service.image)
       .filter(Boolean);
 
   const preloadServiceImages = () => {
+    const images = getServiceImages().map(getResponsiveImage);
     const load = () => {
-      getServiceImages().forEach((src, index) => {
+      images.forEach((image, index) => {
         window.setTimeout(() => {
           const img = new Image();
           img.decoding = "async";
-          img.src = src;
+          img.srcset = image.srcset;
+          img.sizes = "(max-width: 575px) calc(100vw - 26px), (max-width: 991px) 423px, 498px";
+          img.src = image.src;
         }, index * 45);
       });
     };
@@ -111,20 +135,24 @@
   const renderVisual = (service, blockIndex) => {
     if (!service.image) return "";
     const useContain = service.imageFit === "contain";
-    const isPriority = blockIndex < 3;
-    const priority = isPriority ? "high" : "low";
+    const image = getResponsiveImage(service.image);
     return `
       <div class="service-visual${useContain ? " service-visual--contain" : ""}">
-        <img
-          src="${service.image}"
-          alt="${service.imageAlt}"
-          class="${useContain ? "contain-image" : ""}"
-          loading="${isPriority ? "eager" : "lazy"}"
-          fetchpriority="${priority}"
-          width="1360"
-          height="1120"
-          decoding="async"
-        />
+        <picture>
+          <source media="(max-width: 575px)" srcset="${image.mobileSrc}" width="${image.mobileWidth}" height="${image.mobileHeight}" />
+          <img
+            src="${image.src}"
+            srcset="${image.srcset}"
+            sizes="(max-width: 991px) 423px, 498px"
+            alt="${service.imageAlt}"
+            class="${useContain ? "contain-image" : ""}"
+            loading="lazy"
+            fetchpriority="auto"
+            width="${image.width}"
+            height="${image.height}"
+            decoding="async"
+          />
+        </picture>
       </div>
     `;
   };
@@ -184,6 +212,7 @@
         </div>
       `;
     }).join("");
+
   };
 
   window.HomeServices = { renderHomeServices, preloadServiceImages, SERVICE_GROUPS };

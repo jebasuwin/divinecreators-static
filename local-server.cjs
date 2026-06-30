@@ -1,6 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const zlib = require("zlib");
 
 const port = Number(process.argv[2] || process.env.PORT || 5173);
 const host = process.env.HOST || "127.0.0.1";
@@ -25,12 +26,46 @@ const types = new Map([
   [".woff2", "font/woff2"],
 ]);
 
+const compressibleTypes = new Set([
+  "text/html",
+  "text/css",
+  "text/javascript",
+  "application/json",
+  "application/manifest+json",
+  "image/svg+xml",
+]);
+
 const send = (res, status, body, headers = {}) => {
   res.writeHead(status, {
     "Cache-Control": "no-cache",
     ...headers,
   });
   res.end(body);
+};
+
+const acceptsGzip = (req) => /\bgzip\b/.test(req.headers["accept-encoding"] || "");
+
+const sendFile = (req, res, status, body, headers = {}) => {
+  const contentType = headers["Content-Type"] || "";
+  const mimeType = contentType.split(";")[0];
+
+  if (!acceptsGzip(req) || !compressibleTypes.has(mimeType)) {
+    send(res, status, body, headers);
+    return;
+  }
+
+  zlib.gzip(body, (gzipError, compressed) => {
+    if (gzipError) {
+      send(res, status, body, headers);
+      return;
+    }
+
+    send(res, status, compressed, {
+      ...headers,
+      "Content-Encoding": "gzip",
+      Vary: "Accept-Encoding",
+    });
+  });
 };
 
 const server = http.createServer((req, res) => {
@@ -68,7 +103,7 @@ const server = http.createServer((req, res) => {
       }
 
       const ext = path.extname(filePath).toLowerCase();
-      send(res, 200, data, { "Content-Type": types.get(ext) || "application/octet-stream" });
+      sendFile(req, res, 200, data, { "Content-Type": types.get(ext) || "application/octet-stream" });
     });
   });
 });

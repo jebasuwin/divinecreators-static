@@ -246,6 +246,12 @@
     0 0 100px rgba(255, 255, 255, 0.1);
 }
 
+.services-home .service-visual picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .services-home .service-visual img {
   width: 100%;
   height: 100%;

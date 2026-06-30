@@ -507,19 +507,21 @@ img { max-width: 100%; height: auto; display: block; }
 
 @media (max-width: 575px) {
   .site-nav__inner {
-    position: relative;
-    padding-right: 58px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px;
+    align-items: center;
+    gap: 0.75rem;
+    padding-right: 0.75rem;
   }
 
   .site-nav__inner > .d-flex {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
+    display: flex !important;
+    justify-content: flex-end;
+    min-width: 44px;
+    margin-left: 0;
   }
 
   .site-nav__logo.brand-logo {
-    flex: 1 1 auto;
     max-width: 100%;
   }
 
@@ -528,6 +530,7 @@ img { max-width: 100%; height: auto; display: block; }
   }
 
   .site-nav .site-nav__toggle[data-menu-open] {
+    display: flex !important;
     z-index: 1041;
     background: rgba(18, 18, 18, 0.86);
     border-color: rgba(255, 255, 255, 0.16);
