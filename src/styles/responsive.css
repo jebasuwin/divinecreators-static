@@ -1,4 +1,10 @@
 /* ─── Large desktop / laptop ─── */
+@media (min-width: 1201px) {
+  .site-footer .footer-brand-logo {
+    margin-top: -0.5rem;
+  }
+}
+
 @media (max-width: 1280px) {
   .service-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -253,9 +259,11 @@
     padding-top: 22px;
   }
 
-  .site-footer .site-logo__img {
-    height: 38px;
-    max-width: 150px;
+  .site-footer .footer-brand-logo {
+    --brand-logo-size: 44px;
+    --brand-wordmark-size: clamp(1.38rem, 5.8vw, 1.52rem);
+    --brand-wordmark-weight: 700;
+    --brand-wordmark-offset-y: -1px;
   }
 
   .page-hero.page-hero--simple {
@@ -276,13 +284,19 @@
     width: min(100% - 28px, 1420px);
   }
 
-  .site-logo__img {
-    height: 40px;
-    max-width: 140px;
+  .site-logo,
+  .brand-logo {
+    --brand-logo-size: 36px;
+    --brand-wordmark-size: clamp(1.48rem, 6.1vw, 1.58rem);
+    --brand-wordmark-weight: 700;
+    --brand-wordmark-offset-y: -1px;
   }
 
-  .site-footer .site-logo__img {
-    max-width: 150px;
+  .site-footer .footer-brand-logo {
+    --brand-logo-size: 44px;
+    --brand-wordmark-size: clamp(1.38rem, 5.8vw, 1.52rem);
+    --brand-wordmark-weight: 700;
+    --brand-wordmark-offset-y: -1px;
   }
 
   .site-nav__link {

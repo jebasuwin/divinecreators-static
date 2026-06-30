@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import logoImg from "../../assets/dc.png";
 
 const Logo = ({ className = "", dark = false, variant = "nav" }) => {
   const isFooter = variant === "footer";
+  const logoImg = `${import.meta.env.BASE_URL}assets/brand/dc-logo-white-128.png`;
 
   return (
     <Link
@@ -12,6 +12,8 @@ const Logo = ({ className = "", dark = false, variant = "nav" }) => {
     >
       <img
         src={logoImg}
+        srcSet={`${import.meta.env.BASE_URL}assets/brand/dc-logo-white-64.png 64w, ${import.meta.env.BASE_URL}assets/brand/dc-logo-white-128.png 128w, ${import.meta.env.BASE_URL}assets/brand/dc-logo-white-256.png 256w`}
+        sizes={isFooter ? "58px" : "48px"}
         alt="Divine Creators logo"
         className="site-logo__img"
         width={isFooter ? 58 : 48}

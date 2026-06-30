@@ -6,7 +6,7 @@ export const getOrganizationSchema = () => ({
   "@type": "Organization",
   name: businessInfo.name,
   url: siteUrl,
-  logo: `${siteUrl}/dc.png`,
+  logo: `${siteUrl}/assets/brand/dc-logo-black-256.png`,
   description: businessInfo.tagline,
   email: businessInfo.email,
   telephone: businessInfo.phoneDisplay,

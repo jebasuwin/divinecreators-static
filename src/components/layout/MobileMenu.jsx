@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import logoImg from "../../assets/dc.png";
 import { mainNavLinks } from "../../data/navigation";
 import { businessInfo } from "../../data/businessInfo";
 import SocialLinks from "../common/SocialLinks";
@@ -14,6 +13,7 @@ const navIcons = {
 
 const MobileMenu = ({ isOpen, onClose, returnFocusRef, activeSection, onNavClick }) => {
   const basePath = import.meta.env.BASE_URL;
+  const logoImg = `${basePath}assets/brand/dc-logo-white-128.png`;
   const closeButtonRef = useRef(null);
   const wasOpenRef = useRef(false);
 
@@ -60,7 +60,14 @@ const MobileMenu = ({ isOpen, onClose, returnFocusRef, activeSection, onNavClick
       <div className="mobile-menu__inner">
         <div className="mobile-menu__header">
           <Link to="/" className="brand-logo mobile-menu__logo" onClick={handleNavClick} aria-label="DIVINE CREATORS home">
-            <img src={logoImg} alt="Divine Creators logo" width={40} height={40} />
+            <img
+              src={logoImg}
+              srcSet={`${basePath}assets/brand/dc-logo-white-64.png 64w, ${basePath}assets/brand/dc-logo-white-128.png 128w`}
+              sizes="40px"
+              alt="Divine Creators logo"
+              width={40}
+              height={40}
+            />
             <span>DIVINE CREATORS</span>
           </Link>
           <button

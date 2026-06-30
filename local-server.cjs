@@ -5,7 +5,7 @@ const zlib = require("zlib");
 
 const port = Number(process.argv[2] || process.env.PORT || 5173);
 const host = process.env.HOST || "127.0.0.1";
-const root = path.resolve(__dirname, "..");
+const root = path.resolve(__dirname);
 const sitePath = "/divinecreators-static";
 
 const types = new Map([
@@ -72,14 +72,13 @@ const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || `${host}:${port}`}`);
   let pathname = decodeURIComponent(url.pathname);
 
-  if (pathname === "/") {
-    send(res, 302, "", { Location: `${sitePath}/` });
-    return;
-  }
-
   if (pathname === sitePath) {
     send(res, 301, "", { Location: `${sitePath}/` });
     return;
+  }
+
+  if (pathname.startsWith(`${sitePath}/`)) {
+    pathname = pathname.slice(sitePath.length) || "/";
   }
 
   pathname = pathname.replace(/\\/g, "/");
@@ -109,5 +108,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, host, () => {
-  console.log(`Divine Creators running at http://${host}:${port}${sitePath}/`);
+  console.log(`Divine Creators running at http://${host}:${port}/ and http://${host}:${port}${sitePath}/`);
 });

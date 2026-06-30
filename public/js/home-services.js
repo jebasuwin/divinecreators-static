@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  const IMAGE_BASE = "/divinecreators-static/assets/images/services";
+  const IMAGE_BASE = "assets/images/services";
   const IMAGE_DIMENSIONS = {
     "content-marketing": { width: 640, height: 427, mobileWidth: 480, mobileHeight: 320 },
     "lead-generation": { width: 640, height: 360, mobileWidth: 480, mobileHeight: 270 },

@@ -67,29 +67,40 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .brand-logo {
+  --brand-logo-size: 40px;
+  --brand-wordmark-size: clamp(1.58rem, 1.75vw, 1.76rem);
+  --brand-wordmark-spacing: 0.01em;
+  --brand-wordmark-weight: 800;
+  --brand-wordmark-offset-y: 1px;
   display: inline-flex;
   align-items: center;
   gap: 0.68rem;
   min-width: 0;
+  min-height: var(--brand-logo-size);
   color: var(--text-primary);
 }
 
 .brand-logo img,
 .site-nav__logo img {
-  width: 48px;
-  height: 48px;
+  width: var(--brand-logo-size);
+  height: var(--brand-logo-size);
   object-fit: contain;
   flex-shrink: 0;
 }
 
 .brand-logo span {
+  display: inline-flex;
+  align-items: center;
   min-width: 0;
+  min-height: var(--brand-logo-size);
   color: inherit;
   font-family: var(--font-heading);
-  font-size: clamp(1.18rem, 1.35vw, 1.38rem);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: 0.055em;
+  font-size: var(--brand-wordmark-size);
+  font-weight: var(--brand-wordmark-weight);
+  line-height: 1;
+  letter-spacing: var(--brand-wordmark-spacing);
+  white-space: nowrap;
+  transform: translateY(var(--brand-wordmark-offset-y));
 }
 
 .site-nav__menu {
@@ -386,11 +397,11 @@ img { display: block; max-width: 100%; height: auto; }
   }
 
   .site-nav__logo.brand-logo {
+    --brand-logo-size: 36px;
+    --brand-wordmark-size: clamp(1.48rem, 6.1vw, 1.58rem);
+    --brand-wordmark-weight: 700;
+    --brand-wordmark-offset-y: -1px;
     max-width: 100%;
-  }
-
-  .brand-logo span {
-    font-size: clamp(1.05rem, 5vw, 1.22rem);
   }
 
   .hero__row { padding: 2rem 0; }

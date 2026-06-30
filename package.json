@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://jebasuwin.github.io/divinecreators-static",
+  "homepage": "https://divinecreators.in",
   "scripts": {
     "dev": "node local-server.cjs 5173",
     "build": "echo Static site ready",

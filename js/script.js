@@ -790,9 +790,13 @@
   closeBtns.forEach((btn) => btn.addEventListener("click", closeMenu));
 
   /* ─── Active nav link ─── */
-  const siteBasePath = "/divinecreators-static";
+  const projectBasePath = "/divinecreators-static";
   const path = window.location.pathname.replace(/\.html$/, "").replace(/\/$/, "") || "/";
-  const isHomePage = path === "/" || path === "/index" || path === siteBasePath || path === `${siteBasePath}/index`;
+  const siteBasePath = path === projectBasePath || path.startsWith(`${projectBasePath}/`) ? projectBasePath : "";
+  const isHomePage =
+    path === "/" ||
+    path === "/index" ||
+    (siteBasePath && (path === siteBasePath || path === `${siteBasePath}/index`));
 
   /* ─── Hash navigation ─── */
   const scrollToHash = (hash, behavior = smoothBehavior) => {
@@ -804,7 +808,8 @@
 
   const getHashFromHref = (href) => {
     if (!href) return "";
-    if (href.startsWith(`${siteBasePath}/#`)) return href.slice(siteBasePath.length + 1);
+    if (siteBasePath && href.startsWith(`${siteBasePath}/#`)) return href.slice(siteBasePath.length + 1);
+    if (href.startsWith("./#")) return href.slice(1);
     if (href.startsWith("/#")) return href.slice(1);
     if (href.startsWith("#")) return href;
     return "";
