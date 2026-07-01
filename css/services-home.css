@@ -331,7 +331,10 @@
   font-weight: 900;
   line-height: 0.9;
   letter-spacing: 0;
+  opacity: 1;
+  transform: none;
   text-transform: uppercase;
+  transition: none;
   text-shadow:
     0 0 10px rgba(255, 255, 255, 0.18),
     0 0 22px rgba(255, 255, 255, 0.08);
@@ -547,6 +550,14 @@ html.aos-init:not(.aos-disabled) .services-home [data-aos].aos-animate {
   .services-home .service-video-showcase__heading span {
     min-height: 26px;
     font-size: 0.67rem;
+  }
+
+  .services-home .service-video-showcase__heading h3 {
+    display: block;
+    font-size: clamp(1.35rem, 7vw, 1.75rem);
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
   }
 
   .services-home .service-video-showcase__frame {
