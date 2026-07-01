@@ -78,6 +78,8 @@
       image: `${IMAGE_BASE}/video-marketing-new.webp`,
       imageAlt: "Video editing and short-form content",
       videoShowcase: {
+        eyebrow: "Portfolio Showcase",
+        title: "AI FILM MAKING",
         poster: "assets/videos/one-bullet-left-poster.webp",
         mobileSrc: "assets/videos/one-bullet-left-720.mp4",
         desktopSrc: "assets/videos/one-bullet-left-1080.mp4",
@@ -167,6 +169,10 @@
     if (!showcase) return "";
     return `
       <div class="service-video-showcase" data-service-video data-src-mobile="${showcase.mobileSrc}" data-src-desktop="${showcase.desktopSrc}">
+        <div class="service-video-showcase__heading">
+          <span>${showcase.eyebrow || "Portfolio Showcase"}</span>
+          <h3>${showcase.title || "AI FILM MAKING"}</h3>
+        </div>
         <div class="service-video-showcase__frame">
           <video
             class="service-video-showcase__media"

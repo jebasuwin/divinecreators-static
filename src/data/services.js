@@ -116,6 +116,8 @@ const divineCreatorServices = [
     image: `${IMAGE_BASE}/video-marketing-new.webp`,
     imageAlt: "Video editing and short-form content",
     videoShowcase: {
+      eyebrow: "Portfolio Showcase",
+      title: "AI FILM MAKING",
       poster: `${import.meta.env.BASE_URL}assets/videos/one-bullet-left-poster.webp`,
       mobileSrc: `${import.meta.env.BASE_URL}assets/videos/one-bullet-left-720.mp4`,
       desktopSrc: `${import.meta.env.BASE_URL}assets/videos/one-bullet-left-1080.mp4`,
