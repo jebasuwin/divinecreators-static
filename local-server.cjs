@@ -19,6 +19,8 @@ const types = new Map([
   [".jpeg", "image/jpeg"],
   [".svg", "image/svg+xml; charset=utf-8"],
   [".webp", "image/webp"],
+  [".mp4", "video/mp4"],
+  [".webm", "video/webm"],
   [".ico", "image/x-icon"],
   [".otf", "font/otf"],
   [".ttf", "font/ttf"],
@@ -68,6 +70,61 @@ const sendFile = (req, res, status, body, headers = {}) => {
   });
 };
 
+const streamRangedFile = (req, res, filePath, stat, contentType) => {
+  const range = req.headers.range;
+  const baseHeaders = {
+    "Cache-Control": "no-cache",
+    "Content-Type": contentType,
+    "Accept-Ranges": "bytes",
+  };
+
+  if (!range) {
+    res.writeHead(200, {
+      ...baseHeaders,
+      "Content-Length": stat.size,
+    });
+    if (req.method === "HEAD") {
+      res.end();
+      return;
+    }
+    fs.createReadStream(filePath).pipe(res);
+    return;
+  }
+
+  const match = /^bytes=(\d*)-(\d*)$/.exec(range);
+  if (!match) {
+    send(res, 416, "Range Not Satisfiable", {
+      ...baseHeaders,
+      "Content-Range": `bytes */${stat.size}`,
+    });
+    return;
+  }
+
+  const start = match[1] ? Number(match[1]) : 0;
+  const end = match[2] ? Number(match[2]) : stat.size - 1;
+
+  if (Number.isNaN(start) || Number.isNaN(end) || start > end || end >= stat.size) {
+    send(res, 416, "Range Not Satisfiable", {
+      ...baseHeaders,
+      "Content-Range": `bytes */${stat.size}`,
+    });
+    return;
+  }
+
+  res.writeHead(206, {
+    ...baseHeaders,
+    "Content-Length": end - start + 1,
+    "Content-Range": `bytes ${start}-${end}/${stat.size}`,
+  });
+
+  if (req.method === "HEAD") {
+    res.end();
+    return;
+  }
+
+  fs.createReadStream(filePath, { start, end }).pipe(res);
+};
+
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || `${host}:${port}`}`);
   let pathname = decodeURIComponent(url.pathname);
@@ -95,14 +152,28 @@ const server = http.createServer((req, res) => {
       filePath = path.join(target, "index.html");
     }
 
-    fs.readFile(filePath, (readError, data) => {
-      if (readError) {
+    fs.stat(filePath, (fileStatError, fileStat) => {
+      if (fileStatError || !fileStat.isFile()) {
         send(res, 404, "Not found", { "Content-Type": "text/plain; charset=utf-8" });
         return;
       }
 
       const ext = path.extname(filePath).toLowerCase();
-      sendFile(req, res, 200, data, { "Content-Type": types.get(ext) || "application/octet-stream" });
+      const contentType = types.get(ext) || "application/octet-stream";
+
+      if (ext === ".mp4" || ext === ".webm") {
+        streamRangedFile(req, res, filePath, fileStat, contentType);
+        return;
+      }
+
+      fs.readFile(filePath, (readError, data) => {
+        if (readError) {
+          send(res, 404, "Not found", { "Content-Type": "text/plain; charset=utf-8" });
+          return;
+        }
+
+        sendFile(req, res, 200, data, { "Content-Type": contentType });
+      });
     });
   });
 });

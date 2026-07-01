@@ -1150,11 +1150,11 @@
     const GOOGLE_SERVICE_VALUES = new Set([
       "Social Media Management",
       "LinkedIn Personal Branding",
-      "Video Editing & Short-Form Content",
       "Graphic Design",
       "Content Writing & Script Development",
       "YouTube Growth Support",
       "Website & App Development",
+      "Video Editing & Short-Form Content",
     ]);
     const SERVICE_VALUE_MAP = new Map();
     const validateEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);

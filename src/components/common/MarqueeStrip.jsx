@@ -1,11 +1,11 @@
 const items = [
   "Social Media Management",
   "LinkedIn Personal Branding",
-  "Video Editing",
   "Graphic Design",
   "Content Writing",
   "YouTube Growth Support",
   "Website & App Development",
+  "Video Editing",
 ];
 
 const MarqueeStrip = () => {

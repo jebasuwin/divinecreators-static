@@ -2,7 +2,7 @@ export const businessInfo = {
   name: "DIVINE CREATORS",
   displayName: "DIVINE CREATORS",
   tagline: "We Turn Ideas Into Content That Builds Brands",
-  email: "DivineCreators999@gmail.com",
+  email: "Divinecreatorsofficial@gmail.com",
   phoneDisplay: "+91 6302142813",
   phoneLink: "tel:+916302142813",
   whatsappNumber: "916302142813",

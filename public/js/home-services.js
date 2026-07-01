@@ -35,15 +35,6 @@
       imageAlt: "LinkedIn personal branding and professional visibility",
     },
     {
-      id: "video-editing-short-form-content",
-      title: "Video Editing & Short-Form Content",
-      intro: "Capture attention and maximize engagement through professionally edited video content.",
-      servicesLabel: "Services Include:",
-      services: ["Reels Editing", "Shorts Editing", "Podcast Clips", "Talking Head Videos", "Motion Graphics", "YouTube Video Editing"],
-      image: `${IMAGE_BASE}/video-marketing-new.webp`,
-      imageAlt: "Video editing and short-form content",
-    },
-    {
       id: "graphic-design",
       title: "Graphic Design",
       intro: "Create visuals that strengthen your brand identity and communicate your message effectively.",
@@ -77,6 +68,21 @@
       services: ["Website Development", "Web Application Development", "Mobile App Development (Android & iOS)", "UI/UX Design", "Software Testing & QA", "Cloud & DevOps", "Maintenance & Support", "AI & Automation Solutions"],
       image: `${IMAGE_BASE}/website-design-development.webp`,
       imageAlt: "Website and app development",
+    },
+    {
+      id: "video-editing-short-form-content",
+      title: "Video Editing & Short-Form Content",
+      intro: "Capture attention and maximize engagement through professionally edited video content.",
+      servicesLabel: "Services Include:",
+      services: ["Reels Editing", "Shorts Editing", "Podcast Clips", "Talking Head Videos", "Motion Graphics", "YouTube Video Editing"],
+      image: `${IMAGE_BASE}/video-marketing-new.webp`,
+      imageAlt: "Video editing and short-form content",
+      videoShowcase: {
+        poster: "assets/videos/one-bullet-left-poster.webp",
+        mobileSrc: "assets/videos/one-bullet-left-720.mp4",
+        desktopSrc: "assets/videos/one-bullet-left-1080.mp4",
+        label: "Video editing portfolio sample",
+      },
     },
   ];
 
@@ -157,6 +163,137 @@
     `;
   };
 
+  const renderVideoShowcase = (showcase) => {
+    if (!showcase) return "";
+    return `
+      <div class="service-video-showcase" data-service-video data-src-mobile="${showcase.mobileSrc}" data-src-desktop="${showcase.desktopSrc}">
+        <div class="service-video-showcase__frame">
+          <video
+            class="service-video-showcase__media"
+            poster="${showcase.poster}"
+            preload="none"
+            muted
+            playsinline
+            disablepictureinpicture
+            controlslist="nodownload noplaybackrate"
+            aria-label="${showcase.label}"
+          ></video>
+          <button type="button" class="service-video-showcase__mute" data-service-video-mute aria-label="Unmute video" aria-pressed="false">
+            <span class="service-video-showcase__icon service-video-showcase__icon--muted" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.2 1.4 1.4-1.4 2.1 2.1 2.1-2.1 1.4 1.4-2.1 2.1 2.1 2.1-1.4 1.4-2.1-2.1-2.1 2.1-1.4-1.4 2.1-2.1-2.1-2.1Z"/></svg>
+            </span>
+            <span class="service-video-showcase__icon service-video-showcase__icon--sound" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.6-2.2-1.4 1.4A5.4 5.4 0 0 1 17 12a5.4 5.4 0 0 1-1.8 3.8l1.4 1.4A7.3 7.3 0 0 0 19 12a7.3 7.3 0 0 0-2.4-5.2Zm2.8-2.8L18 5.4A9.4 9.4 0 0 1 21 12a9.4 9.4 0 0 1-3 6.6l1.4 1.4A11.4 11.4 0 0 0 23 12a11.4 11.4 0 0 0-3.6-8Z"/></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    `;
+  };
+
+  const setupVideoShowcases = (scope = document) => {
+    const showcases = Array.from(scope.querySelectorAll("[data-service-video]"));
+    if (!showcases.length) return;
+
+    const mobileQuery = window.matchMedia("(max-width: 767px)");
+
+    const loadVideo = (showcase) => {
+      if (showcase.dataset.loaded === "true") return;
+      const video = showcase.querySelector("video");
+      if (!video) return;
+
+      const src = mobileQuery.matches ? showcase.dataset.srcMobile : showcase.dataset.srcDesktop;
+      if (!src) return;
+
+      video.src = src;
+      video.load();
+      showcase.dataset.loaded = "true";
+    };
+
+    const setMuted = (showcase, muted) => {
+      const video = showcase.querySelector("video");
+      const button = showcase.querySelector("[data-service-video-mute]");
+      if (!video || !button) return;
+
+      video.muted = muted;
+      showcase.classList.toggle("is-audible", !muted);
+      button.setAttribute("aria-pressed", muted ? "false" : "true");
+      button.setAttribute("aria-label", muted ? "Unmute video" : "Mute video");
+    };
+
+    const playVideo = (showcase) => {
+      const video = showcase.querySelector("video");
+      if (!video) return;
+
+      loadVideo(showcase);
+      if (showcase.dataset.userAudible !== "true") {
+        setMuted(showcase, true);
+      }
+
+      const playAttempt = video.play();
+      if (playAttempt?.catch) {
+        playAttempt.catch(() => {
+          setMuted(showcase, true);
+          video.play().catch(() => {});
+        });
+      }
+    };
+
+    const pauseVideo = (showcase) => {
+      const video = showcase.querySelector("video");
+      if (video && !video.paused) video.pause();
+    };
+
+    showcases.forEach((showcase) => {
+      if (showcase.dataset.bound === "true") return;
+      showcase.dataset.bound = "true";
+
+      const button = showcase.querySelector("[data-service-video-mute]");
+      button?.addEventListener("click", () => {
+        loadVideo(showcase);
+        const video = showcase.querySelector("video");
+        if (!video) return;
+
+        const shouldMute = !video.muted ? true : false;
+        showcase.dataset.userAudible = shouldMute ? "false" : "true";
+        setMuted(showcase, shouldMute);
+        if (showcase.classList.contains("is-active")) {
+          video.play().catch(() => {});
+        }
+      });
+    });
+
+    if (!("IntersectionObserver" in window)) {
+      showcases.forEach((showcase) => {
+        showcase.classList.add("is-active");
+        playVideo(showcase);
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const showcase = entry.target.querySelector("[data-service-video]") || entry.target;
+          const active = entry.isIntersecting && entry.intersectionRatio >= 0.24;
+          showcase.classList.toggle("is-active", active);
+          if (active && !document.hidden) playVideo(showcase);
+          else pauseVideo(showcase);
+        });
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: [0, 0.24, 0.5] }
+    );
+
+    showcases.forEach((showcase) => observer.observe(showcase.closest(".service-block") || showcase));
+
+    document.addEventListener("visibilitychange", () => {
+      showcases.forEach((showcase) => {
+        if (document.hidden) pauseVideo(showcase);
+        else if (showcase.classList.contains("is-active")) playVideo(showcase);
+      });
+    });
+  };
+
   const renderBlock = (service, blockIndex, reverse) => {
     const altClass = blockIndex % 2 === 1 ? " service-block--alt" : "";
     const reverseClass = reverse ? " flex-lg-row-reverse" : "";
@@ -179,6 +316,7 @@
               ${renderVisual(service, blockIndex)}
             </div>
           </div>
+          ${renderVideoShowcase(service.videoShowcase)}
         </div>
       </div>
     `;
@@ -213,7 +351,8 @@
       `;
     }).join("");
 
+    setupVideoShowcases(root);
   };
 
-  window.HomeServices = { renderHomeServices, preloadServiceImages, SERVICE_GROUPS };
+  window.HomeServices = { renderHomeServices, preloadServiceImages, setupVideoShowcases, SERVICE_GROUPS };
 })();

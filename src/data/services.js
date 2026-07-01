@@ -34,23 +34,6 @@ const divineCreatorServices = [
     imageAlt: "LinkedIn personal branding and professional visibility",
   },
   {
-    id: "video-editing-short-form-content",
-    title: "Video Editing & Short-Form Content",
-    intro:
-      "Capture attention and maximize engagement through professionally edited video content.",
-    servicesLabel: "Services Include:",
-    services: [
-      "Reels Editing",
-      "Shorts Editing",
-      "Podcast Clips",
-      "Talking Head Videos",
-      "Motion Graphics",
-      "YouTube Video Editing",
-    ],
-    image: `${IMAGE_BASE}/video-marketing-new.webp`,
-    imageAlt: "Video editing and short-form content",
-  },
-  {
     id: "graphic-design",
     title: "Graphic Design",
     intro:
@@ -115,6 +98,29 @@ const divineCreatorServices = [
     ],
     image: `${IMAGE_BASE}/website-design-development.webp`,
     imageAlt: "Website and app development",
+  },
+  {
+    id: "video-editing-short-form-content",
+    title: "Video Editing & Short-Form Content",
+    intro:
+      "Capture attention and maximize engagement through professionally edited video content.",
+    servicesLabel: "Services Include:",
+    services: [
+      "Reels Editing",
+      "Shorts Editing",
+      "Podcast Clips",
+      "Talking Head Videos",
+      "Motion Graphics",
+      "YouTube Video Editing",
+    ],
+    image: `${IMAGE_BASE}/video-marketing-new.webp`,
+    imageAlt: "Video editing and short-form content",
+    videoShowcase: {
+      poster: `${import.meta.env.BASE_URL}assets/videos/one-bullet-left-poster.webp`,
+      mobileSrc: `${import.meta.env.BASE_URL}assets/videos/one-bullet-left-720.mp4`,
+      desktopSrc: `${import.meta.env.BASE_URL}assets/videos/one-bullet-left-1080.mp4`,
+      label: "Video editing portfolio sample",
+    },
   },
 ];
 
