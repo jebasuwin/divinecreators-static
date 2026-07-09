@@ -10,13 +10,8 @@ permalink: /sitemap.xml
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://divinecreators.in/about</loc>
+    <loc>https://divinecreators.in/about.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://divinecreators.in/contact</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>
