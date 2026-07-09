@@ -1,11 +1,11 @@
 export const siteUrl = "https://divinecreators.in";
-export const defaultOgImage = `${siteUrl}/og-image.jpg`;
+export const defaultOgImage = `${siteUrl}/assets/brand/dc-logo-black-256.png`;
 
 export const pageSeo = {
   home: {
-    title: "Divine Creators | Content That Builds Brands",
+    title: "Divine Creators | Strategic Content, Branding & Digital Growth",
     description:
-      "Divine Creators helps businesses, founders, and professionals grow their online presence through strategic content, compelling visuals, and impactful storytelling.",
+      "Divine Creators helps businesses, founders, and professionals grow their online presence through strategic content, compelling visuals, and consistent brand storytelling.",
     path: "/",
   },
   about: {

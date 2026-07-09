@@ -70,7 +70,7 @@ const Footer = () => {
       </div>
 
       <div className="site-footer__bottom footer-bottom">
-        <p className="site-footer__copy">&copy; 2026 DIVINE CREATORS. All rights reserved.</p>
+        <p className="site-footer__copy" data-nosnippet>&copy; 2026 DIVINE CREATORS. All rights reserved.</p>
       </div>
     </div>
   </footer>

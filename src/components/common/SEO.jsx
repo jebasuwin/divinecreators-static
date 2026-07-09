@@ -14,7 +14,15 @@ const SEO = ({ title, description, path, type = "website", schema }) => {
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="robots" content="index, follow" />
+      <meta
+        name="googlebot"
+        content="max-snippet:160, max-image-preview:large, max-video-preview:-1"
+      />
       <link rel="canonical" href={canonical} />
+      <link rel="icon" type="image/png" sizes="256x256" href="/assets/brand/dc-logo-black-256.png" />
+      <link rel="shortcut icon" type="image/png" sizes="64x64" href="/assets/brand/dc-logo-black-64.png" />
+      <link rel="apple-touch-icon" sizes="256x256" href="/assets/brand/dc-logo-black-256.png" />
 
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
