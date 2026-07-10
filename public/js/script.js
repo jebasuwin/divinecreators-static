@@ -968,12 +968,11 @@
   const heroTl = () => {
     if (typeof gsap === "undefined" || reducedMotion) return;
 
-    const visibleHeroCopy = ".hero__eyebrow, .hero__title, .hero__subtitle, .hero__actions";
+    const visibleHeroCopy = ".hero__title, .hero__subtitle, .hero__actions";
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
     gsap.set(visibleHeroCopy, { opacity: 1, visibility: "visible" });
     tl.from(".brand-logo", { y: 20, duration: 0.6 })
-      .from(".hero__eyebrow", { y: 16, duration: 0.5 }, "-=0.3")
-      .from(".hero__title", { y: 24, duration: 0.6 }, "-=0.2")
+      .from(".hero__title", { y: 24, duration: 0.6 }, "-=0.3")
       .from(".hero__subtitle", { y: 20, duration: 0.55 }, "-=0.25")
       .from(".hero__actions .btn-glow", { y: 24, scale: 0.92, duration: 0.5 }, "-=0.2")
       .from(".hero__actions .btn-outline-glow", { y: 24, duration: 0.45 }, "-=0.4")
